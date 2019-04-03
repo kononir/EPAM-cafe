@@ -10,23 +10,17 @@ public class User {
     private String surname;
     private UserRole role;
 
+    private int score;
+
     private Account account;
 
-    public User(int ID, String login, String password, String name, String surname, UserRole role) {
+    public User(int ID, String login, String password, String name, String surname, int score, UserRole role, Account account) {
         this.ID = ID;
         this.login = login;
         this.password = password;
         this.name = name;
         this.surname = surname;
-        this.role = role;
-    }
-
-    public User(int ID, String login, String password, String name, String surname, UserRole role, Account account) {
-        this.ID = ID;
-        this.login = login;
-        this.password = password;
-        this.name = name;
-        this.surname = surname;
+        this.score = score;
         this.role = role;
         this.account = account;
     }
@@ -49,6 +43,14 @@ public class User {
 
     public String getSurname() {
         return surname;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 
     public UserRole getRole() {
@@ -76,7 +78,8 @@ public class User {
                 password.equals(user.password) &&
                 name.equals(user.name) &&
                 surname.equals(user.surname) &&
-                role == user.role;
+                role == user.role &&
+                account.equals(user.account);
     }
 
     @Override
@@ -85,6 +88,7 @@ public class User {
                 + (password == null ? 0 : password.hashCode())
                 + (name == null ? 0 : name.hashCode())
                 + (surname == null ? 0 : surname.hashCode())
-                + (role == null ? 0 : role.hashCode());
+                + (role == null ? 0 : role.hashCode())
+                + (account == null ? 0 : account.hashCode());
     }
 }

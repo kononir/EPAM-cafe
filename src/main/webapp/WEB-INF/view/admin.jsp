@@ -11,6 +11,6 @@
     <title>Administrator view</title>
 </head>
 <body>
-    <h1>Hello Administrator</h1>
+    <h1>Hello Administrator!</h1>
 </body>
 </html>

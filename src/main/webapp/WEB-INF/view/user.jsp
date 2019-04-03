@@ -9,8 +9,10 @@
 <html>
 <head>
     <title>User view</title>
+    <link rel="stylesheet" type="text/css" href="css/link.css">
 </head>
 <body>
     <h1>Hello User!</h1>
+    <a href="authorization.jsp">Sign out</a>
 </body>
 </html>

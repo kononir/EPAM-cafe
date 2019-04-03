@@ -7,6 +7,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <html>
+<head>
+    <title>Authorization</title>
+</head>
 <body>
     <h1>Sign in to system</h1>
     <form method="post" action="command">
