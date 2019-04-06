@@ -12,5 +12,9 @@
 </head>
 <body>
     <h1>Hello Administrator!</h1>
+    <form action="command" method="post">
+        <input type="hidden" name="command" value="logout">
+        <input type="submit" value="Sign out">
+    </form>
 </body>
 </html>

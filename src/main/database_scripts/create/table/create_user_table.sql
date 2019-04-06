@@ -7,7 +7,7 @@ CREATE TABLE user
   Surname   varchar(90)                      NOT NULL,
   Role      enum ('ADMINISTRATOR', 'CLIENT') NOT NULL,
   Score     int,
-  AccountId int,
+  AccountID int,
 
   PRIMARY KEY (ID),
   UNIQUE (Login),

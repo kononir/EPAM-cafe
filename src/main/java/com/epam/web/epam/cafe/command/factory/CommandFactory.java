@@ -1,9 +1,8 @@
-package com.epam.web.epam.cafe.command.builder;
+package com.epam.web.epam.cafe.command.factory;
 
 import com.epam.web.epam.cafe.command.Command;
-import com.epam.web.epam.cafe.command.exceptions.InvalidCommandNameException;
+import com.epam.web.epam.cafe.command.exceptions.CommandCreatingException;
 import com.epam.web.epam.cafe.command.impl.AuthorizeCommand;
-import com.epam.web.epam.cafe.command.impl.EmptyCommand;
 import com.epam.web.epam.cafe.command.impl.LogoutCommand;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,9 +14,9 @@ public class CommandFactory {
         this.request = request;
     }
 
-    public Command build(String commandName) throws InvalidCommandNameException {
+    public Command create(String commandName) throws CommandCreatingException {
         if (commandName == null) {
-            throw new InvalidCommandNameException("Miss commands name");
+            throw new CommandCreatingException("Miss commands name.");
         }
 
         Command command;
@@ -29,11 +28,8 @@ public class CommandFactory {
             case LOGOUT:
                 command = new LogoutCommand(request);
                 break;
-            case EMPTY:
-                command = new EmptyCommand();
-                break;
             default:
-                throw new EnumConstantNotPresentException(CommandType.class, commandType.name());
+                throw new CommandCreatingException("Invalid commands name: " + commandType.name());
         }
 
         return command;

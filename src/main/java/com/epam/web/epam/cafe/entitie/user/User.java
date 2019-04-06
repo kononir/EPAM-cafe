@@ -10,11 +10,12 @@ public class User {
     private String surname;
     private UserRole role;
 
-    private int score;
+    private Integer score;
 
     private Account account;
 
-    public User(int ID, String login, String password, String name, String surname, int score, UserRole role, Account account) {
+    public User(int ID, String login, String password, String name, String surname,
+                Integer score, UserRole role, Account account) {
         this.ID = ID;
         this.login = login;
         this.password = password;
@@ -45,11 +46,11 @@ public class User {
         return surname;
     }
 
-    public int getScore() {
+    public Integer getScore() {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(Integer score) {
         this.score = score;
     }
 

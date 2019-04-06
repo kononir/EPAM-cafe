@@ -1,8 +1,9 @@
 package com.epam.web.epam.cafe;
 
 import com.epam.web.epam.cafe.command.Command;
-import com.epam.web.epam.cafe.command.builder.CommandFactory;
-import com.epam.web.epam.cafe.command.exceptions.InvalidCommandNameException;
+import com.epam.web.epam.cafe.command.exceptions.CommandExecutingException;
+import com.epam.web.epam.cafe.command.factory.CommandFactory;
+import com.epam.web.epam.cafe.command.exceptions.CommandCreatingException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,16 +21,19 @@ public class FrontServlet extends HttpServlet {
 
     private void processRequest(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
+        String page;
         try {
             String commandName = req.getParameter("command");
             CommandFactory commandFactory = new CommandFactory(req);
-            Command command = commandFactory.build(commandName);
+            Command command = commandFactory.create(commandName);
 
-            String page = command.execute();
-            dispatch(req, resp, page);
-        } catch (InvalidCommandNameException e) {
-            e.printStackTrace();
+            page = command.execute();
+        } catch (CommandCreatingException | CommandExecutingException e) {
+            req.setAttribute("error", e.getMessage());
+            page = "/WEB-INF/view/error.jsp";
         }
+
+        dispatch(req, resp, page);
     }
 
     private void dispatch(HttpServletRequest req, HttpServletResponse resp, String page)
