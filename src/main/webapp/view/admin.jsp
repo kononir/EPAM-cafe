@@ -14,7 +14,7 @@
     <h1>Hello Administrator!</h1>
     <form action="command" method="post">
         <input type="hidden" name="command" value="logout">
-        <input type="submit" value="Sign out">
+        <button type="submit">Sign out</button>
     </form>
 </body>
 </html>

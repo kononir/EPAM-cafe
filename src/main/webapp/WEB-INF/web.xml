@@ -10,7 +10,7 @@
     
     <servlet>
         <servlet-name>servlet</servlet-name>
-        <servlet-class>com.epam.web.epam.cafe.FrontServlet</servlet-class>
+        <servlet-class>com.epam.cafe.FrontServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>

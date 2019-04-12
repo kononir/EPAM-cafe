@@ -5,18 +5,23 @@
   Time: 13:17
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>Authorization</title>
+    <link href="view/css/main.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Sign in to system</h1>
-    <form method="post" action="command">
+<div class="center-input">
+    <h1>Sign in to EPAM-cafe</h1>
+    <form method="post" action="command" class="sign-in">
         <input type="hidden" name="command" value="authorize">
-        <input type="text" required placeholder="Login" name="login"><br>
-        <input type="text" required placeholder="Password" name="password"><br>
-        <input type="submit" value="Sign in"/>
+        <label for="login">Login</label><br>
+        <input type="text" required placeholder="Login" name="login" id="login"><br>
+        <label for="password">Password</label><br>
+        <input type="password" required placeholder="Password" name="password" id="password"><br>
+        <button type="submit">Sign in</button>
     </form>
+</div>
 </body>
 </html>
