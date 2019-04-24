@@ -5,7 +5,7 @@ import com.epam.cafe.command.exceptions.CommandExecutingException;
 import com.epam.cafe.entitie.user.User;
 import com.epam.cafe.entitie.user.UserRole;
 import com.epam.cafe.logic.UserService;
-import com.epam.cafe.logic.exception.UserAuthorizationException;
+import com.epam.cafe.logic.exception.ServiceException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -41,7 +41,7 @@ public class AuthorizeCommand implements Command {
             } else {
                 role = UserRole.ANONYMOUS;
             }
-        } catch (UserAuthorizationException e) {
+        } catch (ServiceException e) {
             throw new CommandExecutingException(e);
         }
 

@@ -20,10 +20,9 @@ public class UserBuilder implements EntityBuilder<User> {
         String name = resultSet.getString(User.NAME_COLUMN);
         String surname = resultSet.getString(User.SURNAME_COLUMN);
         UserRole role = UserRole.valueOf(resultSet.getString(User.ROLE_COLUMN));
+        Object isBanned = resultSet.getObject(User.IS_BANNED_COLUMN);
         Object score = resultSet.getObject(User.SCORE_COLUMN);
         Object accountID = resultSet.getObject(User.ACCOUNT_ID_COLUMN);
-
-        Integer intScore = (Integer) score;
 
         Account account;
         if (accountID != null) {
@@ -33,6 +32,6 @@ public class UserBuilder implements EntityBuilder<User> {
             account = null;
         }
 
-        return new User(ID, login, password, name, surname, intScore, role, account);
+        return new User(ID, login, password, name, surname, role, (Boolean) isBanned, (Integer) score, account);
     }
 }

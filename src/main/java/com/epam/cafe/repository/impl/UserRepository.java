@@ -33,15 +33,11 @@ public class UserRepository extends AbstractRepository<User> implements Reposito
         params.put(User.NAME_COLUMN, user.getName());
         params.put(User.SURNAME_COLUMN, user.getSurname());
         params.put(User.ROLE_COLUMN, user.getRole());
+        params.put(User.IS_BANNED_COLUMN, user.getBanned());
         params.put(User.SCORE_COLUMN, user.getScore());
 
         Account account = user.getAccount();
-        Integer accountID;
-        if (account != null) {
-            accountID = account.getID();
-        } else {
-            accountID = null;
-        }
+        Integer accountID = (account != null) ? account.getID() : null;
 
         params.put(User.ACCOUNT_ID_COLUMN, accountID);
 

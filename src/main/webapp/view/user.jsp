@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Vlad
@@ -11,10 +12,7 @@
     <title>User view</title>
 </head>
 <body>
+    <c:import url="/view/top_panel.jsp"/>
     <h1>Hello User!</h1>
-    <form action="command" method="post">
-        <input type="hidden" name="command" value="logout">
-        <button type="submit">Sign out</button>
-    </form>
 </body>
 </html>

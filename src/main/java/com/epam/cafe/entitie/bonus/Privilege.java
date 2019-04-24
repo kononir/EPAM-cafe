@@ -1,18 +1,12 @@
 package com.epam.cafe.entitie.bonus;
 
 public class Privilege {
-    private PrivilegeType type;
     private String name;
     private String description;
 
-    public Privilege(PrivilegeType type, String name, String description) {
-        this.type = type;
+    public Privilege(String name, String description) {
         this.name = name;
         this.description = description;
-    }
-
-    public PrivilegeType getType() {
-        return type;
     }
 
     public String getName() {

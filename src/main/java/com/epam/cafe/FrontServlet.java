@@ -1,9 +1,10 @@
 package com.epam.cafe;
 
 import com.epam.cafe.api.Command;
-import com.epam.cafe.command.exceptions.CommandExecutingException;
 import com.epam.cafe.command.factory.CommandFactory;
-import com.epam.cafe.command.exceptions.CommandCreatingException;
+import com.epam.cafe.connection.ConnectionPool;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,8 +12,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class FrontServlet extends HttpServlet {
+    private static final Logger LOGGER = LogManager.getRootLogger();
+
+    @Override
+    public void destroy() {
+        try {
+            ConnectionPool pool = ConnectionPool.getInstance();
+            pool.closeAll();
+        } catch (SQLException e) {
+            LOGGER.error("Closing database connections exception", e);
+        }
+    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -28,8 +41,8 @@ public class FrontServlet extends HttpServlet {
             Command command = commandFactory.create(commandName);
 
             page = command.execute();
-        } catch (CommandCreatingException | CommandExecutingException e) {
-            req.setAttribute("error", e.getMessage());
+        } catch (Exception e) {
+            req.setAttribute("exception", e);
             page = "/view/error.jsp";
         }
 

@@ -1,4 +1,6 @@
-<%--@elvariable id="error" type="java.lang.String"--%>
+<%--@elvariable id="exception" type="java.lang.Exception"--%>
+<%@ taglib prefix="e" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Vlad
@@ -12,6 +14,19 @@
     <title>Error</title>
 </head>
 <body>
-    <h5>${error}</h5>
+<p>
+    Exception:<br>
+    ${exception}
+</p>
+<p>
+    Message:<br>
+    ${exception.message}
+</p>
+<p>
+    Stack trace:<br>
+    <c:forEach items="${exception.stackTrace}" var="stackElement">
+        ${stackElement.toString()}<br>
+    </c:forEach>
+</p>
 </body>
 </html>

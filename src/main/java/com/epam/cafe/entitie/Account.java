@@ -3,6 +3,9 @@ package com.epam.cafe.entitie;
 import java.math.BigDecimal;
 
 public class Account {
+    public static final String ID_COLUMN = "ID";
+    public static final String MONEY_COLUMN = "Money";
+
     private int ID;
     private BigDecimal money;
 

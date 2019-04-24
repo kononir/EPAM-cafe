@@ -6,11 +6,11 @@ CREATE TABLE user
   Name      varchar(90)                      NOT NULL,
   Surname   varchar(90)                      NOT NULL,
   Role      enum ('ADMINISTRATOR', 'CLIENT') NOT NULL,
+  IsBanned  boolean,
   Score     int,
   AccountID int,
 
   PRIMARY KEY (ID),
   UNIQUE (Login),
-  FOREIGN KEY (AccountId) REFERENCES account (ID),
-  CHECK ( CASE WHEN Role = 'CLIENT' THEN (Score IS NOT NULL AND AccountId IS NOT NULL) END)
+  FOREIGN KEY (AccountId) REFERENCES account (ID)
 );

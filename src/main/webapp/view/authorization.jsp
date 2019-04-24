@@ -9,19 +9,19 @@
 <html>
 <head>
     <title>Authorization</title>
-    <link href="view/css/main.css" rel="stylesheet">
+    <link href="view/style/main.css" rel="stylesheet">
 </head>
 <body>
-<div class="center-input">
-    <h1>Sign in to EPAM-cafe</h1>
-    <form method="post" action="command" class="sign-in">
-        <input type="hidden" name="command" value="authorize">
-        <label for="login">Login</label><br>
-        <input type="text" required placeholder="Login" name="login" id="login"><br>
-        <label for="password">Password</label><br>
-        <input type="password" required placeholder="Password" name="password" id="password"><br>
-        <button type="submit">Sign in</button>
-    </form>
-</div>
+    <div class="centered">
+        <h1>Sign in to EPAM-cafe</h1>
+        <form method="post" action="command" class="sign-in">
+            <input type="hidden" name="command" value="authorize">
+            <label for="login">Login</label><br>
+            <input type="text" required placeholder="Login" name="login" id="login"><br>
+            <label for="password">Password</label><br>
+            <input type="password" required placeholder="Password" name="password" id="password"><br>
+            <button type="submit">Sign in</button>
+        </form>
+    </div>
 </body>
 </html>

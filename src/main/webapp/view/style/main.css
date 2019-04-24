@@ -1,0 +1,128 @@
+body {
+    background-image: url("img/espresso.jpg");
+    background-color: #505050;
+}
+
+.centered {
+    text-align: center;
+    padding: 150px 0;
+}
+
+.centered h1 {
+    font-weight: 100;
+    color: grey;
+}
+
+.sign-in {
+    width: 300px;
+    margin: auto;
+    padding: 10px 0;
+    border-radius: 10px;
+    background-color: #BD85FF;
+    border: 5px solid silver;
+}
+
+.sign-in input {
+    width: 80%;
+    margin: 10px 0;
+    padding: 6px 0;
+    box-sizing: border-box;
+}
+
+.sign-in label {
+    float: left;
+    margin: 0 30px;
+    color: white;
+}
+
+.sign-in button {
+    width: 50px;
+    padding: 6px 0;
+    background-color: white;
+}
+
+.table-actions table {
+    margin: auto;
+    background-color: orange;
+}
+
+.table-actions table, th, td {
+    border: 1px solid white;
+    border-collapse: collapse;
+    text-align: center;
+    padding: 5px;
+    color: white;
+}
+
+form {
+    margin: auto;
+}
+
+.table-actions button {
+    background-color: white;
+}
+
+.table-actions input {
+    width: 100%;
+}
+
+.horizontal-menu, .vertical-menu {
+    list-style: none;
+    background-color: grey;
+    margin: 0;
+    padding: 0;
+    font-size: 0;
+    overflow: hidden;
+}
+
+.horizontal-menu {
+    border: 1px solid white;
+}
+
+.vertical-menu {
+    width: 100px;
+    height: auto;
+    margin-right: 10px;
+    float: left;
+    border-right: 1px solid white;
+    border-left: 1px solid white;
+}
+
+.vertical-menu li {
+    float: left;
+    width: inherit;
+}
+
+.horizontal-menu button, .vertical-menu button {
+    display: block;
+    color: white;
+    background-color: grey;
+    border: 0;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 15px;
+}
+
+.horizontal-menu button:hover, .vertical-menu button:hover {
+    background-color: orange;
+}
+
+.vertical-menu form {
+    width: inherit;
+}
+
+.vertical-menu button {
+    border-bottom: 1px solid white;
+    width: inherit;
+}
+
+.horizontal-menu button {
+    float: right;
+    border-left: 1px solid white;
+}
+
+.inner-content {
+    color: grey;
+}

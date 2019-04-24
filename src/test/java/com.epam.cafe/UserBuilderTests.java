@@ -60,7 +60,33 @@ public class UserBuilderTests {
     }
 
     @Test
-    public void testBuildShouldReturnUserWithRoleClientWhenGivenResultSetWithClient() {
+    public void testBuildShouldReturnUserWithRoleClientWhenGivenResultSetWithClient() throws SQLException {
+        ResultSet resultSet = mock(ResultSet.class);
+        when(resultSet.getInt(User.ID_COLUMN)).thenReturn(ID);
+        when(resultSet.getString(User.LOGIN_COLUMN)).thenReturn(LOGIN);
+        when(resultSet.getString(User.PASSWORD_COLUMN)).thenReturn(PASSWORD);
+        when(resultSet.getString(User.NAME_COLUMN)).thenReturn(NAME);
+        when(resultSet.getString(User.SURNAME_COLUMN)).thenReturn(SURNAME);
 
+        when(resultSet.getString(User.ROLE_COLUMN)).thenReturn(CLIENT_ROLE);
+        when(resultSet.getObject(User.SCORE_COLUMN)).thenReturn(CLIENT_SCORE);
+        when(resultSet.getObject(User.ACCOUNT_ID_COLUMN)).thenReturn(CLIENT_ACCOUNT_ID);
+        when(resultSet.getBigDecimal(Account.MONEY_COLUMN)).thenReturn(CLIENT_ACCOUNT_MONEY);
+
+        EntityBuilder<User> builder = new UserBuilder();
+
+        User user = builder.build(resultSet);
+
+        Assert.assertEquals(ID, user.getID());
+        Assert.assertEquals(LOGIN, user.getLogin());
+        Assert.assertEquals(PASSWORD, user.getPassword());
+        Assert.assertEquals(NAME, user.getName());
+        Assert.assertEquals(SURNAME, user.getSurname());
+        Assert.assertEquals(UserRole.valueOf(CLIENT_ROLE), user.getRole());
+        Assert.assertEquals(CLIENT_SCORE, user.getScore());
+
+        Account account = user.getAccount();
+        Assert.assertEquals(CLIENT_ACCOUNT_ID, account.getID());
+        Assert.assertEquals(CLIENT_ACCOUNT_MONEY, account.getMoney());
     }
 }

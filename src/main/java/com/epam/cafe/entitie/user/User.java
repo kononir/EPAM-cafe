@@ -12,6 +12,7 @@ public class User implements Serializable {
     public static final String SURNAME_COLUMN = "Surname";
     public static final String ROLE_COLUMN = "Role";
     public static final String SCORE_COLUMN = "Score";
+    public static final String IS_BANNED_COLUMN = "IsBanned";
     public static final String ACCOUNT_ID_COLUMN = "AccountID";
 
     private int ID;
@@ -21,19 +22,20 @@ public class User implements Serializable {
     private String surname;
     private UserRole role;
 
+    private Boolean isBanned;
     private Integer score;
-
     private Account account;
 
     public User(int ID, String login, String password, String name, String surname,
-                Integer score, UserRole role, Account account) {
+                UserRole role, Boolean isBanned, Integer score, Account account) {
         this.ID = ID;
         this.login = login;
         this.password = password;
         this.name = name;
         this.surname = surname;
-        this.score = score;
         this.role = role;
+        this.isBanned = isBanned;
+        this.score = score;
         this.account = account;
     }
 
@@ -55,6 +57,14 @@ public class User implements Serializable {
 
     public String getSurname() {
         return surname;
+    }
+
+    public Boolean getBanned() {
+        return isBanned;
+    }
+
+    public void setBanned(Boolean banned) {
+        isBanned = banned;
     }
 
     public Integer getScore() {
@@ -90,6 +100,7 @@ public class User implements Serializable {
                 password.equals(user.password) &&
                 name.equals(user.name) &&
                 surname.equals(user.surname) &&
+                isBanned == user.isBanned &&
                 role == user.role &&
                 account.equals(user.account);
     }
@@ -100,6 +111,7 @@ public class User implements Serializable {
                 + (password == null ? 0 : password.hashCode())
                 + (name == null ? 0 : name.hashCode())
                 + (surname == null ? 0 : surname.hashCode())
+                + (isBanned == null ? 0 : isBanned.hashCode())
                 + (role == null ? 0 : role.hashCode())
                 + (account == null ? 0 : account.hashCode());
     }
