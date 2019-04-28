@@ -10,7 +10,7 @@ body {
 
 .centered h1 {
     font-weight: 100;
-    color: grey;
+    color: white;
 }
 
 .sign-in {
@@ -124,5 +124,9 @@ form {
 }
 
 .inner-content {
-    color: grey;
+    color: white;
+}
+
+.inner-content h1 {
+    text-align: center;
 }

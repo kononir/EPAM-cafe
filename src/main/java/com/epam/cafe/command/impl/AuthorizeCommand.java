@@ -42,7 +42,7 @@ public class AuthorizeCommand implements Command {
                 role = UserRole.ANONYMOUS;
             }
         } catch (ServiceException e) {
-            throw new CommandExecutingException(e);
+            throw new CommandExecutingException("Error when execute authorize command.", e);
         }
 
         return findPageByRole(role);
@@ -62,7 +62,10 @@ public class AuthorizeCommand implements Command {
                 page = "/view/authorization.jsp";
                 break;
             default:
-                throw new CommandExecutingException(new EnumConstantNotPresentException(UserRole.class, userRole.name()));
+                throw new CommandExecutingException(
+                        "Page finding error in authorize command.",
+                        new EnumConstantNotPresentException(UserRole.class, userRole.name())
+                );
         }
 
         return page;

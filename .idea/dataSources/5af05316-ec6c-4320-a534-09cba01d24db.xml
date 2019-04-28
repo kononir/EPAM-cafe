@@ -1123,10 +1123,10 @@
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
     <table id="283" parent="3" name="account"/>
-    <table id="284" parent="3" name="dish"/>
-    <table id="285" parent="3" name="order"/>
-    <table id="286" parent="3" name="order_dishes"/>
-    <table id="287" parent="3" name="privilege"/>
+    <table id="284" parent="3" name="bonus"/>
+    <table id="285" parent="3" name="dish"/>
+    <table id="286" parent="3" name="order"/>
+    <table id="287" parent="3" name="order_dishes"/>
     <table id="288" parent="3" name="user"/>
     <column id="289" parent="283" name="ID">
       <Position>1</Position>
@@ -1164,132 +1164,132 @@
       <DataType>varchar(1000)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="295" parent="284" name="Cost">
+    <column id="295" parent="284" name="UserID">
       <Position>4</Position>
-      <DataType>decimal(10)|0s</DataType>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="296" parent="284" name="IsInMenu">
-      <Position>5</Position>
-      <DataType>tinyint(1)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
+    <index id="296" parent="284" name="UserID">
+      <ColNames>UserID</ColNames>
+      <Type>btree</Type>
+    </index>
     <key id="297" parent="284" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="298" parent="285" name="ID">
-      <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="299" parent="285" name="ReceiptTime">
-      <Position>2</Position>
-      <DataType>datetime|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="300" parent="285" name="Score">
-      <Position>3</Position>
-      <DataType>int(11)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="301" parent="285" name="Comment">
-      <Position>4</Position>
-      <DataType>varchar(1000)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="302" parent="285" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>ID</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="303" parent="286" name="ID">
-      <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="304" parent="286" name="OrderID">
-      <Position>2</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="305" parent="286" name="DishID">
-      <Position>3</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <index id="306" parent="286" name="OrderID">
-      <ColNames>OrderID</ColNames>
-      <Type>btree</Type>
-    </index>
-    <index id="307" parent="286" name="DishID">
-      <ColNames>DishID</ColNames>
-      <Type>btree</Type>
-    </index>
-    <key id="308" parent="286" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>ID</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="309" parent="286" name="order_dishes_ibfk_1">
-      <ColNames>OrderID</ColNames>
+    <foreign-key id="298" parent="284" name="bonus_ibfk_1">
+      <ColNames>UserID</ColNames>
       <RefSchemaName>epam_cafe</RefSchemaName>
-      <RefTableName>order</RefTableName>
+      <RefTableName>user</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <foreign-key id="310" parent="286" name="order_dishes_ibfk_2">
-      <ColNames>DishID</ColNames>
-      <RefSchemaName>epam_cafe</RefSchemaName>
-      <RefTableName>dish</RefTableName>
-      <RefColNames>ID</RefColNames>
-    </foreign-key>
-    <column id="311" parent="287" name="ID">
+    <column id="299" parent="285" name="ID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="312" parent="287" name="Name">
+    <column id="300" parent="285" name="Name">
       <Position>2</Position>
       <DataType>varchar(90)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="313" parent="287" name="Description">
+    <column id="301" parent="285" name="Description">
       <Position>3</Position>
       <DataType>varchar(1000)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="314" parent="287" name="UserID">
+    <column id="302" parent="285" name="Cost">
       <Position>4</Position>
-      <DataType>int(11)|0s</DataType>
+      <DataType>decimal(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="315" parent="287" name="UserID">
-      <ColNames>UserID</ColNames>
-      <Type>btree</Type>
-    </index>
-    <key id="316" parent="287" name="PRIMARY">
+    <column id="303" parent="285" name="IsInMenu">
+      <Position>5</Position>
+      <DataType>tinyint(1)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="304" parent="285" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="317" parent="287" name="privilege_ibfk_1">
-      <ColNames>UserID</ColNames>
+    <column id="305" parent="286" name="ID">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="306" parent="286" name="ReceiptTime">
+      <Position>2</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="307" parent="286" name="Score">
+      <Position>3</Position>
+      <DataType>int(11)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="308" parent="286" name="Comment">
+      <Position>4</Position>
+      <DataType>varchar(1000)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="309" parent="286" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="310" parent="287" name="ID">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="311" parent="287" name="OrderID">
+      <Position>2</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="312" parent="287" name="DishID">
+      <Position>3</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="313" parent="287" name="OrderID">
+      <ColNames>OrderID</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="314" parent="287" name="DishID">
+      <ColNames>DishID</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="315" parent="287" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="316" parent="287" name="order_dishes_ibfk_1">
+      <ColNames>OrderID</ColNames>
       <RefSchemaName>epam_cafe</RefSchemaName>
-      <RefTableName>user</RefTableName>
+      <RefTableName>order</RefTableName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <foreign-key id="317" parent="287" name="order_dishes_ibfk_2">
+      <ColNames>DishID</ColNames>
+      <RefSchemaName>epam_cafe</RefSchemaName>
+      <RefTableName>dish</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
     <column id="318" parent="288" name="ID">
@@ -1369,7 +1369,7 @@
       <RefColNames>ID</RefColNames>
     </foreign-key>
     <trigger id="332" parent="288" name="constraints_user">
-      <SourceTextLength>1052</SourceTextLength>
+      <SourceTextLength>1077</SourceTextLength>
       <Definer>root@localhost</Definer>
       <Turn>before-row</Turn>
       <Events>I</Events>

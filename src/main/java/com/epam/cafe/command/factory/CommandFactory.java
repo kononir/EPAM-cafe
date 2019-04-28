@@ -2,9 +2,7 @@ package com.epam.cafe.command.factory;
 
 import com.epam.cafe.api.Command;
 import com.epam.cafe.command.exceptions.CommandCreatingException;
-import com.epam.cafe.command.impl.AuthorizeCommand;
-import com.epam.cafe.command.impl.GetClientsCommand;
-import com.epam.cafe.command.impl.LogoutCommand;
+import com.epam.cafe.command.impl.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -31,6 +29,12 @@ public class CommandFactory {
                 break;
             case GET_CLIENTS:
                 command = new GetClientsCommand(request.getSession());
+                break;
+            case GET_BONUSES:
+                command = new GetBonusesCommand(request);
+                break;
+            case SAVE_CLIENT_CHANGES:
+                command = new SaveClientChangesCommand(request);
                 break;
             default:
                 throw new CommandCreatingException("Invalid commands name: " + commandType.name());

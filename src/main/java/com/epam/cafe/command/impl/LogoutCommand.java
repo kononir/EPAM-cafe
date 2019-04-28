@@ -8,7 +8,7 @@ import javax.servlet.http.HttpSession;
 public class LogoutCommand implements Command {
     private HttpServletRequest request;
 
-    private static final String AUTHORIZATION_PAGE = "/view/authorization.jsp";
+    private static final String PAGE = "/view/authorization.jsp";
 
     public LogoutCommand(HttpServletRequest request) {
         this.request = request;
@@ -20,6 +20,6 @@ public class LogoutCommand implements Command {
 
         session.invalidate();
 
-        return AUTHORIZATION_PAGE;
+        return PAGE;
     }
 }

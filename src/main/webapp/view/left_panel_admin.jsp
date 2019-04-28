@@ -11,19 +11,19 @@
     <title>Left panel admin</title>
 </head>
 <body>
-    <ul class="vertical-menu">
-        <li>
-            <form action="command" method="post">
-                <input type="hidden" name="command" value="get_in_menu_dishes">
-                <button type="submit">Manage Menu</button>
-            </form><br>
-        </li>
-        <li>
-            <form action="command" method="post">
-                <input type="hidden" name="command" value="get_clients">
-                <button type="submit">Manage clients</button>
-            </form>
-        </li>
-    </ul>
+<ul class="vertical-menu">
+    <li>
+        <form action="command" method="post">
+            <input type="hidden" name="command" value="get_full_menu">
+            <button type="submit">Manage Menu</button>
+        </form><br>
+    </li>
+    <li>
+        <form action="command" method="post">
+            <input type="hidden" name="command" value="get_clients">
+            <button type="submit">Manage clients</button>
+        </form>
+    </li>
+</ul>
 </body>
 </html>

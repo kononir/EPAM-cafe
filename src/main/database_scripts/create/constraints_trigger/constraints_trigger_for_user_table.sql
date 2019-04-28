@@ -5,12 +5,12 @@ CREATE TRIGGER constraints_user
 BEGIN
   IF NEW.Role = 'CLIENT' AND NEW.IsBanned IS NULL
   THEN
-    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Wrong score entered. Client must has score.';
+    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Wrong IsBanned parameter entered. Client can be banned.';
   END IF;
 
   IF NEW.Role = 'ADMINISTRATOR' AND NEW.IsBanned IS NOT NULL
   THEN
-    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Wrong score entered. Administrator can not has score.';
+    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Wrong IsBanned parameter entered. Administrator can not be banned.';
   END IF;
   
   IF NEW.Role = 'CLIENT' AND NEW.Score IS NULL

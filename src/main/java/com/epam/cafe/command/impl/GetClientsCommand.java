@@ -21,13 +21,11 @@ public class GetClientsCommand implements Command {
     @Override
     public String execute() throws CommandExecutingException {
         try {
-            if (session.getAttribute("clients") == null) {
-                UserService service = new UserService();
-                List<User> clients = service.getClients();
-                session.setAttribute("clients", clients);
-            }
+            UserService service = new UserService();
+            List<User> clients = service.getClients();
+            session.setAttribute("clients", clients);
         } catch (ServiceException e) {
-            throw new CommandExecutingException(e);
+            throw new CommandExecutingException("Error when execute get clients command.", e);
         }
 
         return PAGE;

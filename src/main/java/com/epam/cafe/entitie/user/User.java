@@ -15,6 +15,8 @@ public class User implements Serializable {
     public static final String IS_BANNED_COLUMN = "IsBanned";
     public static final String ACCOUNT_ID_COLUMN = "AccountID";
 
+    private static final long serialVersionUID = 1L;
+
     private int ID;
     private String login;
     private String password;

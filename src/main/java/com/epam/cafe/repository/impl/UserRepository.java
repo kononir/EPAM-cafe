@@ -1,10 +1,11 @@
 package com.epam.cafe.repository.impl;
 
-import com.epam.cafe.builder.UserBuilder;
-import com.epam.cafe.api.GeneralSpecification;
 import com.epam.cafe.api.Repository;
+import com.epam.cafe.api.SqlSpecification;
+import com.epam.cafe.builder.UserBuilder;
 import com.epam.cafe.entitie.Account;
 import com.epam.cafe.entitie.user.User;
+import com.epam.cafe.entitie.user.UserRole;
 import com.epam.cafe.repository.exception.RepositoryException;
 
 import java.sql.Connection;
@@ -20,8 +21,8 @@ public class UserRepository extends AbstractRepository<User> implements Reposito
     }
 
     @Override
-    public List<User> query(GeneralSpecification<User> entitySpecification) throws RepositoryException {
-        return executeQuery(entitySpecification, new UserBuilder());
+    public List<User> query(SqlSpecification specification) throws RepositoryException {
+        return executeQuery(specification, new UserBuilder());
     }
 
     @Override
@@ -32,7 +33,9 @@ public class UserRepository extends AbstractRepository<User> implements Reposito
         params.put(User.PASSWORD_COLUMN, user.getPassword());
         params.put(User.NAME_COLUMN, user.getName());
         params.put(User.SURNAME_COLUMN, user.getSurname());
-        params.put(User.ROLE_COLUMN, user.getRole());
+
+        UserRole role = user.getRole();
+        params.put(User.ROLE_COLUMN, role.name());
         params.put(User.IS_BANNED_COLUMN, user.getBanned());
         params.put(User.SCORE_COLUMN, user.getScore());
 

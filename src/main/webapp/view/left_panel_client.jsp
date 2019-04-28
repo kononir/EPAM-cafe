@@ -11,6 +11,31 @@
     <title>Left panel client</title>
 </head>
 <body>
-
+<ul class="vertical-menu">
+    <li>
+        <form action="command" method="post">
+            <input type="hidden" name="command" value="get_client_menu">
+            <button type="submit">Menu</button>
+        </form><br>
+    </li>
+    <li>
+        <form action="command" method="post">
+            <input type="hidden" name="command" value="get_client_orders">
+            <button type="submit">Order history</button>
+        </form>
+    </li>
+    <li>
+        <form action="command" method="post">
+            <input type="hidden" name="command" value="get_client_bonuses">
+            <button type="submit">Bonuses</button>
+        </form>
+    </li>
+    <li>
+        <form action="command" method="post">
+            <input type="hidden" name="command" value="show_basket">
+            <button type="submit">Basket</button>
+        </form>
+    </li>
+</ul>
 </body>
 </html>

@@ -1,5 +1,4 @@
-INSERT INTO user (Login, Password, Name, Surname, Role, Score, AccountId)
-VALUES ('kononir', '03091999', 'Vlad', 'Novitskiy', 'ADMINISTRATOR', NULL, NULL);
-INSERT INTO user (Login, Password, Name, Surname, Role, Score, AccountId)
-VALUES ('joker', '1111111', 'Nicholas', 'Jupiter', 'CLIENT', 5, 1);
-SELECT * FROM user;
+INSERT INTO user (Login, Password, Name, Surname, Role, IsBanned, Score, AccountId)
+VALUES ('kononir', md5('03091999'), 'Vlad', 'Novitskiy', 'ADMINISTRATOR', NULL, NULL, NULL);
+INSERT INTO user (Login, Password, Name, Surname, Role, IsBanned, Score, AccountId)
+VALUES ('joker', md5('1111111'), 'Nicholas', 'Jupiter', 'CLIENT', false, 5, 1);

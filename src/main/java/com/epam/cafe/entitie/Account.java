@@ -1,8 +1,9 @@
 package com.epam.cafe.entitie;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class Account {
+public class Account implements Serializable {
     public static final String ID_COLUMN = "ID";
     public static final String MONEY_COLUMN = "Money";
 

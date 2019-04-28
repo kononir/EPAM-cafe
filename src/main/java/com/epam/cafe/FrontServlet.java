@@ -18,6 +18,11 @@ public class FrontServlet extends HttpServlet {
     private static final Logger LOGGER = LogManager.getRootLogger();
 
     @Override
+    public void init() {
+        ConnectionPool.getInstance();
+    }
+
+    @Override
     public void destroy() {
         try {
             ConnectionPool pool = ConnectionPool.getInstance();
