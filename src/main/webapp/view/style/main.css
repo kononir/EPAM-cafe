@@ -1,7 +1,13 @@
 body {
-    background-image: url("img/espresso.jpg");
-    background-color: #505050;
+    background-image: url("background/geeks.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: silver;
 }
+
+*:focus {outline: none;}
 
 .centered {
     text-align: center;
@@ -19,7 +25,7 @@ body {
     padding: 10px 0;
     border-radius: 10px;
     background-color: #BD85FF;
-    border: 5px solid silver;
+    border: 1px solid white;
 }
 
 .sign-in input {
@@ -39,11 +45,17 @@ body {
     width: 50px;
     padding: 6px 0;
     background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.sign-in button:hover {
+    background-color: lightcoral;
 }
 
 .table-actions table {
     margin: auto;
-    background-color: orange;
+    background-color: lightseagreen;
 }
 
 .table-actions table, th, td {
@@ -103,6 +115,7 @@ form {
     text-decoration: none;
     text-transform: uppercase;
     font-size: 15px;
+    /*word-break: break-all;*/
 }
 
 .horizontal-menu button:hover, .vertical-menu button:hover {
@@ -124,9 +137,70 @@ form {
 }
 
 .inner-content {
+    float: right;
+    width: calc(100% - 150px);
     color: white;
 }
 
 .inner-content h1 {
     text-align: center;
+}
+
+.inner-content #current-user {
+    text-align: right;
+}
+
+.footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: grey;
+    color: white;
+    border: 1px solid white;
+    text-align: center;
+    margin: 0 7px 7px 7px;
+}
+
+.menu-dish {
+    display: block;
+}
+
+.form-area {
+    float: left;
+    text-align: center;
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: lightseagreen;
+    position: relative;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%);
+}
+
+.form-area-field {
+    clear: both;
+    text-align: right;
+    line-height: 20px;
+    margin-bottom: 5px;
+}
+
+.checkbox-field {
+    text-align: left;
+}
+
+.form-area-field label {
+    float: left;
+    padding-right: 10px;
+}
+
+.table-actions button, .form-area button {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.table-actions button:hover, .form-area button:hover {
+    background-color: lightsteelblue;
 }

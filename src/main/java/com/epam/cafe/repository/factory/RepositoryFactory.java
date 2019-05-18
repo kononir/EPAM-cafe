@@ -1,11 +1,13 @@
 package com.epam.cafe.repository.factory;
 
-import com.epam.cafe.api.Repository;
+import com.epam.cafe.api.repository.Repository;
 import com.epam.cafe.connection.ConnectionPool;
 import com.epam.cafe.entitie.Bonus;
+import com.epam.cafe.entitie.Dish;
 import com.epam.cafe.entitie.user.User;
 import com.epam.cafe.repository.exception.RepositoryException;
 import com.epam.cafe.repository.impl.BonusRepository;
+import com.epam.cafe.repository.impl.DishRepository;
 import com.epam.cafe.repository.impl.UserRepository;
 
 import java.sql.Connection;
@@ -31,6 +33,10 @@ public class RepositoryFactory implements AutoCloseable {
 
     public Repository<Bonus> bonusRepository() {
         return new BonusRepository(connection);
+    }
+
+    public Repository<Dish> dishRepository() {
+        return new DishRepository(connection);
     }
 
     public void startTransaction() throws RepositoryException {

@@ -9,5 +9,23 @@
         <name>dish</name>
         <tag-class>com.epam.cafe.tag.MenuDishTag</tag-class>
         <body-content>scriptless</body-content>
+        <attribute>
+            <name>name</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <name>imageHref</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <name>cost</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.math.BigDecimal</type>
+        </attribute>
     </tag>
 </taglib>

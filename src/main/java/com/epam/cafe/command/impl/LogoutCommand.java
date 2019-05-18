@@ -5,21 +5,18 @@ import com.epam.cafe.api.Command;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-public class LogoutCommand implements Command {
-    private HttpServletRequest request;
+public class LogoutCommand extends AbstractCommand implements Command {
+    private static final String PAGE = "/view/page/general/authorization.jsp";
 
-    private static final String PAGE = "/view/authorization.jsp";
+    private HttpSession session;
 
-    public LogoutCommand(HttpServletRequest request) {
-        this.request = request;
+    public LogoutCommand(HttpSession session) {
+        this.session = session;
     }
 
     @Override
     public String execute() {
-        HttpSession session = request.getSession();
-
         session.invalidate();
-
         return PAGE;
     }
 }

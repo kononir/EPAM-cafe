@@ -1,9 +1,9 @@
 package com.epam.cafe.repository.impl;
 
-import com.epam.cafe.api.EntityBuilder;
-import com.epam.cafe.api.QueryBuilder;
-import com.epam.cafe.api.Repository;
-import com.epam.cafe.api.SqlSpecification;
+import com.epam.cafe.api.builder.EntityBuilder;
+import com.epam.cafe.api.builder.QueryBuilder;
+import com.epam.cafe.api.repository.Repository;
+import com.epam.cafe.api.repository.specification.SqlSpecification;
 import com.epam.cafe.query.DeleteQueryBuilder;
 import com.epam.cafe.query.InsertQueryBuilder;
 import com.epam.cafe.query.UpdateQueryBuilder;

@@ -1,5 +1,7 @@
 package com.epam.cafe.connection;
 
+import com.epam.cafe.property.PropertyReader;
+import com.epam.cafe.property.PropertyReaderException;
 import com.mysql.cj.jdbc.Driver;
 
 import java.sql.Connection;
@@ -7,17 +9,20 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionFactory {
-    private static final String URL = "jdbc:mysql://localhost:3306/epam_cafe" +
-            "?useUnicode=true" +
-            "&useJDBCCompliantTimezoneShift=true" +
-            "&useLegacyDatetimeCode=false" +
-            "&serverTimezone=UTC";
-    private static final String USER = "root";
-    private static final String PASSWORD = "root";
+    private static final String DATABASE_PROPERTIES_PATH = "database.properties";
+    private static final String URL_PROPERTY = "url";
+    private static final String USER_PROPERTY = "user";
+    private static final String PASSWORD_PROPERTY = "password";
 
-    public Connection create() throws SQLException {
+    public Connection create() throws SQLException, PropertyReaderException {
         Driver driver = new Driver();
         DriverManager.registerDriver(driver);
-        return DriverManager.getConnection(URL, USER, PASSWORD);
+
+        PropertyReader propertyReader = new PropertyReader(DATABASE_PROPERTIES_PATH);
+        String url = propertyReader.read(URL_PROPERTY);
+        String user = propertyReader.read(USER_PROPERTY);
+        String password = propertyReader.read(PASSWORD_PROPERTY);
+
+        return DriverManager.getConnection(url, user, password);
     }
 }

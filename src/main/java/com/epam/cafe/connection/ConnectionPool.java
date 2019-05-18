@@ -1,6 +1,7 @@
 package com.epam.cafe.connection;
 
 import com.epam.cafe.connection.exception.ConnectionPoolException;
+import com.epam.cafe.property.PropertyReaderException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -25,7 +26,7 @@ public class ConnectionPool {
             for (int i = 0; i < CONNECTIONS_NUMBER; i++) {
                 connections.put(factory.create());
             }
-        } catch (SQLException | InterruptedException e) {
+        } catch (SQLException | InterruptedException | PropertyReaderException e) {
             LOGGER.fatal("Creating connections exception", e);
             throw new ConnectionPoolException("Creating connections exception", e);
         }

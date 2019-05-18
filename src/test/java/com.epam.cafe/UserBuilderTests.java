@@ -1,6 +1,6 @@
 package com.epam.cafe;
 
-import com.epam.cafe.api.EntityBuilder;
+import com.epam.cafe.api.builder.EntityBuilder;
 import com.epam.cafe.builder.UserBuilder;
 import com.epam.cafe.entitie.Account;
 import com.epam.cafe.entitie.user.User;

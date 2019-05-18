@@ -29,10 +29,14 @@ public class MenuDishTag extends TagSupport {
         JspWriter out = pageContext.getOut();
         try {
             out.write("<div class=\"menu-dish\">");
-            out.write("<h3>" + name + "</h3>");
-            out.write("<img " + "href=\"" + imageHref + "\" alt=\"" + name + "\">" + "</img>");
-            out.write("<p>" + cost.toString() + "</p>");
-            out.write("<p>");
+            out.write("<h3>Name: " + name + "</h3>");
+
+            if (imageHref != null) {
+                out.write("<img " + "href=\"" + imageHref + "\" alt=\"" + name + "\">" + "</img>");
+            }
+
+            out.write("<p>Cost: " + cost.toString() + "</p>");
+            out.write("<p>Description: ");
         } catch (IOException e) {
             throw new JspTagException(e.getMessage());
         }

@@ -11,6 +11,6 @@
     <title>Index</title>
 </head>
 <body>
-    <jsp:forward page="view/authorization.jsp"/>
+    <jsp:forward page="view/page/general/authorization.jsp"/>
 </body>
 </html>

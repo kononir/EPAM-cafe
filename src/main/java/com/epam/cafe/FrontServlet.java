@@ -47,8 +47,9 @@ public class FrontServlet extends HttpServlet {
 
             page = command.execute();
         } catch (Exception e) {
+            LOGGER.error(e);
             req.setAttribute("exception", e);
-            page = "/view/error.jsp";
+            page = "/view/page/general/error.jsp";
         }
 
         dispatch(req, resp, page);

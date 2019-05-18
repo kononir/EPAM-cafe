@@ -1,6 +1,6 @@
 package com.epam.cafe.query;
 
-import com.epam.cafe.api.QueryBuilder;
+import com.epam.cafe.api.builder.QueryBuilder;
 
 import java.util.List;
 

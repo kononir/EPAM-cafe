@@ -1,7 +1,7 @@
 package com.epam.cafe.api;
 
-import com.epam.cafe.command.exceptions.CommandExecutingException;
+import com.epam.cafe.service.exception.ServiceException;
 
 public interface Command {
-    String execute() throws CommandExecutingException;
+    String execute() throws ServiceException;
 }
