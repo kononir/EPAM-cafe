@@ -15,7 +15,9 @@ public abstract class AbstractCommand implements Command {
 
     public User findCurrentClientByRequest(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        List clients = (ArrayList) session.getAttribute("clients");
+
+        @SuppressWarnings("unchecked")
+        List<User> clients = (ArrayList<User>) session.getAttribute("clients");
         Integer clientID = Integer.valueOf(request.getParameter("clientID"));
 
         return helper.findUserByID(clients, clientID);

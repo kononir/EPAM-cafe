@@ -14,11 +14,15 @@
     <link rel="stylesheet" href="view/style/main.css">
 </head>
 <body>
-<c:import url="/view/page/general/top_panel.jsp"/>
-<c:import url="/view/page/administrator/left_panel_admin.jsp"/>
-<div class="inner-content">
-    <h1>Hello, ${user.login}!</h1>
+<div class="page-wrapper">
+    <div class="menu-and-content-wrapper">
+        <c:import url="/view/page/general/top_panel.jsp"/>
+        <c:import url="/view/page/administrator/left_panel_admin.jsp"/>
+        <div class="inner-content">
+            <h1>Hello, ${user.login}!</h1>
+        </div>
+    </div>
+    <c:import url="/view/page/general/footer.jsp"/>
 </div>
-<c:import url="/view/page/general/footer.jsp"/>
 </body>
 </html>

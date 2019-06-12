@@ -5,5 +5,5 @@ import com.epam.cafe.entitie.user.User;
 import java.util.List;
 
 public interface UserHelper {
-    User findUserByID(List usersAsAttributes, Integer userID);
+    User findUserByID(List<User> users, Integer userID);
 }
