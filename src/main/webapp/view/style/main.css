@@ -58,17 +58,24 @@ body {
     background-color: lightcoral;
 }
 
+.table-actions {
+    text-align: center;
+}
+
 .table-actions table {
-    margin: auto;
+    margin: auto auto 10px;
     background-color: lightseagreen;
 }
 
 .table-actions table, th, td {
     border: 1px solid white;
     border-collapse: collapse;
-    text-align: center;
     padding: 5px;
     color: white;
+}
+
+.table-actions tfoot td {
+    text-align: left;
 }
 
 form {
@@ -77,6 +84,7 @@ form {
 
 .table-actions button {
     background-color: white;
+
 }
 
 .table-actions input {
@@ -230,7 +238,6 @@ form {
     height: auto;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 20px;
 }
 
 .menu-dish .menu-dish-description {
@@ -238,6 +245,11 @@ form {
     hyphens: auto;
 }
 
-.menu-dish form {
-    text-align: center;
+.menu-dish input {
+    margin-bottom: 10px;
+}
+
+.menu-dish button {
+    display: block;
+    margin: 0 auto;
 }

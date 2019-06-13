@@ -17,5 +17,7 @@ public enum CommandType {
 
     GET_CLIENT_ORDERS,
     GET_CLIENT_BONUSES,
-    SHOW_BASKET
+
+    SHOW_BASKET,
+    REMOVE_DISH_ORDER
 }

@@ -42,6 +42,12 @@ public class CommandFactory {
             case GET_CLIENT_MENU:
                 command = new GetClientMenuCommand(request.getSession());
                 break;
+            case SAVE_DISH_ORDER:
+                command = new SaveDishOrderCommand(request);
+                break;
+            case SHOW_BASKET:
+                command = new ShowBasketCommand(request);
+                break;
             default:
                 throw new CommandFactoryException("Invalid commands name: " + commandType.name());
         }

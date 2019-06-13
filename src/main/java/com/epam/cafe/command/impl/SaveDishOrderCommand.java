@@ -1,12 +1,11 @@
 package com.epam.cafe.command.impl;
 
 import com.epam.cafe.api.Command;
-import com.epam.cafe.service.exception.ServiceException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SaveDishOrderCommand extends AbstractCommand implements Command {
     private static final String PAGE = "/view/page/client/client_menu.jsp";
@@ -22,14 +21,24 @@ public class SaveDishOrderCommand extends AbstractCommand implements Command {
         HttpSession session = request.getSession();
 
         @SuppressWarnings("unchecked")
-        List<Integer> dishesIDs = (ArrayList<Integer>) session.getAttribute("order");
-        if (dishesIDs == null) {
-            dishesIDs = new ArrayList<>();
+        Map<Integer, Integer> order = (HashMap<Integer, Integer>) session.getAttribute("order");
+        if (order == null) {
+            order = new HashMap<>();
         }
 
-        dishesIDs.add(Integer.valueOf(request.getParameter("selectedDishID")));
-        session.setAttribute("order", dishesIDs);
+        Integer selectedDishID = Integer.valueOf(request.getParameter("selectedDishID"));
+        Integer servingsNumber = Integer.valueOf(request.getParameter("servingsNumber"));
+        if (order.containsKey(selectedDishID)) {
+            Integer newServingsNumber = order.get(selectedDishID) + servingsNumber;
+            order.put(selectedDishID, newServingsNumber);
+        } else {
+            order.put(selectedDishID, servingsNumber);
+        }
+
+        session.setAttribute("order", order);
 
         return PAGE;
     }
+
+
 }

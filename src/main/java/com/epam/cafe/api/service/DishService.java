@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface DishService {
     List<Dish> getDishesInMenu() throws ServiceException;
+
+    List<Dish> getDishesByIds(List<Integer> dishesIDs) throws ServiceException;
 }
