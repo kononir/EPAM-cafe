@@ -24,8 +24,7 @@ public class UserBuilderTests {
 
     private static final String ADMIN_ROLE = "ADMINISTRATOR";
     private static final Object ADMIN_SCORE = null;
-    private static final Account ADMIN_ACCOUNT = null;
-    private static final Object ADMIN_ACCOUNT_ID = null;
+    private static final Integer ADMIN_ACCOUNT_ID = 0;
 
     private static final String CLIENT_ROLE = "CLIENT";
     private static final Object CLIENT_SCORE = 0;
@@ -56,7 +55,7 @@ public class UserBuilderTests {
         Assert.assertEquals(SURNAME, user.getSurname());
         Assert.assertEquals(UserRole.valueOf(ADMIN_ROLE), user.getRole());
         Assert.assertEquals(ADMIN_SCORE, user.getScore());
-        Assert.assertEquals(ADMIN_ACCOUNT, user.getAccount());
+        Assert.assertEquals(ADMIN_ACCOUNT_ID, (Integer) user.getAccountID());
     }
 
     @Test
@@ -85,8 +84,6 @@ public class UserBuilderTests {
         Assert.assertEquals(UserRole.valueOf(CLIENT_ROLE), user.getRole());
         Assert.assertEquals(CLIENT_SCORE, user.getScore());
 
-        Account account = user.getAccount();
-        Assert.assertEquals(CLIENT_ACCOUNT_ID, account.getID());
-        Assert.assertEquals(CLIENT_ACCOUNT_MONEY, account.getMoney());
+        Assert.assertEquals(CLIENT_ACCOUNT_ID, user.getAccountID());
     }
 }

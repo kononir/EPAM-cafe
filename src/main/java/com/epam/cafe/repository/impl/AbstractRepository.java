@@ -9,10 +9,7 @@ import com.epam.cafe.query.InsertQueryBuilder;
 import com.epam.cafe.query.UpdateQueryBuilder;
 import com.epam.cafe.repository.exception.RepositoryException;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -20,6 +17,7 @@ import java.util.Map;
 
 public abstract class AbstractRepository<T> implements Repository<T> {
     private static final String ID_COLUMN = "ID";
+    private static final int ID_COLUMN_INDEX = 1;
 
     private Connection connection;
 
@@ -27,13 +25,19 @@ public abstract class AbstractRepository<T> implements Repository<T> {
         this.connection = connection;
     }
 
+    public Connection getConnection() {
+        return connection;
+    }
+
     @Override
     public void save(T element) throws RepositoryException {
         try {
             Map<String, Object> paramsMap = getParams(element);
+            paramsMap.remove(ID_COLUMN);
+
             List<String> params = new ArrayList<>(paramsMap.keySet());
             List<Object> values = new ArrayList<>(paramsMap.values());
-            
+
             QueryBuilder queryBuilder = new InsertQueryBuilder();
             PreparedStatement statement = makeStatementWithParams(queryBuilder, params, values);
 
@@ -49,7 +53,7 @@ public abstract class AbstractRepository<T> implements Repository<T> {
             Map<String, Object> paramsMap = getParams(element);
             List<String> params = new ArrayList<>(paramsMap.keySet());
             List<Object> values = new ArrayList<>(paramsMap.values());
-            
+
             QueryBuilder queryBuilder = new UpdateQueryBuilder();
             PreparedStatement statement = makeStatementWithParams(queryBuilder, params, values);
 
@@ -62,12 +66,12 @@ public abstract class AbstractRepository<T> implements Repository<T> {
             throw new RepositoryException("Repository updating error.", e);
         }
     }
-    
+
     private PreparedStatement makeStatementWithParams(QueryBuilder queryBuilder, List<String> params,
                                                       List<Object> values) throws SQLException {
         String query = queryBuilder.build(getTableName(), params);
         PreparedStatement statement = connection.prepareStatement(query);
-        
+
         for (int i = 0; i < values.size(); i++) {
             statement.setObject(i + 1, values.get(i));
         }
@@ -116,6 +120,14 @@ public abstract class AbstractRepository<T> implements Repository<T> {
         }
 
         return builtEntities;
+    }
+
+    protected int getLastID() throws SQLException {
+        Statement lastIDStatement = connection.createStatement();
+        String query = "SELECT MAX(ID) FROM " + getTableName();
+        ResultSet resultSet = lastIDStatement.executeQuery(query);
+        resultSet.next();
+        return resultSet.getInt(ID_COLUMN_INDEX);
     }
 
     protected abstract String getTableName();

@@ -3,6 +3,8 @@ package com.epam.cafe;
 import com.epam.cafe.api.Command;
 import com.epam.cafe.command.factory.CommandFactory;
 import com.epam.cafe.connection.ConnectionPool;
+import com.epam.cafe.entitie.user.User;
+import com.epam.cafe.entitie.user.UserRole;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -11,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -47,9 +50,22 @@ public class FrontServlet extends HttpServlet {
 
             page = command.execute();
         } catch (Exception e) {
-            LOGGER.error(e);
+            LOGGER.error("", e);
             req.setAttribute("exception", e);
-            page = "/view/page/general/error.jsp";
+
+            HttpSession session = req.getSession();
+            User user = (User) session.getAttribute("user");
+            UserRole role = user.getRole();
+            switch (role) {
+                case CLIENT:
+                    page = "/view/page/client/client_error.jsp";
+                    break;
+                case ADMINISTRATOR:
+                    page = "/view/page/administrator/admin_error.jsp";
+                    break;
+                default:
+                    page = "/view/page/general/authorization.jsp";
+            }
         }
 
         dispatch(req, resp, page);
@@ -59,5 +75,10 @@ public class FrontServlet extends HttpServlet {
             throws ServletException, IOException {
         RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher(page);
         requestDispatcher.forward(req, resp);
+
+        // Добавить новое скрытое поле в формы для выбора между forward и redirect
+        /*
+        resp.sendRedirect(req.getContextPath() + page);
+        */
     }
 }

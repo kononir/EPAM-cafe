@@ -8,9 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class UserByLoginAndPasswordSpecification implements EntitySpecification<User>, SqlSpecification {
-    private static final String QUERY = "SELECT * FROM user " +
-            "LEFT JOIN account ON user.AccountID = account.ID " +
-            "WHERE Login = ? AND Password = md5(?)";
+    private static final String QUERY = "SELECT * FROM user WHERE Login = ? AND Password = md5(?)";
 
     private String desiredLogin;
     private String desiredPassword;

@@ -3,7 +3,6 @@ package com.epam.cafe.repository.impl;
 import com.epam.cafe.api.repository.Repository;
 import com.epam.cafe.api.repository.specification.SqlSpecification;
 import com.epam.cafe.builder.UserBuilder;
-import com.epam.cafe.entitie.Account;
 import com.epam.cafe.entitie.user.User;
 import com.epam.cafe.entitie.user.UserRole;
 import com.epam.cafe.repository.exception.RepositoryException;
@@ -38,11 +37,7 @@ public class UserRepository extends AbstractRepository<User> implements Reposito
         params.put(User.ROLE_COLUMN, role.name());
         params.put(User.IS_BANNED_COLUMN, user.getBanned());
         params.put(User.SCORE_COLUMN, user.getScore());
-
-        Account account = user.getAccount();
-        Integer accountID = (account != null) ? account.getID() : null;
-
-        params.put(User.ACCOUNT_ID_COLUMN, accountID);
+        params.put(User.ACCOUNT_ID_COLUMN, user.getAccountID());
 
         return params;
     }

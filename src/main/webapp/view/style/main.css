@@ -65,17 +65,19 @@ body {
 .table-actions table {
     margin: auto auto 10px;
     background-color: lightseagreen;
+    text-align: center;
 }
 
-.table-actions table, th, td {
+.table-actions form input, .table-actions form select {
+    margin-bottom: 10px;
+    width: 20%;
+}
+
+.table-actions table, .table-actions th, .table-actions td {
     border: 1px solid white;
     border-collapse: collapse;
     padding: 5px;
     color: white;
-}
-
-.table-actions tfoot td {
-    text-align: left;
 }
 
 form {
@@ -212,13 +214,14 @@ form {
     padding-right: 10px;
 }
 
-.table-actions button, .form-area button {
+.inner-content button {
     background-color: white;
     border: 1px solid black;
     border-radius: 5px;
+    font-size: 15px;
 }
 
-.table-actions button:hover, .form-area button:hover {
+.inner-content button:hover {
     background-color: lightsteelblue;
 }
 
@@ -238,6 +241,7 @@ form {
     height: auto;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 10px;
 }
 
 .menu-dish .menu-dish-description {
@@ -249,7 +253,6 @@ form {
     margin-bottom: 10px;
 }
 
-.menu-dish button {
-    display: block;
-    margin: 0 auto;
+.menu-dish form {
+    text-align: center;
 }

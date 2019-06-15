@@ -1,7 +1,7 @@
 package com.epam.cafe.connection;
 
 import com.epam.cafe.connection.exception.ConnectionPoolException;
-import com.epam.cafe.property.PropertyReaderException;
+import com.epam.cafe.property.PropertyReader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -15,7 +15,14 @@ import java.util.concurrent.locks.ReentrantLock;
 public class ConnectionPool {
     private static ConnectionPool instance;
 
-    private static final int CONNECTIONS_NUMBER = 10;
+    private static final int CONNECTIONS_NUMBER;
+    static {
+        String databasePropertiesPath = "database.properties";
+        PropertyReader propertyReader = new PropertyReader(databasePropertiesPath);
+        String connectionsNumberProperty = "connections.number";
+        CONNECTIONS_NUMBER = Integer.parseInt(propertyReader.read(connectionsNumberProperty));
+    }
+
     private BlockingQueue<Connection> connections = new ArrayBlockingQueue<>(CONNECTIONS_NUMBER);
 
     private static final Logger LOGGER = LogManager.getRootLogger();
@@ -26,7 +33,7 @@ public class ConnectionPool {
             for (int i = 0; i < CONNECTIONS_NUMBER; i++) {
                 connections.put(factory.create());
             }
-        } catch (SQLException | InterruptedException | PropertyReaderException e) {
+        } catch (SQLException | InterruptedException e) {
             LOGGER.fatal("Creating connections exception", e);
             throw new ConnectionPoolException("Creating connections exception", e);
         }

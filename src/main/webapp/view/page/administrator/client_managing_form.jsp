@@ -52,7 +52,7 @@
                             </c:otherwise>
                         </c:choose>
                     </div>
-                    <button onclick="history.back();">Cancel</button>
+                    <button onclick="history.back()">Cancel</button>
                     <input type="hidden" name="command" value="save_client_changes">
                     <input type="hidden" name="clientID" value="${client.ID}">
                     <button type="submit">Save</button>

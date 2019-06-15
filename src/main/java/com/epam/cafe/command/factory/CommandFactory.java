@@ -48,6 +48,15 @@ public class CommandFactory {
             case SHOW_BASKET:
                 command = new ShowBasketCommand(request);
                 break;
+            case REMOVE_DISH_ORDER:
+                command = new RemoveDishOrderCommand(request);
+                break;
+            case ORDER:
+                command = new OrderCommand(request);
+                break;
+            case REMOVE_ALL_DISH_ORDER:
+                command = new RemoveAllDishOrderCommand(request);
+                break;
             default:
                 throw new CommandFactoryException("Invalid commands name: " + commandType.name());
         }

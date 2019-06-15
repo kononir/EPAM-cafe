@@ -1,7 +1,6 @@
 package com.epam.cafe.connection;
 
 import com.epam.cafe.property.PropertyReader;
-import com.epam.cafe.property.PropertyReaderException;
 import com.mysql.cj.jdbc.Driver;
 
 import java.sql.Connection;
@@ -14,7 +13,7 @@ public class ConnectionFactory {
     private static final String USER_PROPERTY = "user";
     private static final String PASSWORD_PROPERTY = "password";
 
-    public Connection create() throws SQLException, PropertyReaderException {
+    public Connection create() throws SQLException {
         Driver driver = new Driver();
         DriverManager.registerDriver(driver);
 

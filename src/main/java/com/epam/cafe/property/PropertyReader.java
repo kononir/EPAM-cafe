@@ -11,7 +11,7 @@ public class PropertyReader {
         this.filePath = filePath;
     }
 
-    public String read(String propertyName) throws PropertyReaderException {
+    public String read(String propertyName) {
         String propertyValue;
 
         try {

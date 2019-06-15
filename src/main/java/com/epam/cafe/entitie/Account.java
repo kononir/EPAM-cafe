@@ -22,4 +22,8 @@ public class Account implements Serializable {
     public BigDecimal getMoney() {
         return money;
     }
+
+    public void setMoney(BigDecimal money) {
+        this.money = money;
+    }
 }

@@ -48,7 +48,7 @@
                             <td>${generalCosts.get(dishID)}$</td>
 
                             <td>
-                                <form>
+                                <form action="command" method="post">
                                     <input type="hidden" name="command" value="remove_dish_order">
                                     <input type="hidden" name="selectedDishID" value="${dishID}">
                                     <button type="submit">Remove</button>
@@ -59,17 +59,32 @@
                     </tbody>
                     <tfoot>
                     <tr>
-                        <td colspan="7">
+                        <td colspan="4">
                             <%--@elvariable id="resultCost" type="java.math.BigDecimal"--%>
                             Result - ${resultCost}$
+                        </td>
+                        <td>
+                            <form action="command" method="post">
+                                <input type="hidden" name="command" value="remove_all_dish_order">
+                                <button type="submit">All</button>
+                            </form>
                         </td>
                     </tr>
                     </tfoot>
                 </table>
 
-                <form>
-                    <input type="hidden" name="command" value="pay">
-                    <button type="submit">Pay</button>
+                <form action="command" method="post">
+                    <label for="date">Choose date</label><br>
+                    <input id="date" type="date" name="date"><br>
+                    <label for="time">Choose time</label><br>
+                    <input id="time" type="time" name="time"><br>
+                    <label for="payment-method">Choose payment method</label><br>
+                    <select id="payment-method" name="paymentMethod">
+                        <option value="cash">Cash</option>
+                        <option value="credit_card">Credit card</option>
+                    </select><br>
+                    <input type="hidden" name="command" value="order">
+                    <button type="submit">Order</button>
                 </form>
             </div>
         </div>

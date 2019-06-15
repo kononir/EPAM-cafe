@@ -1,7 +1,5 @@
 package com.epam.cafe.entitie.user;
 
-import com.epam.cafe.entitie.Account;
-
 import java.io.Serializable;
 
 public class User implements Serializable {
@@ -26,10 +24,10 @@ public class User implements Serializable {
 
     private Boolean isBanned;
     private Integer score;
-    private Account account;
+    private int accountID;
 
     public User(int ID, String login, String password, String name, String surname,
-                UserRole role, Boolean isBanned, Integer score, Account account) {
+                UserRole role, Boolean isBanned, Integer score, int accountID) {
         this.ID = ID;
         this.login = login;
         this.password = password;
@@ -38,7 +36,7 @@ public class User implements Serializable {
         this.role = role;
         this.isBanned = isBanned;
         this.score = score;
-        this.account = account;
+        this.accountID = accountID;
     }
 
     public int getID() {
@@ -81,8 +79,8 @@ public class User implements Serializable {
         return role;
     }
 
-    public Account getAccount() {
-        return account;
+    public int getAccountID() {
+        return accountID;
     }
 
     @Override
@@ -104,7 +102,7 @@ public class User implements Serializable {
                 surname.equals(user.surname) &&
                 isBanned == user.isBanned &&
                 role == user.role &&
-                account.equals(user.account);
+                accountID == user.accountID;
     }
 
     @Override
@@ -115,6 +113,6 @@ public class User implements Serializable {
                 + (surname == null ? 0 : surname.hashCode())
                 + (isBanned == null ? 0 : isBanned.hashCode())
                 + (role == null ? 0 : role.hashCode())
-                + (account == null ? 0 : account.hashCode());
+                + (accountID);
     }
 }

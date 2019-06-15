@@ -14,7 +14,7 @@ public class InsertQueryBuilder implements QueryBuilder {
 
         int last = params.size() - 1;
         for (int i = 0; i < last; i++) {
-            builder.append(params.get(i));
+            builder.append(params.get(i)).append(", ");
         }
         builder.append(params.get(last));
 

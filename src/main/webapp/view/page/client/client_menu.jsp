@@ -33,10 +33,10 @@
                     <form action="command" method="post">
                         <input type="hidden" name="command" value="save_dish_order">
                         <input type="hidden" name="selectedDishID" value="${dish.ID}">
-                        <label for="servings-number">Servings number:</label><br>
+                        <label for="servings-number">Choose servings number</label><br>
                         <input id="servings-number" type="number" name="servingsNumber" min="1"
                                required><br>
-                        <button type="submit">Order</button>
+                        <button type="submit">Save to basket</button>
                     </form>
                 </div>
             </c:forEach>
