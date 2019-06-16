@@ -30,8 +30,8 @@ public class CommandFactory {
             case GET_CLIENTS:
                 command = new GetClientsCommand(request.getSession());
                 break;
-            case GET_BONUSES:
-                command = new GetBonusesCommand(request);
+            case GET_BONUSES_ADMIN:
+                command = new GetBonusesAdminCommand(request);
                 break;
             case MANAGE_CLIENT_INFORMATION:
                 command = new ManageClientsInformationCommand(request);
@@ -56,6 +56,12 @@ public class CommandFactory {
                 break;
             case REMOVE_ALL_DISH_ORDER:
                 command = new RemoveAllDishOrderCommand(request);
+                break;
+            case GET_BONUSES_CLIENT:
+                command = new GetBonusesClientCommand(request);
+                break;
+            case DELETE_BONUS:
+                command = new DeleteBonusCommand(request);
                 break;
             default:
                 throw new CommandFactoryException("Invalid commands name: " + commandType.name());

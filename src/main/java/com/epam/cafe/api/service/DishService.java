@@ -1,6 +1,6 @@
 package com.epam.cafe.api.service;
 
-import com.epam.cafe.entitie.Dish;
+import com.epam.cafe.entitie.dish.Dish;
 import com.epam.cafe.service.exception.ServiceException;
 
 import java.util.List;

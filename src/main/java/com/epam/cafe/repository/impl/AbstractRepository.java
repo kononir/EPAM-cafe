@@ -87,10 +87,9 @@ public abstract class AbstractRepository<T> implements Repository<T> {
 
             PreparedStatement statement = connection.prepareStatement(query);
 
-            int whereParamIndex = 0;
             Map<String, Object> paramsMap = getParams(element);
-            Object whereValue = paramsMap.get(ID_COLUMN);
-            statement.setObject(whereParamIndex, whereValue);
+            Object idValue = paramsMap.get(ID_COLUMN);
+            statement.setObject(ID_COLUMN_INDEX, idValue);
 
             statement.execute();
         } catch (SQLException e) {

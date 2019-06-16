@@ -1,7 +1,7 @@
 package com.epam.cafe.repository.impl;
 
 import com.epam.cafe.api.repository.specification.SqlSpecification;
-import com.epam.cafe.builder.OrderBuilder;
+import com.epam.cafe.entitie.order.OrderBuilder_WIP;
 import com.epam.cafe.entitie.order.Order;
 import com.epam.cafe.entitie.order.OrderDish;
 import com.epam.cafe.repository.exception.RepositoryException;
@@ -60,6 +60,6 @@ public class OrderRepository_WIP extends AbstractRepository<Order> {
     public List<Order> query(SqlSpecification specification) throws RepositoryException {
 
 
-        return executeQuery(specification, new OrderBuilder());
+        return executeQuery(specification, new OrderBuilder_WIP());
     }
 }

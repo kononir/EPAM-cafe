@@ -8,6 +8,6 @@ public class DeleteQueryBuilder implements QueryBuilder {
 
     @Override
     public String build(String tableName, List<String> params) {
-        return "DELETE FROM " + tableName + "WHERE ID = ?";
+        return "DELETE FROM " + tableName + " WHERE ID = ?";
     }
 }

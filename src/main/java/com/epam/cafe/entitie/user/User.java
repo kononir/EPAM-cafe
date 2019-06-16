@@ -24,10 +24,10 @@ public class User implements Serializable {
 
     private Boolean isBanned;
     private Integer score;
-    private int accountID;
+    private Integer accountID;
 
     public User(int ID, String login, String password, String name, String surname,
-                UserRole role, Boolean isBanned, Integer score, int accountID) {
+                UserRole role, Boolean isBanned, Integer score, Integer accountID) {
         this.ID = ID;
         this.login = login;
         this.password = password;
@@ -102,7 +102,7 @@ public class User implements Serializable {
                 surname.equals(user.surname) &&
                 isBanned == user.isBanned &&
                 role == user.role &&
-                accountID == user.accountID;
+                accountID.equals(user.accountID);
     }
 
     @Override
@@ -113,6 +113,6 @@ public class User implements Serializable {
                 + (surname == null ? 0 : surname.hashCode())
                 + (isBanned == null ? 0 : isBanned.hashCode())
                 + (role == null ? 0 : role.hashCode())
-                + (accountID);
+                + (accountID == null ? 0 : accountID.hashCode());
     }
 }

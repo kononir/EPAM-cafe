@@ -1,7 +1,7 @@
-package com.epam.cafe.builder;
+package com.epam.cafe.entitie.account;
 
 import com.epam.cafe.api.builder.EntityBuilder;
-import com.epam.cafe.entitie.Account;
+import com.epam.cafe.entitie.account.Account;
 
 import java.math.BigDecimal;
 import java.sql.ResultSet;

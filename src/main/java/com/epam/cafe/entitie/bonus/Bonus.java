@@ -1,4 +1,4 @@
-package com.epam.cafe.entitie;
+package com.epam.cafe.entitie.bonus;
 
 import java.io.Serializable;
 

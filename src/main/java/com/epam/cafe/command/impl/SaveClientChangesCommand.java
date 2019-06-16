@@ -19,7 +19,7 @@ public class SaveClientChangesCommand extends AbstractCommand implements Command
 
     @Override
     public String execute() throws ServiceException {
-        User client = findCurrentClientByRequest(request);
+        User client = findClient(request);
 
         Boolean clientIsBanned = Boolean.valueOf(request.getParameter("clientIsBanned"));
         client.setBanned(clientIsBanned);

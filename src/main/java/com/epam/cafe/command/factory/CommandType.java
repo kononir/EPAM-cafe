@@ -5,7 +5,9 @@ public enum CommandType {
     LOGOUT,
 
     GET_CLIENTS,
-    GET_BONUSES,
+
+    GET_BONUSES_ADMIN,
+    DELETE_BONUS,
 
     MANAGE_CLIENT_INFORMATION,
     SAVE_CLIENT_CHANGES,
@@ -16,7 +18,7 @@ public enum CommandType {
     SAVE_DISH_ORDER,
 
     GET_CLIENT_ORDERS,
-    GET_CLIENT_BONUSES,
+    GET_BONUSES_CLIENT,
 
     SHOW_BASKET,
     REMOVE_DISH_ORDER,

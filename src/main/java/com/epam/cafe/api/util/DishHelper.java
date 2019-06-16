@@ -1,6 +1,6 @@
 package com.epam.cafe.api.util;
 
-import com.epam.cafe.entitie.Dish;
+import com.epam.cafe.entitie.dish.Dish;
 
 import java.math.BigDecimal;
 import java.util.List;

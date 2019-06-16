@@ -2,9 +2,9 @@ package com.epam.cafe.repository.factory;
 
 import com.epam.cafe.api.repository.Repository;
 import com.epam.cafe.connection.ConnectionPool;
-import com.epam.cafe.entitie.Account;
-import com.epam.cafe.entitie.Bonus;
-import com.epam.cafe.entitie.Dish;
+import com.epam.cafe.entitie.account.Account;
+import com.epam.cafe.entitie.bonus.Bonus;
+import com.epam.cafe.entitie.dish.Dish;
 import com.epam.cafe.entitie.order.Order;
 import com.epam.cafe.entitie.user.User;
 import com.epam.cafe.repository.exception.RepositoryException;

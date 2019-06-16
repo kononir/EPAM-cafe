@@ -30,7 +30,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <%--@elvariable id="clientBonuses" type="java.util.List<com.epam.cafe.entitie.Bonus>"--%>
+                    <%--@elvariable id="clientBonuses" type="java.util.List<com.epam.cafe.entitie.bonus.Bonus>"--%>
                     <c:forEach items="${clientBonuses}" var="bonus">
                         <tr>
                             <td>${bonus.name}</td>
@@ -46,6 +46,8 @@
                     </c:forEach>
                     </tbody>
                 </table>
+
+                <button onclick="history.back()">Back</button>
             </div>
         </div>
     </div>

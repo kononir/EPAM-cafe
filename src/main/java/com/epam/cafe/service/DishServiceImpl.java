@@ -2,7 +2,7 @@ package com.epam.cafe.service;
 
 import com.epam.cafe.api.repository.Repository;
 import com.epam.cafe.api.service.DishService;
-import com.epam.cafe.entitie.Dish;
+import com.epam.cafe.entitie.dish.Dish;
 import com.epam.cafe.repository.exception.RepositoryException;
 import com.epam.cafe.repository.factory.RepositoryFactory;
 import com.epam.cafe.repository.specification.dish.DishByIDsSpecification;

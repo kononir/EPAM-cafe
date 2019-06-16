@@ -1,4 +1,4 @@
-package com.epam.cafe.entitie;
+package com.epam.cafe.entitie.dish;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

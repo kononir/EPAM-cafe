@@ -48,7 +48,7 @@
                             </td>
                             <td>
                                 <form action="command" method="post">
-                                    <input type="hidden" name="command" value="get_bonuses">
+                                    <input type="hidden" name="command" value="get_bonuses_admin">
                                     <input type="hidden" name="clientID" value="${client.ID}">
                                     <input type="hidden" name="clientLogin" value="${client.login}">
                                     <button type="submit">Show</button>

@@ -18,7 +18,7 @@ public class ManageClientsInformationCommand extends AbstractCommand implements 
     @Override
     public String execute() {
         HttpSession session = request.getSession();
-        User client = findCurrentClientByRequest(request);
+        User client = findClient(request);
         session.setAttribute("client", client);
 
         return PAGE;

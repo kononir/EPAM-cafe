@@ -26,7 +26,7 @@
     </li>
     <li>
         <form action="command" method="post">
-            <input type="hidden" name="command" value="get_client_bonuses">
+            <input type="hidden" name="command" value="get_bonuses_client">
             <button type="submit">Bonuses</button>
         </form>
     </li>

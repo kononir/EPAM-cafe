@@ -2,7 +2,7 @@ package com.epam.cafe.service;
 
 import com.epam.cafe.api.repository.Repository;
 import com.epam.cafe.api.service.BonusService;
-import com.epam.cafe.entitie.Bonus;
+import com.epam.cafe.entitie.bonus.Bonus;
 import com.epam.cafe.repository.exception.RepositoryException;
 import com.epam.cafe.repository.factory.RepositoryFactory;
 import com.epam.cafe.repository.specification.bonus.BonusByUserIDSpecification;
@@ -24,5 +24,15 @@ public class BonusServiceImpl implements BonusService {
         }
 
         return bonuses;
+    }
+
+    @Override
+    public void deleteBonus(Bonus bonus) throws ServiceException {
+        try (RepositoryFactory factory = new RepositoryFactory()) {
+            Repository<Bonus> bonusRepository = factory.bonusRepository();
+            bonusRepository.remove(bonus);
+        } catch (RepositoryException e) {
+            throw new ServiceException("Deleting bonus error.", e);
+        }
     }
 }

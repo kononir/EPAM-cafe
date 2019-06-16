@@ -31,7 +31,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <%--@elvariable id="dishes" type="java.util.List<com.epam.cafe.entitie.Dish>"--%>
+                    <%--@elvariable id="dishes" type="java.util.List<com.epam.cafe.entitie.dish.Dish>"--%>
                     <c:forEach items="${dishes}" var="dish">
                         <tr>
                             <td>${dish.name}</td>
