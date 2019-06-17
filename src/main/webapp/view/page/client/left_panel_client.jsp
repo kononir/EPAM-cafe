@@ -19,10 +19,24 @@
         </form><br>
     </li>
     <li>
-        <form action="command" method="post">
-            <input type="hidden" name="command" value="get_client_orders">
-            <button type="submit">Order history</button>
-        </form>
+        <button type="submit">Orders</button>
+        <ul class="sub-menu">
+            <li>
+                <form action="command" method="post">
+                    <button type="submit">Current</button>
+                </form>
+            </li>
+            <li>
+                <form action="command" method="post">
+                    <button type="submit">Previous</button>
+                </form>
+            </li>
+            <li>
+                <form action="command" method="post">
+                    <button type="submit">Global</button>
+                </form>
+            </li>
+        </ul>
     </li>
     <li>
         <form action="command" method="post">

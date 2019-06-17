@@ -99,12 +99,16 @@ form {
     margin: 0;
     padding: 0;
     font-size: 0;
-    overflow: hidden;
 }
 
 .horizontal-menu {
     margin: 7px 7px 0 7px;
     border: 1px solid white;
+    height: 47px;
+}
+
+.horizontal-menu > li {
+    float: right;
 }
 
 .vertical-menu {
@@ -116,9 +120,15 @@ form {
     border-left: 1px solid white;
 }
 
-.vertical-menu li {
+.vertical-menu > li {
     float: left;
     width: inherit;
+}
+
+.horizontal-menu > li,
+.vertical-menu > li {
+    position: relative;
+    display: inline-block;
 }
 
 .horizontal-menu button, .vertical-menu button {
@@ -133,9 +143,49 @@ form {
     font-size: 15px;
 }
 
-.horizontal-menu button:hover, .vertical-menu button:hover {
+.horizontal-menu button:hover,
+.vertical-menu button:hover {
     background-color: orange;
 }
+
+/*----Dropdown menus----*/
+.horizontal-menu > li .sub-menu,
+.vertical-menu > li .sub-menu {
+    display: none;
+    position: absolute;
+    padding: 0;
+}
+
+.horizontal-menu > li .sub-menu {
+    top: 102%;
+}
+
+.vertical-menu > li .sub-menu {
+    left: 100%;
+    top: -2%;
+}
+
+.horizontal-menu > li:hover .sub-menu,
+.vertical-menu > li:hover .sub-menu {
+    display: block;
+}
+
+.horizontal-menu .sub-menu button {
+    width: 100%;
+    border: 1px solid white;
+    border-top: 0;
+}
+
+.vertical-menu .sub-menu button {
+    width: 150px;
+    border: 1px solid white;
+    border-bottom: 0;
+}
+
+.vertical-menu .sub-menu {
+    border-bottom: 1px solid white;
+}
+/*----------------------*/
 
 .vertical-menu form {
     width: inherit;

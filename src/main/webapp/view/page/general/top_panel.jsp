@@ -20,9 +20,24 @@
         </form>
     </li>
     <li>
-        <form method="post">
-            <button type="submit">Change language</button>
-        </form>
+        <button type="submit">Change language</button>
+        <ul class="sub-menu">
+            <li>
+                <form action="command" method="post">
+                    <button type="submit">English</button>
+                </form>
+            </li>
+            <li>
+                <form action="command" method="post">
+                    <button type="submit">Русский</button>
+                </form>
+            </li>
+            <li>
+                <form action="command" method="post">
+                    <button type="submit">Беларуская</button>
+                </form>
+            </li>
+        </ul>
     </li>
 </ul>
 <div class="inner-content">
