@@ -21,12 +21,12 @@
         <div class="inner-content">
             <h1>Menu</h1>
 
-            <%--@elvariable id="dishesInMenu" type="java.util.List<com.epam.cafe.entitie.dish.Dish>"--%>
+            <%--@elvariable id="dishesInMenu" type="java.util.List<com.epam.cafe.entitie.Dish>"--%>
             <c:forEach items="${dishesInMenu}" var="dish">
-                <div class="menu-dish">
+                <div class="dish">
                     <h3>Name - ${dish.name}</h3>
-                    <p class="menu-dish-cost">Cost - ${dish.cost}$</p>
-                    <p class="menu-dish-description">Description:<br>${dish.description}</p>
+                    <p class="dish-cost">Cost - ${dish.cost}$</p>
+                    <p class="dish-description">Description:<br>${dish.description}</p>
                     <img src="${dish.imageHref}" alt="${dish.name}">
 
                     <form action="command" method="post">

@@ -1,6 +1,7 @@
-package com.epam.cafe.entitie.bonus;
+package com.epam.cafe.entitie.builder;
 
 import com.epam.cafe.api.builder.EntityBuilder;
+import com.epam.cafe.entitie.Bonus;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

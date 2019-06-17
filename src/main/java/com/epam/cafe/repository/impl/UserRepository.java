@@ -2,7 +2,7 @@ package com.epam.cafe.repository.impl;
 
 import com.epam.cafe.api.repository.Repository;
 import com.epam.cafe.api.repository.specification.SqlSpecification;
-import com.epam.cafe.entitie.user.UserBuilder;
+import com.epam.cafe.entitie.builder.UserBuilder;
 import com.epam.cafe.entitie.user.User;
 import com.epam.cafe.entitie.user.UserRole;
 import com.epam.cafe.repository.exception.RepositoryException;

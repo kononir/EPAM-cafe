@@ -3,6 +3,8 @@ package com.epam.cafe.entitie.user;
 import java.io.Serializable;
 
 public class User implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     public static final String ID_COLUMN = "ID";
     public static final String LOGIN_COLUMN = "Login";
     public static final String PASSWORD_COLUMN = "Password";
@@ -12,8 +14,6 @@ public class User implements Serializable {
     public static final String SCORE_COLUMN = "Score";
     public static final String IS_BANNED_COLUMN = "IsBanned";
     public static final String ACCOUNT_ID_COLUMN = "AccountID";
-
-    private static final long serialVersionUID = 1L;
 
     private int ID;
     private String login;
@@ -94,7 +94,6 @@ public class User implements Serializable {
         }
 
         User user = (User) o;
-
         return ID == user.ID &&
                 login.equals(user.login) &&
                 password.equals(user.password) &&
@@ -107,7 +106,8 @@ public class User implements Serializable {
 
     @Override
     public int hashCode() {
-        return 31 * ID + (login == null ? 0 : login.hashCode())
+        return 31 * ID
+                + (login == null ? 0 : login.hashCode())
                 + (password == null ? 0 : password.hashCode())
                 + (name == null ? 0 : name.hashCode())
                 + (surname == null ? 0 : surname.hashCode())

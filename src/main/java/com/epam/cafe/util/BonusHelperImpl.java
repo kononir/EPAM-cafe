@@ -1,7 +1,7 @@
 package com.epam.cafe.util;
 
 import com.epam.cafe.api.util.BonusHelper;
-import com.epam.cafe.entitie.bonus.Bonus;
+import com.epam.cafe.entitie.Bonus;
 
 import java.util.List;
 import java.util.Optional;

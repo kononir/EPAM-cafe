@@ -2,7 +2,7 @@ package com.epam.cafe.repository.specification.account;
 
 import com.epam.cafe.api.repository.specification.EntitySpecification;
 import com.epam.cafe.api.repository.specification.SqlSpecification;
-import com.epam.cafe.entitie.account.Account;
+import com.epam.cafe.entitie.Account;
 
 import java.util.Collections;
 import java.util.List;

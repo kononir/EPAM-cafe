@@ -7,18 +7,12 @@ import com.epam.cafe.entitie.Dish;
 import java.util.Collections;
 import java.util.List;
 
-public class DishByInMenuSpecification implements EntitySpecification<Dish>, SqlSpecification {
-    private static final String QUERY = "SELECT * FROM dish WHERE IsInMenu = ?";
-
-    private boolean inMenu;
-
-    public DishByInMenuSpecification(boolean inMenu) {
-        this.inMenu = inMenu;
-    }
+public class LastDishSpecification implements EntitySpecification<Dish>, SqlSpecification {
+    private static final String QUERY = "SELECT * FROM dish WHERE ID = (SELECT MAX(ID) FROM dish)";
 
     @Override
     public boolean specified(Dish specifiedElement) {
-        return specifiedElement.isInMenu() == inMenu;
+        return false;
     }
 
     @Override
@@ -28,6 +22,6 @@ public class DishByInMenuSpecification implements EntitySpecification<Dish>, Sql
 
     @Override
     public List<Object> getParams() {
-        return Collections.singletonList(inMenu);
+        return Collections.emptyList();
     }
 }

@@ -2,7 +2,7 @@ package com.epam.cafe.command.impl;
 
 import com.epam.cafe.api.Command;
 import com.epam.cafe.api.service.BonusService;
-import com.epam.cafe.entitie.bonus.Bonus;
+import com.epam.cafe.entitie.Bonus;
 import com.epam.cafe.entitie.user.User;
 import com.epam.cafe.service.BonusServiceImpl;
 import com.epam.cafe.service.exception.ServiceException;

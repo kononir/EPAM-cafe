@@ -28,7 +28,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <%--@elvariable id="clientBonuses" type="java.util.List<com.epam.cafe.entitie.bonus.Bonus>"--%>
+                    <%--@elvariable id="clientBonuses" type="java.util.List<com.epam.cafe.entitie.Bonus>"--%>
                     <c:forEach items="${clientBonuses}" var="bonus">
                         <tr>
                             <td>${bonus.name}</td>

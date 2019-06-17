@@ -2,8 +2,8 @@ package com.epam.cafe.repository.impl;
 
 import com.epam.cafe.api.repository.Repository;
 import com.epam.cafe.api.repository.specification.SqlSpecification;
-import com.epam.cafe.entitie.bonus.BonusBuilder;
-import com.epam.cafe.entitie.bonus.Bonus;
+import com.epam.cafe.entitie.builder.BonusBuilder;
+import com.epam.cafe.entitie.Bonus;
 import com.epam.cafe.repository.exception.RepositoryException;
 
 import java.sql.Connection;

@@ -1,8 +1,8 @@
 package com.epam.cafe.repository.impl;
 
 import com.epam.cafe.api.repository.specification.SqlSpecification;
-import com.epam.cafe.entitie.dish.DishBuilder;
-import com.epam.cafe.entitie.dish.Dish;
+import com.epam.cafe.entitie.builder.DishBuilder;
+import com.epam.cafe.entitie.Dish;
 import com.epam.cafe.repository.exception.RepositoryException;
 
 import java.sql.Connection;

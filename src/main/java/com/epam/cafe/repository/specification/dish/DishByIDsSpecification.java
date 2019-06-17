@@ -2,7 +2,7 @@ package com.epam.cafe.repository.specification.dish;
 
 import com.epam.cafe.api.repository.specification.EntitySpecification;
 import com.epam.cafe.api.repository.specification.SqlSpecification;
-import com.epam.cafe.entitie.dish.Dish;
+import com.epam.cafe.entitie.Dish;
 
 import java.util.Collections;
 import java.util.List;

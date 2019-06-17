@@ -1,8 +1,8 @@
 package com.epam.cafe.repository.impl;
 
 import com.epam.cafe.api.repository.specification.SqlSpecification;
-import com.epam.cafe.entitie.account.AccountBuilder;
-import com.epam.cafe.entitie.account.Account;
+import com.epam.cafe.entitie.builder.AccountBuilder;
+import com.epam.cafe.entitie.Account;
 import com.epam.cafe.repository.exception.RepositoryException;
 
 import java.sql.Connection;

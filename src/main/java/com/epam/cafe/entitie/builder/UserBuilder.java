@@ -1,4 +1,4 @@
-package com.epam.cafe.entitie.user;
+package com.epam.cafe.entitie.builder;
 
 import com.epam.cafe.api.builder.EntityBuilder;
 import com.epam.cafe.entitie.user.User;

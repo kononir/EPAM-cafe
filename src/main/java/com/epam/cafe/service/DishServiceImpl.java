@@ -2,17 +2,20 @@ package com.epam.cafe.service;
 
 import com.epam.cafe.api.repository.Repository;
 import com.epam.cafe.api.service.DishService;
-import com.epam.cafe.entitie.dish.Dish;
+import com.epam.cafe.entitie.Dish;
 import com.epam.cafe.repository.exception.RepositoryException;
 import com.epam.cafe.repository.factory.RepositoryFactory;
+import com.epam.cafe.repository.specification.dish.AllDishesSpecification;
 import com.epam.cafe.repository.specification.dish.DishByIDsSpecification;
 import com.epam.cafe.repository.specification.dish.DishByInMenuSpecification;
+import com.epam.cafe.repository.specification.dish.LastDishSpecification;
 import com.epam.cafe.service.exception.ServiceException;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DishServiceImpl implements DishService {
+    private static final int FIRST = 0;
 
     @Override
     public List<Dish> getDishesInMenu() throws ServiceException {
@@ -42,5 +45,64 @@ public class DishServiceImpl implements DishService {
         }
 
         return dishes;
+    }
+
+    @Override
+    public List<Dish> getAllDishes() throws ServiceException {
+        List<Dish> allDishes;
+
+        try (RepositoryFactory factory = new RepositoryFactory()) {
+            Repository<Dish> dishRepository = factory.dishRepository();
+            allDishes = dishRepository.query(new AllDishesSpecification());
+        } catch (RepositoryException e) {
+            throw new ServiceException("Getting all dishes error.", e);
+        }
+
+        return allDishes;
+    }
+
+    @Override
+    public void updateDish(Dish dish) throws ServiceException {
+        try (RepositoryFactory factory = new RepositoryFactory()) {
+            Repository<Dish> dishRepository = factory.dishRepository();
+            dishRepository.update(dish);
+        } catch (RepositoryException e) {
+            throw new ServiceException("Updating dish error.", e);
+        }
+    }
+
+    @Override
+    public void deleteDish(Dish dish) throws ServiceException {
+        try (RepositoryFactory factory = new RepositoryFactory()) {
+            Repository<Dish> dishRepository = factory.dishRepository();
+            dishRepository.remove(dish);
+        } catch (RepositoryException e) {
+            throw new ServiceException("Deleting dish error.", e);
+        }
+    }
+
+    @Override
+    public void addDish(Dish dish) throws ServiceException {
+        try (RepositoryFactory factory = new RepositoryFactory()) {
+            Repository<Dish> dishRepository = factory.dishRepository();
+            dishRepository.save(dish);
+        } catch (RepositoryException e) {
+            throw new ServiceException("Adding dish error.", e);
+        }
+    }
+
+    @Override
+    public Dish getLastDish() throws ServiceException {
+        Dish lastDish;
+
+        try (RepositoryFactory factory = new RepositoryFactory()) {
+            Repository<Dish> dishRepository = factory.dishRepository();
+            List<Dish> dishes = dishRepository.query(new LastDishSpecification());
+            lastDish = dishes.get(FIRST);
+        } catch (RepositoryException e) {
+            throw new ServiceException("Getting last dish error.", e);
+        }
+
+        return lastDish;
     }
 }

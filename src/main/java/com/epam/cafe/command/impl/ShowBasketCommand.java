@@ -2,7 +2,7 @@ package com.epam.cafe.command.impl;
 
 import com.epam.cafe.api.Command;
 import com.epam.cafe.api.service.DishService;
-import com.epam.cafe.entitie.dish.Dish;
+import com.epam.cafe.entitie.Dish;
 import com.epam.cafe.service.DishServiceImpl;
 import com.epam.cafe.service.exception.ServiceException;
 

@@ -9,20 +9,21 @@ import com.epam.cafe.service.exception.ServiceException;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-public class GetClientMenuCommand extends AbstractCommand implements Command {
-    private static final String PAGE = "/view/page/client/client_menu.jsp";
+public class GetAllDishesCommand extends AbstractCommand implements Command {
+    private static final String PAGE = "/view/page/administrator/all_dishes.jsp";
 
     private HttpSession session;
 
-    public GetClientMenuCommand(HttpSession session) {
+    public GetAllDishesCommand(HttpSession session) {
         this.session = session;
     }
 
     @Override
     public String execute() throws ServiceException {
         DishService service = new DishServiceImpl();
-        List<Dish> dishesInMenu = service.getDishesInMenu();
-        session.setAttribute("dishesInMenu", dishesInMenu);
+        List<Dish> allDishes = service.getAllDishes();
+
+        session.setAttribute("allDishes", allDishes);
 
         return PAGE;
     }

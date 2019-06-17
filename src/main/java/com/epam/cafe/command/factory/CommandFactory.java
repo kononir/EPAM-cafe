@@ -63,6 +63,24 @@ public class CommandFactory {
             case DELETE_BONUS:
                 command = new DeleteBonusCommand(request);
                 break;
+            case GET_ALL_DISHES:
+                command = new GetAllDishesCommand(request.getSession());
+                break;
+            case MANAGE_DISH_INFORMATION:
+                command = new ManageDishInformationCommand(request);
+                break;
+            case SAVE_DISH_CHANGES:
+                command = new SaveDishChangesCommand(request);
+                break;
+            case DELETE_DISH:
+                command = new DeleteDishCommand(request);
+                break;
+            case SPECIFY_NEW_DISH:
+                command = new SpecifyNewDishCommand();
+                break;
+            case ADD_DISH:
+                command = new AddDishCommand(request);
+                break;
             default:
                 throw new CommandFactoryException("Invalid commands name: " + commandType.name());
         }

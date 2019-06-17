@@ -1,12 +1,13 @@
 package com.epam.cafe.util;
 
 import com.epam.cafe.api.util.DishHelper;
-import com.epam.cafe.entitie.dish.Dish;
+import com.epam.cafe.entitie.Dish;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class DishHelperImpl implements DishHelper {
 
@@ -36,5 +37,14 @@ public class DishHelperImpl implements DishHelper {
         }
 
         return result;
+    }
+
+    @Override
+    public Dish findDishById(List<Dish> dishes, int dishID) {
+        Optional<Dish> foundDish = dishes.stream()
+                .filter(bonus -> (bonus.getID() == dishID))
+                .findFirst();
+
+        return foundDish.orElse(null);
     }
 }

@@ -166,6 +166,17 @@ form {
     text-align: right;
 }
 
+.inner-content .content-actions {
+    display: block;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.content-actions form {
+    margin-top: 5px;
+    display: inline-block;
+}
+
 .page-wrapper {
     display: table;
     height: 100%;
@@ -198,6 +209,14 @@ form {
     transform: translate(-50%);
 }
 
+.form-area button {
+    margin-top: 10px;
+}
+
+.form-area form {
+    display: inline-block;
+}
+
 .form-area-field {
     clear: both;
     text-align: right;
@@ -225,7 +244,7 @@ form {
     background-color: lightsteelblue;
 }
 
-.menu-dish {
+.dish {
     display: block;
     padding: 10px;
     border: 1px solid white;
@@ -233,9 +252,10 @@ form {
     background-color: lightseagreen;
     width: 80%;
     margin: auto auto 10px;
+    position: relative;
 }
 
-.menu-dish img {
+.dish img {
     display: block;
     max-width: 50%;
     height: auto;
@@ -244,15 +264,22 @@ form {
     margin-bottom: 10px;
 }
 
-.menu-dish .menu-dish-description {
+.dish .dish-description {
     display: block;
     hyphens: auto;
 }
 
-.menu-dish input {
+.dish input {
     margin-bottom: 10px;
 }
 
-.menu-dish form {
+.dish form {
     text-align: center;
+}
+
+.dish #delete-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 5px 10px;
 }

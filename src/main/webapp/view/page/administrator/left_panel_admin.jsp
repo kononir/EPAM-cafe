@@ -14,8 +14,8 @@
 <ul class="vertical-menu">
     <li>
         <form action="command" method="post">
-            <input type="hidden" name="command" value="get_full_menu">
-            <button type="submit">Manage Menu</button>
+            <input type="hidden" name="command" value="get_all_dishes">
+            <button type="submit">Manage dishes</button>
         </form><br>
     </li>
     <li>

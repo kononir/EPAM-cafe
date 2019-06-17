@@ -4,8 +4,8 @@ import com.epam.cafe.api.Command;
 import com.epam.cafe.api.util.BonusHelper;
 import com.epam.cafe.api.util.DishHelper;
 import com.epam.cafe.api.util.UserHelper;
-import com.epam.cafe.entitie.bonus.Bonus;
-import com.epam.cafe.entitie.dish.Dish;
+import com.epam.cafe.entitie.Bonus;
+import com.epam.cafe.entitie.Dish;
 import com.epam.cafe.entitie.user.User;
 import com.epam.cafe.util.BonusHelperImpl;
 import com.epam.cafe.util.DishHelperImpl;
@@ -44,11 +44,35 @@ public abstract class AbstractCommand implements Command {
         return bonusHelper.findBonusById(bonuses, bonusID);
     }
 
+    protected Dish findDish(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+
+        @SuppressWarnings("unchecked")
+        List<Dish> dishes = (ArrayList<Dish>) session.getAttribute("allDishes");
+        int bonusID = Integer.parseInt(request.getParameter("dishID"));
+
+        return dishHelper.findDishById(dishes, bonusID);
+    }
+
+    protected void addDishToRequest(HttpServletRequest request, Dish dish) {
+        HttpSession session = request.getSession();
+        @SuppressWarnings("unchecked")
+        List<Dish> dishes = (ArrayList<Dish>) session.getAttribute("allDishes");
+        dishes.add(dish);
+    }
+
     protected void removeBonusFromRequest(HttpServletRequest request, Bonus bonus) {
         HttpSession session = request.getSession();
         @SuppressWarnings("unchecked")
         List<Bonus> bonuses = (ArrayList<Bonus>) session.getAttribute("clientBonuses");
         bonuses.remove(bonus);
+    }
+
+    protected void removeDishFromRequest(HttpServletRequest request, Dish dish) {
+        HttpSession session = request.getSession();
+        @SuppressWarnings("unchecked")
+        List<Dish> bonuses = (ArrayList<Dish>) session.getAttribute("allDishes");
+        bonuses.remove(dish);
     }
 
     protected void calculateCostsOfDishesInBasket(HttpSession session) {
