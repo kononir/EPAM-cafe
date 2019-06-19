@@ -1,6 +1,7 @@
 package com.epam.cafe.api.util;
 
 import com.epam.cafe.entitie.Dish;
+import com.epam.cafe.entitie.order.Order;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -12,4 +13,8 @@ public interface DishHelper {
     BigDecimal calculateResult(Map<Integer, BigDecimal> generalCosts);
 
     Dish findDishById(List<Dish> dishes, int id);
+
+    List<Integer> getDistinctDishesIdsOfOrders(List<Order> orders);
+
+    Map<Integer, Dish> convertDishesToIdDishMap(List<Dish> dishes);
 }

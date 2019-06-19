@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>Basket</title>
+    <title>Empty</title>
     <link href="view/style/main.css" rel="stylesheet">
 </head>
 <body>
@@ -18,7 +18,7 @@
         <c:import url="/view/page/general/top_panel.jsp"/>
         <c:import url="/view/page/client/left_panel_client.jsp"/>
         <div class="inner-content">
-            <h1>Basket is empty!</h1>
+            <h1>There are no elements here!</h1>
         </div>
     </div>
     <c:import url="/view/page/general/footer.jsp"/>

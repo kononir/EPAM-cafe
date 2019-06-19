@@ -168,6 +168,7 @@ form {
 .horizontal-menu > li:hover .sub-menu,
 .vertical-menu > li:hover .sub-menu {
     display: block;
+    z-index: 1;
 }
 
 .horizontal-menu .sub-menu button {
@@ -294,7 +295,7 @@ form {
     background-color: lightsteelblue;
 }
 
-.dish {
+.entity {
     display: block;
     padding: 10px;
     border: 1px solid white;
@@ -305,7 +306,7 @@ form {
     position: relative;
 }
 
-.dish img {
+.entity img {
     display: block;
     max-width: 50%;
     height: auto;
@@ -314,22 +315,54 @@ form {
     margin-bottom: 10px;
 }
 
-.dish .dish-description {
-    display: block;
-    hyphens: auto;
-}
-
-.dish input {
+.entity input,
+.entity textarea {
     margin-bottom: 10px;
 }
 
-.dish form {
+.entity textarea {
+    resize: vertical;
+    width: 100%;
+    height: 100px;
+}
+
+.entity form {
     text-align: center;
 }
 
-.dish #delete-button {
+.entity #delete-button {
     position: absolute;
     top: 0;
     right: 0;
     padding: 5px 10px;
 }
+
+/*-----Rating-----*/
+.rating_block {
+    width: 125px;
+    height: 25px;
+    display: block;
+    margin: 0 auto 10px
+}
+
+.rating_block input[type="radio"] {
+    display: none;
+}
+
+.label_rating {
+    float: right;
+    display: block;
+    width: 25px;
+    height: 25px;
+    background: url(background/rating.png) no-repeat 50% 0;
+    cursor: pointer;
+}
+
+/*Пишем правила смены положения background-а*/
+.rating_block .label_rating:hover, /*Правило для ховера на текущий лейбл*/
+.rating_block .label_rating:hover ~ .label_rating, /*Правило для всех следующих лейблов по DOM дереву*/
+.rating_block input[type="radio"]:checked ~ .label_rating /*Правило для всех следующих лейблов после выбранного инпута, чтобы звездочки как бы зафиксировались*/
+{
+    background-position: 50% -25px;
+}
+/*-----------------*/

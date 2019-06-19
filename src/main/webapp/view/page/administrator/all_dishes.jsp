@@ -30,10 +30,10 @@
 
             <%--@elvariable id="allDishes" type="java.util.List<com.epam.cafe.entitie.Dish>"--%>
             <c:forEach items="${allDishes}" var="dish">
-                <div class="dish">
+                <div class="entity">
                     <h3>Name - ${dish.name}</h3>
-                    <p class="dish-cost">Cost - ${dish.cost}$</p>
-                    <p class="dish-description">Description:<br>${dish.description}</p>
+                    <p>Cost - ${dish.cost}$</p>
+                    <p>Description:<br>${dish.description}</p>
                     <p>Is in client menu -
                         <c:choose>
                             <c:when test="${dish.inMenu}">Yes</c:when>

@@ -1,7 +1,9 @@
 package com.epam.cafe.repository.impl;
 
+import com.epam.cafe.api.repository.Repository;
 import com.epam.cafe.api.repository.specification.SqlSpecification;
-import com.epam.cafe.entitie.order.OrderBuilder_WIP;
+import com.epam.cafe.entitie.PaymentMethod;
+import com.epam.cafe.entitie.builder.OrderBuilder;
 import com.epam.cafe.entitie.order.Order;
 import com.epam.cafe.entitie.order.OrderDish;
 import com.epam.cafe.repository.exception.RepositoryException;
@@ -15,9 +17,9 @@ import java.util.Map;
 public class OrderRepository_WIP extends AbstractRepository<Order> {
     private static final String TABLE_NAME = "`order`";
 
-    private ChosenDishesRepository_WIP chosenDishesRepository;
+    private Repository<OrderDish> chosenDishesRepository;
 
-    public OrderRepository_WIP(Connection connection, ChosenDishesRepository_WIP chosenDishesRepository) {
+    public OrderRepository_WIP(Connection connection, Repository<OrderDish> chosenDishesRepository) {
         super(connection);
         this.chosenDishesRepository = chosenDishesRepository;
     }
@@ -32,6 +34,10 @@ public class OrderRepository_WIP extends AbstractRepository<Order> {
         Map<String, Object> params = new LinkedHashMap<>();
         params.put(Order.ID_COLUMN, order.getID());
         params.put(Order.RECEIPT_TIME_COLUMN, order.getReceiptTime());
+        params.put(Order.RESULT_COST_COLUMN, order.getResultCost());
+
+        PaymentMethod paymentMethod = order.getPaymentMethod();
+        params.put(Order.PAYMENT_METHOD_COLUMN, paymentMethod.name());
         params.put(Order.SCORE_COLUMN, order.getScore());
         params.put(Order.COMMENT_COLUMN, order.getComment());
         params.put(Order.USER_ID_COLUMN, order.getUserID());
@@ -58,8 +64,6 @@ public class OrderRepository_WIP extends AbstractRepository<Order> {
 
     @Override
     public List<Order> query(SqlSpecification specification) throws RepositoryException {
-
-
-        return executeQuery(specification, new OrderBuilder_WIP());
+        return executeQuery(specification, new OrderBuilder(chosenDishesRepository));
     }
 }

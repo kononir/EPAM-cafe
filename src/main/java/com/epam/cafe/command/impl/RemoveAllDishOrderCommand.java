@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 public class RemoveAllDishOrderCommand extends AbstractCommand implements Command {
-    private static final String PAGE = "/view/page/client/empty_basket.jsp";
+    private static final String PAGE = "/view/page/client/empty.jsp";
 
     private HttpServletRequest request;
 

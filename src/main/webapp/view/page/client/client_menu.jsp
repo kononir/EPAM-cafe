@@ -23,10 +23,10 @@
 
             <%--@elvariable id="dishesInMenu" type="java.util.List<com.epam.cafe.entitie.Dish>"--%>
             <c:forEach items="${dishesInMenu}" var="dish">
-                <div class="dish">
+                <div class="entity">
                     <h3>Name - ${dish.name}</h3>
-                    <p class="dish-cost">Cost - ${dish.cost}$</p>
-                    <p class="dish-description">Description:<br>${dish.description}</p>
+                    <p>Cost - ${dish.cost}$</p>
+                    <p>Description:<br>${dish.description}</p>
                     <img src="${dish.imageHref}" alt="${dish.name}">
 
                     <form action="command" method="post">

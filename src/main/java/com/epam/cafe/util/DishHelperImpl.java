@@ -2,12 +2,10 @@ package com.epam.cafe.util;
 
 import com.epam.cafe.api.util.DishHelper;
 import com.epam.cafe.entitie.Dish;
+import com.epam.cafe.entitie.order.Order;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class DishHelperImpl implements DishHelper {
 
@@ -42,9 +40,30 @@ public class DishHelperImpl implements DishHelper {
     @Override
     public Dish findDishById(List<Dish> dishes, int dishID) {
         Optional<Dish> foundDish = dishes.stream()
-                .filter(bonus -> (bonus.getID() == dishID))
+                .filter(dish -> (dish.getID() == dishID))
                 .findFirst();
 
         return foundDish.orElse(null);
+    }
+
+    @Override
+    public List<Integer> getDistinctDishesIdsOfOrders(List<Order> orders) {
+        Set<Integer> dishIDs = new HashSet<>();
+        for (Order order : orders) {
+            Map<Integer, Integer> chosenDishes = order.getChosenDishes();
+            dishIDs.addAll(chosenDishes.keySet());
+        }
+
+        return new ArrayList<>(dishIDs);
+    }
+
+    @Override
+    public Map<Integer, Dish> convertDishesToIdDishMap(List<Dish> dishes) {
+        Map<Integer, Dish> idDishMap = new HashMap<>();
+        for (Dish dish : dishes) {
+            idDishMap.put(dish.getID(), dish);
+        }
+
+        return idDishMap;
     }
 }

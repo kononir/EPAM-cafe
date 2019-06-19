@@ -5,6 +5,7 @@ import com.epam.cafe.entitie.builder.UserBuilder;
 import com.epam.cafe.entitie.Account;
 import com.epam.cafe.entitie.user.User;
 import com.epam.cafe.entitie.user.UserRole;
+import com.epam.cafe.repository.exception.RepositoryException;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -32,7 +33,8 @@ public class UserBuilderTests {
     private static final BigDecimal CLIENT_ACCOUNT_MONEY = new BigDecimal(1000);
 
     @Test
-    public void testBuildShouldReturnUserWithRoleAdministratorWhenGivenResultSetWithAdministrator() throws SQLException {
+    public void testBuildShouldReturnUserWithRoleAdministratorWhenGivenResultSetWithAdministrator()
+            throws SQLException, RepositoryException {
         ResultSet resultSet = mock(ResultSet.class);
         when(resultSet.getInt(User.ID_COLUMN)).thenReturn(ID);
         when(resultSet.getString(User.LOGIN_COLUMN)).thenReturn(LOGIN);
@@ -59,7 +61,8 @@ public class UserBuilderTests {
     }
 
     @Test
-    public void testBuildShouldReturnUserWithRoleClientWhenGivenResultSetWithClient() throws SQLException {
+    public void testBuildShouldReturnUserWithRoleClientWhenGivenResultSetWithClient()
+            throws SQLException, RepositoryException {
         ResultSet resultSet = mock(ResultSet.class);
         when(resultSet.getInt(User.ID_COLUMN)).thenReturn(ID);
         when(resultSet.getString(User.LOGIN_COLUMN)).thenReturn(LOGIN);

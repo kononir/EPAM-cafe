@@ -1,17 +1,19 @@
 package com.epam.cafe.repository.impl;
 
 import com.epam.cafe.api.repository.specification.SqlSpecification;
+import com.epam.cafe.entitie.builder.OrderDishBuilder;
 import com.epam.cafe.entitie.order.OrderDish;
+import com.epam.cafe.repository.exception.RepositoryException;
 
 import java.sql.Connection;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ChosenDishesRepository_WIP extends AbstractRepository<OrderDish> {
+public class ChosenDishesRepository extends AbstractRepository<OrderDish> {
     private static final String TABLE_NAME = "order_dishes";
 
-    public ChosenDishesRepository_WIP(Connection connection) {
+    public ChosenDishesRepository(Connection connection) {
         super(connection);
     }
 
@@ -31,9 +33,8 @@ public class ChosenDishesRepository_WIP extends AbstractRepository<OrderDish> {
         return params;
     }
 
-
     @Override
-    public List<OrderDish> query(SqlSpecification specification) {
-        return null;
+    public List<OrderDish> query(SqlSpecification specification) throws RepositoryException {
+        return executeQuery(specification, new OrderDishBuilder());
     }
 }

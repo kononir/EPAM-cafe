@@ -9,6 +9,7 @@ import com.epam.cafe.entitie.user.User;
 import com.epam.cafe.repository.exception.RepositoryException;
 import com.epam.cafe.repository.factory.RepositoryFactory;
 import com.epam.cafe.repository.specification.account.AccountByIDSpecification;
+import com.epam.cafe.repository.specification.order.PreviousOrdersByUserIDSpecification;
 import com.epam.cafe.service.exception.ServiceException;
 
 import java.math.BigDecimal;
@@ -27,11 +28,37 @@ public class OrderServiceImpl implements OrderService {
             factory.startTransaction();
 
             withdrawMoney(factory, paymentMethod, currentUser, resultCost);
-            saveOrder(factory, new Order(chosenDishes, dateTime, currentUser.getID()));
+            saveOrder(factory, new Order(
+                    chosenDishes, dateTime, resultCost, paymentMethod, currentUser.getID()
+            ));
 
             factory.finishTransaction();
         } catch (RepositoryException e) {
             throw new ServiceException("Ordering selected dishes error.", e);
+        }
+    }
+
+    @Override
+    public List<Order> getPreviousOrders(int userID) throws ServiceException {
+        List<Order> previousOrders;
+
+        try (RepositoryFactory factory = new RepositoryFactory()) {
+            Repository<Order> repository = factory.orderRepository();
+            previousOrders = repository.query(new PreviousOrdersByUserIDSpecification(userID));
+        } catch (RepositoryException e) {
+            throw new ServiceException("Getting previous orders error.", e);
+        }
+
+        return previousOrders;
+    }
+
+    @Override
+    public void updateOrder(Order order) throws ServiceException {
+        try (RepositoryFactory factory = new RepositoryFactory()) {
+            Repository<Order> repository = factory.orderRepository();
+            repository.update(order);
+        } catch (RepositoryException e) {
+            throw new ServiceException("Updating order error.", e);
         }
     }
 

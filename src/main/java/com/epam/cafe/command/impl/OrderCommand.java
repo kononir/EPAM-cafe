@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class OrderCommand extends AbstractCommand implements Command {
-    private static final String SUCCESS_PAGE = "/view/page/general/success.jsp";
+    private static final String SUCCESS_PAGE = "/view/page/client/success_client.jsp";
 
     private HttpServletRequest request;
 

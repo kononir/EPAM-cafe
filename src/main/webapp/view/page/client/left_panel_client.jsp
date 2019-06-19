@@ -23,16 +23,19 @@
         <ul class="sub-menu">
             <li>
                 <form action="command" method="post">
+                    <input type="hidden" name="command" value="get_current_orders">
                     <button type="submit">Current</button>
                 </form>
             </li>
             <li>
                 <form action="command" method="post">
+                    <input type="hidden" name="command" value="get_previous_orders">
                     <button type="submit">Previous</button>
                 </form>
             </li>
             <li>
                 <form action="command" method="post">
+                    <input type="hidden" name="command" value="get_global_orders">
                     <button type="submit">Global</button>
                 </form>
             </li>

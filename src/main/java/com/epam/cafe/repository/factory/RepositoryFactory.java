@@ -38,7 +38,7 @@ public class RepositoryFactory implements AutoCloseable {
     }
 
     public Repository<Order> orderRepository() {
-        return new OrderRepository_WIP(connection, new ChosenDishesRepository_WIP(connection));
+        return new OrderRepository_WIP(connection, new ChosenDishesRepository(connection));
     }
 
     public Repository<Account> accountRepository() {
