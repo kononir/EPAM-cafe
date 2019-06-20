@@ -1,4 +1,4 @@
-package com.epam.cafe.api.builder;
+package com.epam.cafe.api.entity;
 
 import com.epam.cafe.repository.exception.RepositoryException;
 

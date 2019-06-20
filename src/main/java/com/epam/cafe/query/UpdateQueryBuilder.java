@@ -1,11 +1,10 @@
 package com.epam.cafe.query;
 
-import com.epam.cafe.api.builder.QueryBuilder;
+import com.epam.cafe.api.query.QueryBuilderWithParams;
 
 import java.util.List;
 
-public class UpdateQueryBuilder implements QueryBuilder {
-    private static final String ID_COLUMN = "ID";
+public class UpdateQueryBuilder implements QueryBuilderWithParams {
 
     @Override
     public String build(String tableName, List<String> params) {
@@ -19,9 +18,7 @@ public class UpdateQueryBuilder implements QueryBuilder {
             builder.append(" = ?, ");
         }
         builder.append(params.get(last));
-        builder.append(" = ? WHERE ");
-        builder.append(ID_COLUMN);
-        builder.append(" = ?");
+        builder.append(" = ? WHERE ID = ?");
 
         return builder.toString();
     }

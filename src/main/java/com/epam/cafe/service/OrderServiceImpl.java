@@ -9,6 +9,7 @@ import com.epam.cafe.entitie.user.User;
 import com.epam.cafe.repository.exception.RepositoryException;
 import com.epam.cafe.repository.factory.RepositoryFactory;
 import com.epam.cafe.repository.specification.account.AccountByIDSpecification;
+import com.epam.cafe.repository.specification.order.GlobalOrdersByUserIDSpecification;
 import com.epam.cafe.repository.specification.order.PreviousOrdersByUserIDSpecification;
 import com.epam.cafe.service.exception.ServiceException;
 
@@ -60,6 +61,20 @@ public class OrderServiceImpl implements OrderService {
         } catch (RepositoryException e) {
             throw new ServiceException("Updating order error.", e);
         }
+    }
+
+    @Override
+    public List<Order> getGlobalOrders(int userID) throws ServiceException {
+        List<Order> globalOrders;
+
+        try (RepositoryFactory factory = new RepositoryFactory()) {
+            Repository<Order> repository = factory.orderRepository();
+            globalOrders = repository.query(new GlobalOrdersByUserIDSpecification(userID));
+        } catch (RepositoryException e) {
+            throw new ServiceException("Getting global orders error.", e);
+        }
+
+        return globalOrders;
     }
 
     private void withdrawMoney(RepositoryFactory factory, PaymentMethod paymentMethod, User currentUser,

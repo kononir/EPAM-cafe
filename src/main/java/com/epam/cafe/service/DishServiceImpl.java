@@ -33,13 +33,11 @@ public class DishServiceImpl implements DishService {
 
     @Override
     public List<Dish> getDishesByIds(List<Integer> dishesIDs) throws ServiceException {
-        List<Dish> dishes = new ArrayList<>();
+        List<Dish> dishes;
 
         try (RepositoryFactory factory = new RepositoryFactory()) {
             Repository<Dish> dishRepository = factory.dishRepository();
-            for (Integer dishesId : dishesIDs) {
-                dishes.addAll(dishRepository.query(new DishByIDsSpecification(dishesId)));
-            }
+            dishes = dishRepository.query(new DishByIDsSpecification(dishesIDs));
         } catch (RepositoryException e) {
             throw new ServiceException("Getting dishes by ids error.", e);
         }

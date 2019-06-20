@@ -82,13 +82,16 @@ public class CommandFactory {
                 command = new AddDishCommand(request);
                 break;
             case GET_PREVIOUS_ORDERS:
-                command = new GetPreviousOrders(request.getSession());
+                command = new GetPreviousOrdersCommand(request.getSession());
                 break;
             case RATE_ORDER:
                 command = new RateOrderCommand(request);
                 break;
             case LEAVE_COMMENT:
                 command = new LeaveCommentCommand(request);
+                break;
+            case GET_GLOBAL_ORDERS:
+                command = new GetGlobalOrdersCommand(request.getSession());
                 break;
             default:
                 throw new CommandFactoryException("Invalid commands name: " + commandType.name());

@@ -8,12 +8,12 @@ import com.epam.cafe.entitie.user.UserRole;
 import java.util.Collections;
 import java.util.List;
 
-public class UsersByRoleSpecification implements EntitySpecification<User>, SqlSpecification {
+public class UserByRoleSpecification implements EntitySpecification<User>, SqlSpecification {
     private static final String QUERY = "SELECT * FROM user LEFT JOIN account ON AccountID = account.ID WHERE Role = ?";
 
     private UserRole desiredRole;
 
-    public UsersByRoleSpecification(UserRole desiredRole) {
+    public UserByRoleSpecification(UserRole desiredRole) {
         this.desiredRole = desiredRole;
     }
 

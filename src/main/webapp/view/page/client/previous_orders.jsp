@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--@elvariable id="idDishMap" type="java.util.Map<java.lang.Integer, com.epam.cafe.entitie.Dish>"--%>
 <%--
   Created by IntelliJ IDEA.
   User: Vlad
@@ -28,11 +29,12 @@
                     <p>Chosen dishes:</p>
                     <ul>
                         <c:forEach var="orderDish" items="${order.chosenDishes}">
-                            <%--@elvariable id="idDishMap" type="java.util.Map<java.lang.Integer, com.epam.cafe.entitie.Dish>"--%>
                             <li>${idDishMap.get(orderDish.key).name} (x${orderDish.value})</li>
                         </c:forEach>
                     </ul>
+
                     <p>Result - ${order.resultCost}$</p>
+
                     <p>Payment method -
                         <c:choose>
                             <c:when test="${order.paymentMethod == 'CREDIT_CARD'}">
@@ -48,66 +50,66 @@
                         <input type="hidden" name="command" value="rate_order">
                         <input type="hidden" name="orderID" value="${order.ID}">
 
-                        <label>Rate</label>
+                        <label>Rating</label>
                         <div class="rating_block">
                             <c:choose>
                                 <c:when test="${order.score == 5}">
                                     <input onclick="submitForm('rating-form')" name="rating" value="5"
                                            id="rating_5" type="radio" checked/>
-                                    <label for="rating_5" class="label_rating"></label>
+                                    <label for="rating_5" class="label_rating_changeable"></label>
                                 </c:when>
                                 <c:otherwise>
                                     <input onclick="submitForm('rating-form')" name="rating" value="5"
                                            id="rating_5" type="radio"/>
-                                    <label for="rating_5" class="label_rating"></label>
+                                    <label for="rating_5" class="label_rating_changeable"></label>
                                 </c:otherwise>
                             </c:choose>
                             <c:choose>
                                 <c:when test="${order.score == 4}">
                                     <input onclick="submitForm('rating-form')" name="rating" value="4"
                                            id="rating_4" type="radio" checked/>
-                                    <label for="rating_4" class="label_rating"></label>
+                                    <label for="rating_4" class="label_rating_changeable"></label>
                                 </c:when>
                                 <c:otherwise>
                                     <input onclick="submitForm('rating-form')" name="rating" value="4"
                                            id="rating_4" type="radio"/>
-                                    <label for="rating_4" class="label_rating"></label>
+                                    <label for="rating_4" class="label_rating_changeable"></label>
                                 </c:otherwise>
                             </c:choose>
                             <c:choose>
                                 <c:when test="${order.score == 3}">
                                     <input onclick="submitForm('rating-form')" name="rating" value="3"
                                            id="rating_3" type="radio" checked/>
-                                    <label for="rating_3" class="label_rating"></label>
+                                    <label for="rating_3" class="label_rating_changeable"></label>
                                 </c:when>
                                 <c:otherwise>
                                     <input onclick="submitForm('rating-form')" name="rating" value="3"
                                            id="rating_3" type="radio"/>
-                                    <label for="rating_3" class="label_rating"></label>
+                                    <label for="rating_3" class="label_rating_changeable"></label>
                                 </c:otherwise>
                             </c:choose>
                             <c:choose>
                                 <c:when test="${order.score == 2}">
                                     <input onclick="submitForm('rating-form')" name="rating" value="2"
                                            id="rating_2" type="radio" checked/>
-                                    <label for="rating_2" class="label_rating"></label>
+                                    <label for="rating_2" class="label_rating_changeable"></label>
                                 </c:when>
                                 <c:otherwise>
                                     <input onclick="submitForm('rating-form')" name="rating" value="2"
                                            id="rating_2" type="radio"/>
-                                    <label for="rating_2" class="label_rating"></label>
+                                    <label for="rating_2" class="label_rating_changeable"></label>
                                 </c:otherwise>
                             </c:choose>
                             <c:choose>
                                 <c:when test="${order.score == 1}">
                                     <input onclick="submitForm('rating-form')" name="rating" value="1"
                                            id="rating_1" type="radio" checked/>
-                                    <label for="rating_1" class="label_rating"></label>
+                                    <label for="rating_1" class="label_rating_changeable"></label>
                                 </c:when>
                                 <c:otherwise>
                                     <input onclick="submitForm('rating-form')" name="rating" value="1"
                                            id="rating_1" type="radio"/>
-                                    <label for="rating_1" class="label_rating"></label>
+                                    <label for="rating_1" class="label_rating_changeable"></label>
                                 </c:otherwise>
                             </c:choose>
                         </div>

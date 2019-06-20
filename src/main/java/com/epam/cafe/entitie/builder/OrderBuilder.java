@@ -1,6 +1,6 @@
 package com.epam.cafe.entitie.builder;
 
-import com.epam.cafe.api.builder.EntityBuilder;
+import com.epam.cafe.api.entity.EntityBuilder;
 import com.epam.cafe.api.repository.Repository;
 import com.epam.cafe.entitie.PaymentMethod;
 import com.epam.cafe.entitie.order.Order;

@@ -1,7 +1,6 @@
 package com.epam.cafe.command.impl;
 
 import com.epam.cafe.api.Command;
-import com.epam.cafe.api.service.DishService;
 import com.epam.cafe.api.service.OrderService;
 import com.epam.cafe.entitie.Dish;
 import com.epam.cafe.entitie.order.Order;
@@ -14,13 +13,13 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
-public class GetPreviousOrders extends AbstractCommand implements Command {
+public class GetPreviousOrdersCommand extends AbstractCommand implements Command {
     private static final String ORDERS_PAGE = "/view/page/client/previous_orders.jsp";
-    private static final String EMPTY_PAGE = "/view/page/client/empty.jsp";
+    private static final String EMPTY_PAGE = "/view/page/client/empty_client.jsp";
 
     private HttpSession session;
 
-    public GetPreviousOrders(HttpSession session) {
+    public GetPreviousOrdersCommand(HttpSession session) {
         this.session = session;
     }
 
@@ -34,11 +33,7 @@ public class GetPreviousOrders extends AbstractCommand implements Command {
         if (!orders.isEmpty()) {
             session.setAttribute("orders", orders);
 
-            DishService dishService = new DishServiceImpl();
-            List<Integer> dishIDs = getDistinctDishesIdsOfOrders(orders);
-            List<Dish> dishes = dishService.getDishesByIds(dishIDs);
-            Map<Integer, Dish> idDishMap = convertDishesToIdDishMap(dishes);
-
+            Map<Integer, Dish> idDishMap = getDishesFromOrders(orders, new DishServiceImpl());
             session.setAttribute("idDishMap", idDishMap);
 
             page = ORDERS_PAGE;

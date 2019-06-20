@@ -8,6 +8,10 @@ import java.util.Optional;
 
 public interface UserService {
     Optional<User> authorize(String login, String password) throws ServiceException;
+
     List<User> getClients() throws ServiceException;
+
     void updateUser(User user) throws ServiceException;
+
+    List<User> getUsersByIds(List<Integer> userIDs) throws ServiceException;
 }

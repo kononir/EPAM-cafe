@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class RemoveDishOrderCommand extends AbstractCommand implements Command {
     private static final String BASKET_PAGE = "/view/page/client/basket.jsp";
-    private static final String EMPTY_BASKET_PAGE = "/view/page/client/empty.jsp";
+    private static final String EMPTY_BASKET_PAGE = "/view/page/client/empty_client.jsp";
 
     private HttpServletRequest request;
 

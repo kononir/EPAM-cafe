@@ -341,15 +341,19 @@ form {
 .rating_block {
     width: 125px;
     height: 25px;
-    display: block;
-    margin: 0 auto 10px
+    margin-bottom: 10px;
+}
+
+form .rating_block {
+    margin: 0 auto 10px;
 }
 
 .rating_block input[type="radio"] {
     display: none;
 }
 
-.label_rating {
+.label_rating_changeable,
+.label_rating_unchangeable {
     float: right;
     display: block;
     width: 25px;
@@ -358,10 +362,10 @@ form {
     cursor: pointer;
 }
 
-/*Пишем правила смены положения background-а*/
-.rating_block .label_rating:hover, /*Правило для ховера на текущий лейбл*/
-.rating_block .label_rating:hover ~ .label_rating, /*Правило для всех следующих лейблов по DOM дереву*/
-.rating_block input[type="radio"]:checked ~ .label_rating /*Правило для всех следующих лейблов после выбранного инпута, чтобы звездочки как бы зафиксировались*/
+.rating_block .label_rating_changeable:hover,
+.rating_block .label_rating_changeable:hover ~ .label_rating_changeable,
+.rating_block input[type="radio"]:checked ~ .label_rating_changeable,
+.rating_block input[type="radio"]:checked ~ .label_rating_unchangeable
 {
     background-position: 50% -25px;
 }

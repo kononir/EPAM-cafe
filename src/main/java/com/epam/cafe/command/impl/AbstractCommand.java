@@ -1,6 +1,8 @@
 package com.epam.cafe.command.impl;
 
 import com.epam.cafe.api.Command;
+import com.epam.cafe.api.service.DishService;
+import com.epam.cafe.api.service.UserService;
 import com.epam.cafe.api.util.BonusHelper;
 import com.epam.cafe.api.util.DishHelper;
 import com.epam.cafe.api.util.OrderHelper;
@@ -9,6 +11,7 @@ import com.epam.cafe.entitie.Bonus;
 import com.epam.cafe.entitie.Dish;
 import com.epam.cafe.entitie.order.Order;
 import com.epam.cafe.entitie.user.User;
+import com.epam.cafe.service.exception.ServiceException;
 import com.epam.cafe.util.BonusHelperImpl;
 import com.epam.cafe.util.DishHelperImpl;
 import com.epam.cafe.util.OrderHelperImpl;
@@ -102,11 +105,19 @@ public abstract class AbstractCommand implements Command {
         session.setAttribute("resultCost", result);
     }
 
-    protected List<Integer> getDistinctDishesIdsOfOrders(List<Order> orders) {
-        return dishHelper.getDistinctDishesIdsOfOrders(orders);
+    protected Map<Integer, Dish> getDishesFromOrders(List<Order> orders, DishService service)
+            throws ServiceException {
+        List<Integer> dishIDs = dishHelper.getDistinctDishesIdsOfOrders(orders);
+        List<Dish> dishes = service.getDishesByIds(dishIDs);
+
+        return dishHelper.convertDishesToIdDishMap(dishes);
     }
 
-    protected Map<Integer, Dish> convertDishesToIdDishMap(List<Dish> dishes) {
-        return dishHelper.convertDishesToIdDishMap(dishes);
+    protected Map<Integer, User> getUsersFromOrders(List<Order> orders, UserService service)
+            throws ServiceException {
+        List<Integer> userIDs = userHelper.getDistinctUserIdsOfOrders(orders);
+        List<User> users = service.getUsersByIds(userIDs);
+
+        return userHelper.convertUsersToIdUserMap(users);
     }
 }

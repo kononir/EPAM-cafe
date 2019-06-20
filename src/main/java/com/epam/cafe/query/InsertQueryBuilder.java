@@ -1,10 +1,10 @@
 package com.epam.cafe.query;
 
-import com.epam.cafe.api.builder.QueryBuilder;
+import com.epam.cafe.api.query.QueryBuilderWithParams;
 
 import java.util.List;
 
-public class InsertQueryBuilder implements QueryBuilder {
+public class InsertQueryBuilder implements QueryBuilderWithParams {
 
     @Override
     public String build(String tableName, List<String> params) {

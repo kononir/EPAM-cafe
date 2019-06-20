@@ -1,7 +1,7 @@
-package com.epam.cafe.api.builder;
+package com.epam.cafe.api.query;
 
 import java.util.List;
 
-public interface QueryBuilder {
+public interface QueryBuilderWithParams {
     String build(String tableName, List<String> params);
 }

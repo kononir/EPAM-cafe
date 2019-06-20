@@ -18,4 +18,6 @@ public interface OrderService {
     List<Order> getPreviousOrders(int userID) throws ServiceException;
 
     void updateOrder(Order order) throws ServiceException;
+
+    List<Order> getGlobalOrders(int userID) throws ServiceException;
 }

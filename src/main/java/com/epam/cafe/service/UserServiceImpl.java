@@ -6,8 +6,9 @@ import com.epam.cafe.entitie.user.User;
 import com.epam.cafe.entitie.user.UserRole;
 import com.epam.cafe.repository.exception.RepositoryException;
 import com.epam.cafe.repository.factory.RepositoryFactory;
+import com.epam.cafe.repository.specification.user.UserByIDsSpecification;
 import com.epam.cafe.repository.specification.user.UserByLoginAndPasswordSpecification;
-import com.epam.cafe.repository.specification.user.UsersByRoleSpecification;
+import com.epam.cafe.repository.specification.user.UserByRoleSpecification;
 import com.epam.cafe.service.exception.ServiceException;
 
 import java.util.List;
@@ -42,7 +43,7 @@ public class UserServiceImpl implements UserService {
 
         try (RepositoryFactory factory = new RepositoryFactory()) {
             Repository<User> userRepository = factory.userRepository();
-            clients = userRepository.query(new UsersByRoleSpecification(UserRole.CLIENT));
+            clients = userRepository.query(new UserByRoleSpecification(UserRole.CLIENT));
         } catch (RepositoryException e) {
             throw new ServiceException("Getting clients error.", e);
         }
@@ -58,5 +59,19 @@ public class UserServiceImpl implements UserService {
         } catch (RepositoryException e) {
             throw new ServiceException("Updating user error.", e);
         }
+    }
+
+    @Override
+    public List<User> getUsersByIds(List<Integer> userIDs) throws ServiceException {
+        List<User> users;
+
+        try (RepositoryFactory factory = new RepositoryFactory()) {
+            Repository<User> userRepository = factory.userRepository();
+            users = userRepository.query(new UserByIDsSpecification(userIDs));
+        } catch (RepositoryException e) {
+            throw new ServiceException("Getting users by ids error.", e);
+        }
+
+        return users;
     }
 }

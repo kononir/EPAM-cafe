@@ -1,7 +1,8 @@
 package com.epam.cafe.repository.impl;
 
-import com.epam.cafe.api.builder.EntityBuilder;
-import com.epam.cafe.api.builder.QueryBuilder;
+import com.epam.cafe.api.entity.EntityBuilder;
+import com.epam.cafe.api.query.QueryBuilder;
+import com.epam.cafe.api.query.QueryBuilderWithParams;
 import com.epam.cafe.api.repository.Repository;
 import com.epam.cafe.api.repository.specification.SqlSpecification;
 import com.epam.cafe.query.DeleteQueryBuilder;
@@ -11,7 +12,6 @@ import com.epam.cafe.repository.exception.RepositoryException;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -38,7 +38,7 @@ public abstract class AbstractRepository<T> implements Repository<T> {
             List<String> params = new ArrayList<>(paramsMap.keySet());
             List<Object> values = new ArrayList<>(paramsMap.values());
 
-            QueryBuilder queryBuilder = new InsertQueryBuilder();
+            QueryBuilderWithParams queryBuilder = new InsertQueryBuilder();
             PreparedStatement statement = makeStatementWithParams(queryBuilder, params, values);
 
             statement.execute();
@@ -54,7 +54,7 @@ public abstract class AbstractRepository<T> implements Repository<T> {
             List<String> params = new ArrayList<>(paramsMap.keySet());
             List<Object> values = new ArrayList<>(paramsMap.values());
 
-            QueryBuilder queryBuilder = new UpdateQueryBuilder();
+            QueryBuilderWithParams queryBuilder = new UpdateQueryBuilder();
             PreparedStatement statement = makeStatementWithParams(queryBuilder, params, values);
 
             int whereParamIndex = params.size() + 1;
@@ -67,7 +67,8 @@ public abstract class AbstractRepository<T> implements Repository<T> {
         }
     }
 
-    private PreparedStatement makeStatementWithParams(QueryBuilder queryBuilder, List<String> params,
+    private PreparedStatement makeStatementWithParams(QueryBuilderWithParams queryBuilder,
+                                                      List<String> params,
                                                       List<Object> values) throws SQLException {
         String query = queryBuilder.build(getTableName(), params);
         PreparedStatement statement = connection.prepareStatement(query);
@@ -83,7 +84,7 @@ public abstract class AbstractRepository<T> implements Repository<T> {
     public void remove(T element) throws RepositoryException {
         try {
             QueryBuilder queryBuilder = new DeleteQueryBuilder();
-            String query = queryBuilder.build(getTableName(), Collections.emptyList());
+            String query = queryBuilder.build(getTableName());
 
             PreparedStatement statement = connection.prepareStatement(query);
 
