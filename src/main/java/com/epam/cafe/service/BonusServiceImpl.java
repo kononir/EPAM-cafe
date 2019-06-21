@@ -6,11 +6,13 @@ import com.epam.cafe.entitie.Bonus;
 import com.epam.cafe.repository.exception.RepositoryException;
 import com.epam.cafe.repository.factory.RepositoryFactory;
 import com.epam.cafe.repository.specification.bonus.BonusByUserIDSpecification;
+import com.epam.cafe.repository.specification.bonus.LastBonusSpecification;
 import com.epam.cafe.service.exception.ServiceException;
 
 import java.util.List;
 
 public class BonusServiceImpl implements BonusService {
+    private static final Integer FIRST = 0;
 
     @Override
     public List<Bonus> getClientBonuses(int clientID) throws ServiceException {
@@ -34,5 +36,30 @@ public class BonusServiceImpl implements BonusService {
         } catch (RepositoryException e) {
             throw new ServiceException("Deleting bonus error.", e);
         }
+    }
+
+    @Override
+    public void addBonus(Bonus bonus) throws ServiceException {
+        try (RepositoryFactory factory = new RepositoryFactory()) {
+            Repository<Bonus> bonusRepository = factory.bonusRepository();
+            bonusRepository.save(bonus);
+        } catch (RepositoryException e) {
+            throw new ServiceException("Adding bonus error.", e);
+        }
+    }
+
+    @Override
+    public Bonus getLastBonus() throws ServiceException {
+        Bonus lastBonus;
+
+        try (RepositoryFactory factory = new RepositoryFactory()) {
+            Repository<Bonus> bonusRepository = factory.bonusRepository();
+            List<Bonus> bonuses = bonusRepository.query(new LastBonusSpecification());
+            lastBonus = bonuses.get(FIRST);
+        } catch (RepositoryException e) {
+            throw new ServiceException("Getting last bonus error.", e);
+        }
+
+        return lastBonus;
     }
 }

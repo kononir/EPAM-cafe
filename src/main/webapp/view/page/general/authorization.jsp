@@ -22,6 +22,7 @@
             <input type="password" required placeholder="Password" name="password" id="password"><br>
             <button type="submit">Sign in</button>
         </form>
+        <p class="error">${error}</p>
     </div>
 </body>
 </html>

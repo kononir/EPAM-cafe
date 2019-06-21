@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmx" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmx:setBundle basename="locale.client.global_orders" var="globalOrdersB"/>
 <%--@elvariable id="idUserMap" type="java.util.Map<java.lang.Integer, com.epam.cafe.entitie.user.User>"--%>
 <%--@elvariable id="idDishMap" type="java.util.Map<java.lang.Integer, com.epam.cafe.entitie.Dish>"--%>
 <%--
@@ -11,7 +13,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>Global orders</title>
+    <title><fmx:message bundle="${globalOrdersB}" key="title"/></title>
     <link href="view/style/main.css" rel="stylesheet">
 </head>
 <body>
@@ -20,25 +22,31 @@
         <c:import url="/view/page/general/top_panel.jsp"/>
         <c:import url="/view/page/client/left_panel_client.jsp"/>
         <div class="inner-content">
-            <h1>Global orders</h1>
+            <h1><fmx:message bundle="${globalOrdersB}" key="head"/></h1>
 
             <%--@elvariable id="orders" type="java.util.List<com.epam.cafe.entitie.order.Order>"--%>
             <c:forEach var="order" items="${orders}">
                 <div class="entity">
-                    <h3>User - ${idUserMap.get(order.userID).login}</h3>
+                    <h3>
+                        <fmx:message bundle="${globalOrdersB}" key="order.date.and.time"/> -
+                        <c:forTokens items="${order.receiptTime.toString()}" var="token" delims="T">
+                            <c:out value="${token} "/>
+                        </c:forTokens>
+                    </h3>
 
-                    <h3>Date and time - ${order.receiptTime}</h3>
+                    <p><fmx:message bundle="${globalOrdersB}" key="order.user"/>
+                        - ${idUserMap.get(order.userID).login}</p>
 
-                    <p>Chosen dishes:</p>
+                    <p><fmx:message bundle="${globalOrdersB}" key="order.chosen.dishes"/>:</p>
                     <ul>
                         <c:forEach var="orderDish" items="${order.chosenDishes}">
                             <li>${idDishMap.get(orderDish.key).name} (x${orderDish.value})</li>
                         </c:forEach>
                     </ul>
 
-                    <p>Result - ${order.resultCost}$</p>
+                    <p><fmx:message bundle="${globalOrdersB}" key="order.result"/> - ${order.resultCost}$</p>
 
-                    <label>Rating</label>
+                    <label><fmx:message bundle="${globalOrdersB}" key="order.rating"/></label>
                     <div class="rating_block">
                         <c:choose>
                             <c:when test="${order.score == 5}">
@@ -102,7 +110,9 @@
                         </c:choose>
                     </div>
 
-                    <label for="order-comment">Comment</label>
+                    <label for="order-comment">
+                        <fmx:message bundle="${globalOrdersB}" key="order.comment"/>
+                    </label>
                     <c:choose>
                         <c:when test="${order.comment != null}">
                             <c:set value="${order.comment}" var="orderComment" scope="page"/>

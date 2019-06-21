@@ -7,5 +7,10 @@ import java.util.List;
 
 public interface BonusService {
     List<Bonus> getClientBonuses(int clientID) throws ServiceException;
+
     void deleteBonus(Bonus bonus) throws ServiceException;
+
+    void addBonus(Bonus bonus) throws ServiceException;
+
+    Bonus getLastBonus() throws ServiceException;
 }

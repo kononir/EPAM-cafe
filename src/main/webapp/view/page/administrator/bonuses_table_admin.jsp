@@ -1,5 +1,7 @@
 <%--@elvariable id="client" type="com.epam.cafe.entitie.user.User"--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmx" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmx:setBundle basename="locale.administrator.bonuses_table_admin" var="bonusesTableB"/>
 <%--
   Created by IntelliJ IDEA.
   User: Vlad
@@ -10,7 +12,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>Bonuses table</title>
+    <title><fmx:message bundle="${bonusesTableB}" key="title"/></title>
     <link href="view/style/main.css" rel="stylesheet">
 </head>
 <body>
@@ -19,14 +21,33 @@
         <c:import url="/view/page/general/top_panel.jsp"/>
         <c:import url="/view/page/administrator/left_panel_admin.jsp"/>
         <div class="inner-content">
-            <h1>Bonuses table of ${client.login}</h1>
+            <h1><fmx:message bundle="${bonusesTableB}" key="head"/> ${client.login}</h1>
+
+            <div class="content-actions">
+                <form action="command" method="post">
+                    <input type="hidden" name="command" value="specify_new_bonus">
+                    <button type="submit">
+                        <fmx:message bundle="${bonusesTableB}"
+                                     key="form.specify.new.bonus.button.add.new.bonus"/>
+                    </button>
+                </form>
+
+                <form action="command" method="post">
+                    <input type="hidden" name="command" value="get_clients">
+                    <button type="submit">
+                        <fmx:message bundle="${bonusesTableB}"
+                                     key="form.get.clients.button.back.to.clients.table"/>
+                    </button>
+                </form>
+            </div>
+
             <div class="table-actions">
                 <table>
                     <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Delete bonus</th>
+                        <th><fmx:message bundle="${bonusesTableB}" key="table.head.name"/></th>
+                        <th><fmx:message bundle="${bonusesTableB}" key="table.head.description"/></th>
+                        <th><fmx:message bundle="${bonusesTableB}" key="table.head.delete.bonus"/></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -39,15 +60,16 @@
                                 <form action="command" method="post">
                                     <input type="hidden" name="command" value="delete_bonus">
                                     <input type="hidden" name="bonusID" value="${bonus.ID}">
-                                    <button type="submit">Delete</button>
+                                    <button type="submit">
+                                        <fmx:message bundle="${bonusesTableB}"
+                                                     key="form.delete.bonus.button.delete"/>
+                                    </button>
                                 </form>
                             </td>
                         </tr>
                     </c:forEach>
                     </tbody>
                 </table>
-
-                <button onclick="history.back()">Back</button>
             </div>
         </div>
     </div>

@@ -20,4 +20,8 @@ public interface OrderService {
     void updateOrder(Order order) throws ServiceException;
 
     List<Order> getGlobalOrders(int userID) throws ServiceException;
+
+    List<Order> getCurrentOrders(int userID) throws ServiceException;
+
+    void deleteOrder(Order order) throws ServiceException;
 }

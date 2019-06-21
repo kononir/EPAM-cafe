@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="ctg" uri="custom-tags" %>
+<%@ taglib prefix="fmx" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmx:setBundle basename="locale.administrator.all_dishes" var="allDishesB"/>
 <%--
   Created by IntelliJ IDEA.
   User: Vlad
@@ -10,7 +11,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>Administrator menu</title>
+    <title><fmx:message bundle="${allDishesB}" key="title"/></title>
     <link href="view/style/main.css" rel="stylesheet">
 </head>
 <body>
@@ -19,25 +20,33 @@
         <c:import url="/view/page/general/top_panel.jsp"/>
         <c:import url="/view/page/administrator/left_panel_admin.jsp"/>
         <div class="inner-content">
-            <h1>Dishes view</h1>
+            <h1><fmx:message bundle="${allDishesB}" key="head"/></h1>
 
             <div class="content-actions">
                 <form action="command" method="post">
                     <input type="hidden" name="command" value="specify_new_dish">
-                    <button type="submit">Add new dish</button>
+                    <button type="submit">
+                        <fmx:message bundle="${allDishesB}" key="form.specify.new.dish.button.add.new.dish"/>
+                    </button>
                 </form>
             </div>
 
             <%--@elvariable id="allDishes" type="java.util.List<com.epam.cafe.entitie.Dish>"--%>
             <c:forEach items="${allDishes}" var="dish">
                 <div class="entity">
-                    <h3>Name - ${dish.name}</h3>
-                    <p>Cost - ${dish.cost}$</p>
-                    <p>Description:<br>${dish.description}</p>
-                    <p>Is in client menu -
+                    <h3><fmx:message bundle="${allDishesB}" key="dish.name"/> - ${dish.name}</h3>
+                    <p><fmx:message bundle="${allDishesB}" key="dish.cost"/> - ${dish.cost}$</p>
+                    <p>
+                        <fmx:message bundle="${allDishesB}" key="dish.description"/>:<br>${dish.description}
+                    </p>
+                    <p><fmx:message bundle="${allDishesB}" key="dish.is.in.client.menu"/> -
                         <c:choose>
-                            <c:when test="${dish.inMenu}">Yes</c:when>
-                            <c:otherwise>No</c:otherwise>
+                            <c:when test="${dish.inMenu}">
+                                <fmx:message bundle="${allDishesB}" key="in.client.menu.yes"/>
+                            </c:when>
+                            <c:otherwise>
+                                <fmx:message bundle="${allDishesB}" key="in.client.menu.no"/>
+                            </c:otherwise>
                         </c:choose>
                     </p>
                     <img src="${dish.imageHref}" alt="${dish.name}">
@@ -45,7 +54,10 @@
                     <form action="command" method="post">
                         <input type="hidden" name="command" value="manage_dish_information">
                         <input type="hidden" name="dishID" value=${dish.ID}>
-                        <button type="submit">Manage</button>
+                        <button type="submit">
+                            <fmx:message bundle="${allDishesB}"
+                                         key="form.manage.dish.information.button.manage"/>
+                        </button>
                     </form>
                     <form action="command" method="post">
                         <input type="hidden" name="command" value="delete_dish">

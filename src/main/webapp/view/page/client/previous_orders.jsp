@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmx" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmx:setBundle basename="locale.client.previous_orders" var="previousOrdersB"/>
 <%--@elvariable id="idDishMap" type="java.util.Map<java.lang.Integer, com.epam.cafe.entitie.Dish>"--%>
 <%--
   Created by IntelliJ IDEA.
@@ -10,7 +12,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>Previous orders</title>
+    <title><fmx:message bundle="${previousOrdersB}" key="title"/></title>
     <link href="view/style/main.css" rel="stylesheet">
 </head>
 <body>
@@ -19,29 +21,34 @@
         <c:import url="/view/page/general/top_panel.jsp"/>
         <c:import url="/view/page/client/left_panel_client.jsp"/>
         <div class="inner-content">
-            <h1>Previous orders</h1>
+            <h1><fmx:message bundle="${previousOrdersB}" key="head"/></h1>
 
             <%--@elvariable id="orders" type="java.util.List<com.epam.cafe.entitie.order.Order>"--%>
             <c:forEach var="order" items="${orders}">
                 <div class="entity">
-                    <h3>Date and time - ${order.receiptTime}</h3>
+                    <h3>
+                        <fmx:message bundle="${previousOrdersB}" key="order.date.and.time"/> -
+                        <c:forTokens items="${order.receiptTime.toString()}" var="token" delims="T">
+                            <c:out value="${token} "/>
+                        </c:forTokens>
+                    </h3>
 
-                    <p>Chosen dishes:</p>
+                    <p><fmx:message bundle="${previousOrdersB}" key="order.chosen.dishes"/>:</p>
                     <ul>
                         <c:forEach var="orderDish" items="${order.chosenDishes}">
                             <li>${idDishMap.get(orderDish.key).name} (x${orderDish.value})</li>
                         </c:forEach>
                     </ul>
 
-                    <p>Result - ${order.resultCost}$</p>
+                    <p><fmx:message bundle="${previousOrdersB}" key="order.result"/> - ${order.resultCost}$</p>
 
-                    <p>Payment method -
+                    <p><fmx:message bundle="${previousOrdersB}" key="order.payment.method"/> -
                         <c:choose>
                             <c:when test="${order.paymentMethod == 'CREDIT_CARD'}">
-                                credit card
+                                <fmx:message bundle="${previousOrdersB}" key="payment.method.credit.card"/>
                             </c:when>
                             <c:when test="${order.paymentMethod == 'CASH'}">
-                                cash
+                                <fmx:message bundle="${previousOrdersB}" key="payment.method.cash"/>
                             </c:when>
                         </c:choose>
                     </p>
@@ -50,7 +57,7 @@
                         <input type="hidden" name="command" value="rate_order">
                         <input type="hidden" name="orderID" value="${order.ID}">
 
-                        <label>Rating</label>
+                        <label><fmx:message bundle="${previousOrdersB}" key="order.rating"/></label>
                         <div class="rating_block">
                             <c:choose>
                                 <c:when test="${order.score == 5}">
@@ -116,7 +123,9 @@
                     </form>
 
                     <form action="command" method="post">
-                        <label for="order-comment">Comment</label>
+                        <label for="order-comment">
+                            <fmx:message bundle="${previousOrdersB}" key="order.comment"/>
+                        </label>
                         <c:choose>
                             <c:when test="${order.comment != null}">
                                 <c:set value="${order.comment}" var="orderComment" scope="page"/>
@@ -130,7 +139,10 @@
 
                         <input type="hidden" name="orderID" value="${order.ID}">
                         <input type="hidden" name="command" value="leave_comment">
-                        <button type="submit">Leave comment</button>
+                        <button type="submit">
+                            <fmx:message bundle="${previousOrdersB}"
+                                         key="form.leave.comment.button.leave.comment"/>
+                        </button>
                     </form>
                 </div>
             </c:forEach>

@@ -58,6 +58,11 @@ body {
     background-color: lightcoral;
 }
 
+.error {
+    color: white;
+    text-transform: uppercase;
+}
+
 .table-actions {
     text-align: center;
 }
@@ -112,7 +117,7 @@ form {
 }
 
 .vertical-menu {
-    width: 100px;
+    width: 120px;
     height: auto;
     margin: 0 10px 0 7px;
     float: left;
@@ -284,6 +289,12 @@ form {
     padding-right: 10px;
 }
 
+.form-area-field textarea {
+    resize: vertical;
+    width: 100%;
+    height: 100px;
+}
+
 .inner-content button {
     background-color: white;
     border: 1px solid black;
@@ -365,8 +376,7 @@ form .rating_block {
 .rating_block .label_rating_changeable:hover,
 .rating_block .label_rating_changeable:hover ~ .label_rating_changeable,
 .rating_block input[type="radio"]:checked ~ .label_rating_changeable,
-.rating_block input[type="radio"]:checked ~ .label_rating_unchangeable
-{
+.rating_block input[type="radio"]:checked ~ .label_rating_unchangeable {
     background-position: 50% -25px;
 }
 /*-----------------*/

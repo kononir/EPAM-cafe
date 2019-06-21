@@ -1,5 +1,7 @@
 <%--@elvariable id="exception" type="java.lang.Exception"--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmx" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmx:setBundle basename="locale.client.client_error" var="clientErrorB"/>
 <%--
   Created by IntelliJ IDEA.
   User: Vlad
@@ -10,7 +12,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>Error</title>
+    <title><fmx:message bundle="${clientErrorB}" key="title"/></title>
     <link href="view/style/main.css" rel="stylesheet">
 </head>
 <body>
@@ -21,7 +23,9 @@
         <div class="inner-content">
             <div class="centered">
                 <h1>${exception.message}</h1>
-                <button onclick="history.back()">Back to previous page</button>
+                <button onclick="history.back()">
+                    <fmx:message bundle="${clientErrorB}" key="button.back.to.previous.page"/>
+                </button>
             </div>
         </div>
     </div>

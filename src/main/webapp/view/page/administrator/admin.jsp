@@ -1,5 +1,8 @@
-<%--@elvariable id="user" type="com.epam.cafe.entitie.user.User"--%>
+<%@ taglib prefix="fmx" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<fmx:setLocale value="${locale}" scope="session"/>
+<fmx:setBundle basename="locale.administrator.admin" var="adminB"/>
+<%--@elvariable id="user" type="com.epam.cafe.entitie.user.User"--%>
 <%--
   Created by IntelliJ IDEA.
   User: Vlad
@@ -10,7 +13,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>Administrator view</title>
+    <title><fmx:message bundle="${adminB}" key="title"/></title>
     <link rel="stylesheet" href="view/style/main.css">
 </head>
 <body>
@@ -19,7 +22,7 @@
         <c:import url="/view/page/general/top_panel.jsp"/>
         <c:import url="/view/page/administrator/left_panel_admin.jsp"/>
         <div class="inner-content">
-            <h1>Hello, ${user.login}!</h1>
+            <h1><fmx:message bundle="${adminB}" key="head"/>, ${user.login}!</h1>
         </div>
     </div>
     <c:import url="/view/page/general/footer.jsp"/>

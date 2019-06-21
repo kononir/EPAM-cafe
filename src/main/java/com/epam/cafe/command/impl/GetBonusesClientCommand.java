@@ -12,7 +12,8 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 public class GetBonusesClientCommand extends AbstractCommand implements Command {
-    private static final String PAGE = "/view/page/client/bonuses_table_client.jsp";
+    private static final String BONUSES_PAGE = "/view/page/client/bonuses_table_client.jsp";
+    private static final String EMPTY_PAGE = "/view/page/client/empty_client.jsp";
 
     private HttpServletRequest request;
 
@@ -29,8 +30,14 @@ public class GetBonusesClientCommand extends AbstractCommand implements Command 
         BonusService service = new BonusServiceImpl();
         List<Bonus> bonuses = service.getClientBonuses(userID);
 
-        session.setAttribute("clientBonuses", bonuses);
+        String page;
+        if (!bonuses.isEmpty()) {
+            session.setAttribute("clientBonuses", bonuses);
+            page = BONUSES_PAGE;
+        } else {
+            page = EMPTY_PAGE;
+        }
 
-        return PAGE;
+        return page;
     }
 }

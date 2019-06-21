@@ -9,8 +9,9 @@ import com.epam.cafe.entitie.user.User;
 import com.epam.cafe.repository.exception.RepositoryException;
 import com.epam.cafe.repository.factory.RepositoryFactory;
 import com.epam.cafe.repository.specification.account.AccountByIDSpecification;
-import com.epam.cafe.repository.specification.order.GlobalOrdersByUserIDSpecification;
-import com.epam.cafe.repository.specification.order.PreviousOrdersByUserIDSpecification;
+import com.epam.cafe.repository.specification.order.CurrentOrderByUserIDSpecification;
+import com.epam.cafe.repository.specification.order.GlobalOrderByUserIDSpecification;
+import com.epam.cafe.repository.specification.order.PreviousOrderByUserIDSpecification;
 import com.epam.cafe.service.exception.ServiceException;
 
 import java.math.BigDecimal;
@@ -45,7 +46,7 @@ public class OrderServiceImpl implements OrderService {
 
         try (RepositoryFactory factory = new RepositoryFactory()) {
             Repository<Order> repository = factory.orderRepository();
-            previousOrders = repository.query(new PreviousOrdersByUserIDSpecification(userID));
+            previousOrders = repository.query(new PreviousOrderByUserIDSpecification(userID));
         } catch (RepositoryException e) {
             throw new ServiceException("Getting previous orders error.", e);
         }
@@ -69,12 +70,40 @@ public class OrderServiceImpl implements OrderService {
 
         try (RepositoryFactory factory = new RepositoryFactory()) {
             Repository<Order> repository = factory.orderRepository();
-            globalOrders = repository.query(new GlobalOrdersByUserIDSpecification(userID));
+            globalOrders = repository.query(new GlobalOrderByUserIDSpecification(userID));
         } catch (RepositoryException e) {
             throw new ServiceException("Getting global orders error.", e);
         }
 
         return globalOrders;
+    }
+
+    @Override
+    public List<Order> getCurrentOrders(int userID) throws ServiceException {
+        List<Order> currentOrders;
+
+        try (RepositoryFactory factory = new RepositoryFactory()) {
+            Repository<Order> repository = factory.orderRepository();
+            currentOrders = repository.query(new CurrentOrderByUserIDSpecification(userID));
+        } catch (RepositoryException e) {
+            throw new ServiceException("Getting current orders error.", e);
+        }
+
+        return currentOrders;
+    }
+
+    @Override
+    public void deleteOrder(Order order) throws ServiceException {
+        try (RepositoryFactory factory = new RepositoryFactory()) {
+            factory.startTransaction();
+
+            Repository<Order> repository = factory.orderRepository();
+            repository.remove(order);
+
+            factory.finishTransaction();
+        } catch (RepositoryException e) {
+            throw new ServiceException("Deleting order error.", e);
+        }
     }
 
     private void withdrawMoney(RepositoryFactory factory, PaymentMethod paymentMethod, User currentUser,

@@ -63,6 +63,12 @@ public class CommandFactory {
             case DELETE_BONUS:
                 command = new DeleteBonusCommand(request);
                 break;
+            case SPECIFY_NEW_BONUS:
+                command = new SpecifyNewBonusCommand();
+                break;
+            case ADD_BONUS:
+                command = new AddBonusCommand(request);
+                break;
             case GET_ALL_DISHES:
                 command = new GetAllDishesCommand(request.getSession());
                 break;
@@ -92,6 +98,15 @@ public class CommandFactory {
                 break;
             case GET_GLOBAL_ORDERS:
                 command = new GetGlobalOrdersCommand(request.getSession());
+                break;
+            case GET_CURRENT_ORDERS:
+                command = new GetCurrentOrdersCommand(request.getSession());
+                break;
+            case DELETE_ORDER:
+                command = new DeleteOrderCommand(request);
+                break;
+            case CHOOSE_LANGUAGE:
+                command = new ChooseLanguageCommand(request);
                 break;
             default:
                 throw new CommandFactoryException("Invalid commands name: " + commandType.name());

@@ -1,5 +1,7 @@
 <%--@elvariable id="client" type="com.epam.cafe.entitie.user.User"--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmx" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmx:setBundle basename="locale.administrator.client_managing_form" var="clientManagingFormB"/>
 <%--
   Created by IntelliJ IDEA.
   User: Vlad
@@ -10,7 +12,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>Managing form</title>
+    <title><fmx:message bundle="${clientManagingFormB}" key="title"/></title>
     <link href="view/style/main.css" rel="stylesheet">
 </head>
 <body>
@@ -19,27 +21,37 @@
         <c:import url="/view/page/general/top_panel.jsp"/>
         <c:import url="/view/page/administrator/left_panel_admin.jsp"/>
         <div class="inner-content">
-            <h1>Client managing form</h1>
+            <h1><fmx:message bundle="${clientManagingFormB}" key="head"/></h1>
             <div class="form-area">
                 <div class="form-area-field">
-                    <label for="client-name">Name</label>
+                    <label for="client-name">
+                        <fmx:message bundle="${clientManagingFormB}" key="client.name"/>
+                    </label>
                     <input id="client-name" value="${client.name}" form="save-changes-form" readonly><br>
                 </div>
                 <div class="form-area-field">
-                    <label for="client-surname">Surname</label>
+                    <label for="client-surname">
+                        <fmx:message bundle="${clientManagingFormB}" key="client.surname"/>
+                    </label>
                     <input id="client-surname" value="${client.surname}" form="save-changes-form" readonly><br>
                 </div>
                 <div class="form-area-field">
-                    <label for="client-login">Login</label>
+                    <label for="client-login">
+                        <fmx:message bundle="${clientManagingFormB}" key="client.login"/>
+                    </label>
                     <input id="client-login" value="${client.login}" form="save-changes-form" readonly><br>
                 </div>
                 <div class="form-area-field">
-                    <label for="client-score">Score</label>
+                    <label for="client-score">
+                        <fmx:message bundle="${clientManagingFormB}" key="client.score"/>
+                    </label>
                     <input type="number" id="client-score" name="clientScore"
                            value="${client.score}" form="save-changes-form"><br>
                 </div>
                 <div class="form-area-field checkbox-field">
-                    <label for="banned">Is banned</label>
+                    <label for="banned">
+                        <fmx:message bundle="${clientManagingFormB}" key="client.is.banned"/>
+                    </label>
                     <c:choose>
                         <c:when test="${client.banned}">
                             <input type="checkbox" id="banned" name="clientIsBanned" value="true"
@@ -52,12 +64,17 @@
                     </c:choose>
                 </div>
 
-                <button onclick="history.back()">Cancel</button>
+                <button onclick="history.back()">
+                    <fmx:message bundle="${clientManagingFormB}" key="button.cancel"/>
+                </button>
 
                 <form action="command" method="post" id="save-changes-form">
                     <input type="hidden" name="command" value="save_client_changes">
                     <input type="hidden" name="clientID" value="${client.ID}">
-                    <button type="submit">Save</button>
+                    <button type="submit">
+                        <fmx:message bundle="${clientManagingFormB}"
+                                     key="form.save.client.changes.button.save"/>
+                    </button>
                 </form>
             </div>
         </div>

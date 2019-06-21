@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmx" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmx:setBundle basename="locale.administrator.dish_form_fields" var="dishFormFieldsB"/>
 <%--@elvariable id="dish" type="com.epam.cafe.entitie.Dish"--%>
 <%--@declare id="dish-form"--%>
 <%--
@@ -11,26 +13,26 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>Dish form fields</title>
+    <title><fmx:message bundle="${dishFormFieldsB}" key="title"/></title>
 </head>
 <body>
 <div class="form-area-field">
-    <label for="dish-name">Name</label>
+    <label for="dish-name"><fmx:message bundle="${dishFormFieldsB}" key="dish.name"/></label>
     <input type="text" id="dish-name" name="dishName" value="${dish.name}"
            form="dish-form" required><br>
 </div>
 <div class="form-area-field">
-    <label for="dish-cost">Cost($)</label>
+    <label for="dish-cost"><fmx:message bundle="${dishFormFieldsB}" key="dish.cost"/>($)</label>
     <input type="number" id="dish-cost" name="dishCost" value="${dish.cost}"
            form="dish-form" required><br>
 </div>
 <div class="form-area-field">
-    <label for="dish-description">Description</label>
+    <label for="dish-description"><fmx:message bundle="${dishFormFieldsB}" key="dish.description"/></label>
     <textarea id="dish-description" name="dishDescription"
               form="dish-form">${dish.description}</textarea><br>
 </div>
 <div class="form-area-field checkbox-field">
-    <label for="in-menu">Is in client menu</label>
+    <label for="in-menu"><fmx:message bundle="${dishFormFieldsB}" key="dish.is.in.client.menu"/></label>
     <c:choose>
         <c:when test="${dish.inMenu}">
             <input type="checkbox" id="in-menu" name="dishIsInMenu" value="true"
@@ -43,7 +45,7 @@
     </c:choose>
 </div>
 <div class="form-area-field">
-    <label for="dish-image-href">Image reference</label>
+    <label for="dish-image-href"><fmx:message bundle="${dishFormFieldsB}" key="dish.image.reference"/></label>
     <input type="url" id="dish-image-href" name="dishImageHref" value="${dish.imageHref}"
            form="dish-form"><br>
 </div>

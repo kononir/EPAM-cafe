@@ -7,12 +7,12 @@ import com.epam.cafe.entitie.order.Order;
 import java.util.Collections;
 import java.util.List;
 
-public class GlobalOrdersByUserIDSpecification implements SqlSpecification, EntitySpecification<Order> {
+public class GlobalOrderByUserIDSpecification implements SqlSpecification, EntitySpecification<Order> {
     private static final String QUERY = "SELECT * FROM `order` WHERE UserID != ? AND ReceiptTime <= NOW()";
 
     private int userID;
 
-    public GlobalOrdersByUserIDSpecification(int userID) {
+    public GlobalOrderByUserIDSpecification(int userID) {
         this.userID = userID;
     }
 

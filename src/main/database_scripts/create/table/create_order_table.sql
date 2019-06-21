@@ -9,5 +9,6 @@ CREATE TABLE `order`
     UserID        int                          NOT NULL,
 
     PRIMARY KEY (ID),
-    FOREIGN KEY (UserID) REFERENCES user (ID)
+    FOREIGN KEY (UserID) REFERENCES user (ID),
+    CHECK ( Score >= 0 && Score <= 5 )
 );

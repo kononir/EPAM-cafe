@@ -2,22 +2,22 @@ package com.epam.cafe.repository.specification.order;
 
 import com.epam.cafe.api.repository.specification.EntitySpecification;
 import com.epam.cafe.api.repository.specification.SqlSpecification;
-import com.epam.cafe.entitie.Dish;
+import com.epam.cafe.entitie.order.Order;
 
 import java.util.Collections;
 import java.util.List;
 
-public class PreviousOrdersByUserIDSpecification implements EntitySpecification<Dish>, SqlSpecification {
-    private static final String QUERY = "SELECT * FROM `order` WHERE UserID = ? AND ReceiptTime <= NOW()";
+public class CurrentOrderByUserIDSpecification implements SqlSpecification, EntitySpecification<Order> {
+    private static final String QUERY = "SELECT * FROM `order` WHERE UserID = ? AND ReceiptTime > NOW()";
 
     private int userID;
 
-    public PreviousOrdersByUserIDSpecification(int userID) {
+    public CurrentOrderByUserIDSpecification(int userID) {
         this.userID = userID;
     }
 
     @Override
-    public boolean specified(Dish specifiedElement) {
+    public boolean specified(Order specifiedElement) {
         return false;
     }
 

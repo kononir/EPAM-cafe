@@ -1,3 +1,6 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmx" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmx:setBundle basename="locale.client.current_orders" var="currentOrdersB"/>
 <%--
   Created by IntelliJ IDEA.
   User: Vlad
@@ -8,9 +11,63 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>Current orders</title>
+    <title><fmx:message bundle="${currentOrdersB}" key="title"/></title>
+    <link href="view/style/main.css" rel="stylesheet">
 </head>
 <body>
+<div class="page-wrapper">
+    <div class="menu-and-content-wrapper">
+        <c:import url="/view/page/general/top_panel.jsp"/>
+        <c:import url="/view/page/client/left_panel_client.jsp"/>
+        <div class="inner-content">
+            <h1><fmx:message bundle="${currentOrdersB}" key="head"/></h1>
 
+            <%--@elvariable id="orders" type="java.util.List<com.epam.cafe.entitie.order.Order>"--%>
+            <c:forEach var="order" items="${orders}">
+                <div class="entity">
+                    <h3>
+                        <fmx:message bundle="${currentOrdersB}" key="order.date.and.time"/> -
+                        <c:forTokens items="${order.receiptTime.toString()}" var="token" delims="T">
+                            <c:out value="${token} "/>
+                        </c:forTokens>
+                    </h3>
+
+                    <p><fmx:message bundle="${currentOrdersB}" key="order.chosen.dishes"/>:</p>
+                    <ul>
+                        <c:forEach var="orderDish" items="${order.chosenDishes}">
+                            <li>${idDishMap.get(orderDish.key).name} (x${orderDish.value})</li>
+                        </c:forEach>
+                    </ul>
+
+                    <p>
+                        <fmx:message bundle="${currentOrdersB}" key="order.result"/>
+                        - ${order.resultCost}$
+                    </p>
+
+                    <p>
+                        <fmx:message bundle="${currentOrdersB}" key="order.payment.method"/> -
+                        <c:choose>
+                            <c:when test="${order.paymentMethod == 'CREDIT_CARD'}">
+                                <fmx:message bundle="${currentOrdersB}" key="payment.method.credit.card"/>
+                            </c:when>
+                            <c:when test="${order.paymentMethod == 'CASH'}">
+                                <fmx:message bundle="${currentOrdersB}" key="payment.method.cash"/>
+                            </c:when>
+                        </c:choose>
+                    </p>
+
+                    <form action="command" method="post">
+                        <input type="hidden" name="orderID" value="${order.ID}">
+                        <input type="hidden" name="command" value="delete_order">
+                        <button type="submit">
+                            <fmx:message bundle="${currentOrdersB}" key="form.remove.order.button.remove"/>
+                        </button>
+                    </form>
+                </div>
+            </c:forEach>
+        </div>
+    </div>
+    <c:import url="/view/page/general/footer.jsp"/>
+</div>
 </body>
 </html>

@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="ctg" uri="custom-tags" %>
+<%@ taglib prefix="fmx" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmx:setBundle basename="locale.client.client_menu" var="clientMenuB"/>
 <%--
   Created by IntelliJ IDEA.
   User: Vlad
@@ -10,7 +11,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>Client menu</title>
+    <title><fmx:message bundle="${clientMenuB}" key="title"/></title>
     <link href="view/style/main.css" rel="stylesheet">
 </head>
 <body>
@@ -19,23 +20,28 @@
         <c:import url="/view/page/general/top_panel.jsp"/>
         <c:import url="/view/page/client/left_panel_client.jsp"/>
         <div class="inner-content">
-            <h1>Menu</h1>
+            <h1><fmx:message bundle="${clientMenuB}" key="head"/></h1>
 
             <%--@elvariable id="dishesInMenu" type="java.util.List<com.epam.cafe.entitie.Dish>"--%>
             <c:forEach items="${dishesInMenu}" var="dish">
                 <div class="entity">
-                    <h3>Name - ${dish.name}</h3>
-                    <p>Cost - ${dish.cost}$</p>
-                    <p>Description:<br>${dish.description}</p>
+                    <h3><fmx:message bundle="${clientMenuB}" key="dish.name"/> - ${dish.name}</h3>
+                    <p><fmx:message bundle="${clientMenuB}" key="dish.cost"/> - ${dish.cost}$</p>
+                    <p><fmx:message bundle="${clientMenuB}" key="dish.description"/>:<br>${dish.description}</p>
                     <img src="${dish.imageHref}" alt="${dish.name}">
 
                     <form action="command" method="post">
                         <input type="hidden" name="command" value="save_dish_order">
                         <input type="hidden" name="selectedDishID" value="${dish.ID}">
-                        <label for="servings-number">Choose servings number</label><br>
+                        <label for="servings-number">
+                            <fmx:message bundle="${clientMenuB}"
+                                         key="form.save.to.basket.label.choose.servings.number"/>
+                        </label><br>
                         <input id="servings-number" type="number" name="servingsNumber" min="1"
                                required><br>
-                        <button type="submit">Save to basket</button>
+                        <button type="submit">
+                            <fmx:message bundle="${clientMenuB}" key="form.save.to.basket.button.save.to.basket"/>
+                        </button>
                     </form>
                 </div>
             </c:forEach>

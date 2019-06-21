@@ -1,5 +1,6 @@
-<%--@elvariable id="dish" type="com.epam.cafe.entitie.Dish"--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmx" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmx:setBundle basename="locale.administrator.dish_adding_form" var="dishAddingFormB"/>
 <%--
   Created by IntelliJ IDEA.
   User: Vlad
@@ -10,7 +11,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>Adding form</title>
+    <title><fmx:message bundle="${dishAddingFormB}" key="title"/></title>
     <link href="view/style/main.css" rel="stylesheet">
 </head>
 <body>
@@ -19,17 +20,20 @@
         <c:import url="/view/page/general/top_panel.jsp"/>
         <c:import url="/view/page/administrator/left_panel_admin.jsp"/>
         <div class="inner-content">
-            <h1>Dish adding form</h1>
+            <h1><fmx:message bundle="${dishAddingFormB}" key="head"/></h1>
 
             <div class="form-area">
                 <c:import url="/view/page/administrator/dish_form_fields.jsp"/>
 
-                <button onclick="history.back()">Cancel</button>
+                <button onclick="history.back()">
+                    <fmx:message bundle="${dishAddingFormB}" key="button.cancel"/>
+                </button>
 
                 <form action="command" method="post" id="dish-form">
                     <input type="hidden" name="command" value="add_dish">
-                    <input type="hidden" name="dishID" value="${dish.ID}">
-                    <button type="submit">Add</button>
+                    <button type="submit">
+                        <fmx:message bundle="${dishAddingFormB}" key="form.add.dish.button.add"/>
+                    </button>
                 </form>
             </div>
         </div>

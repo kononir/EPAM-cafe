@@ -11,7 +11,6 @@ import com.epam.cafe.repository.specification.dish.DishByInMenuSpecification;
 import com.epam.cafe.repository.specification.dish.LastDishSpecification;
 import com.epam.cafe.service.exception.ServiceException;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DishServiceImpl implements DishService {

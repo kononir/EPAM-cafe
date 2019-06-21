@@ -2,12 +2,17 @@ package com.epam.cafe.command.factory;
 
 public enum CommandType {
     AUTHORIZE,
+
+    CHOOSE_LANGUAGE,
     LOGOUT,
 
     GET_CLIENTS,
 
     GET_BONUSES_ADMIN,
     DELETE_BONUS,
+
+    SPECIFY_NEW_BONUS,
+    ADD_BONUS,
 
     MANAGE_CLIENT_INFORMATION,
     SAVE_CLIENT_CHANGES,
@@ -25,6 +30,7 @@ public enum CommandType {
     SAVE_DISH_ORDER,
 
     GET_CURRENT_ORDERS,
+    DELETE_ORDER,
 
     GET_PREVIOUS_ORDERS,
     RATE_ORDER,

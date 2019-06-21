@@ -2,6 +2,7 @@ package com.epam.cafe.command.impl;
 
 import com.epam.cafe.api.Command;
 import com.epam.cafe.api.service.UserService;
+import com.epam.cafe.entitie.Language;
 import com.epam.cafe.entitie.user.User;
 import com.epam.cafe.entitie.user.UserRole;
 import com.epam.cafe.service.UserServiceImpl;
@@ -12,6 +13,8 @@ import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 public class AuthorizeCommand extends AbstractCommand implements Command {
+    private static final Language LANGUAGE = Language.ENGLISH;
+
     private HttpServletRequest request;
 
     public AuthorizeCommand(HttpServletRequest request) {
@@ -20,46 +23,43 @@ public class AuthorizeCommand extends AbstractCommand implements Command {
 
     @Override
     public String execute() throws ServiceException {
-        UserRole role;
+        String login = request.getParameter("login");
+        String password = request.getParameter("password");
+
+        UserService userService = new UserServiceImpl();
+        Optional<User> receivedUser = userService.authorize(login, password);
 
         HttpSession session = request.getSession();
-        Optional<User> receivedUser = Optional.ofNullable((User) session.getAttribute("user"));
-        if (!receivedUser.isPresent()) {
-            String login = request.getParameter("login");
-            String password = request.getParameter("password");
 
-            UserService userService = new UserServiceImpl();
-            receivedUser = userService.authorize(login, password);
-        }
-
+        UserRole role;
         if (receivedUser.isPresent()) {
             User user = receivedUser.get();
-            session.setAttribute("user", user);
-            role = user.getRole();
+            role = handleUser(user);
         } else {
+            session.setAttribute("error", "Wrong login or password!");
             role = UserRole.ANONYMOUS;
         }
 
         return findPageByRole(role);
     }
 
-    private String findPageByRole(UserRole userRole) {
-        String page;
+    private UserRole handleUser(User user) {
+        HttpSession session = request.getSession();
 
-        switch (userRole) {
-            case CLIENT:
-                page = "/view/page/client/client.jsp";
-                break;
-            case ADMINISTRATOR:
-                page = "/view/page/administrator/admin.jsp";
-                break;
-            case ANONYMOUS:
-                page = "/view/page/general/authorization.jsp";
-                break;
-            default:
-                throw new EnumConstantNotPresentException(UserRole.class, userRole.name());
+        UserRole currentRole = user.getRole();
+        boolean userIsNotBannedClient = currentRole.equals(UserRole.CLIENT) && !user.getBanned();
+        boolean userIsAdmin = currentRole.equals(UserRole.ADMINISTRATOR);
+
+        UserRole finalRole;
+        if (userIsNotBannedClient || userIsAdmin) {
+            session.setAttribute("user", user);
+            session.setAttribute("locale", LANGUAGE.getLocale());
+            finalRole = currentRole;
+        } else {
+            session.setAttribute("error", "User is banned!");
+            finalRole = UserRole.ANONYMOUS;
         }
 
-        return page;
+        return finalRole;
     }
 }

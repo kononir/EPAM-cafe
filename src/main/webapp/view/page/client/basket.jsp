@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmx" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmx:setBundle basename="locale.client.basket" var="basketB"/>
 <%--
   Created by IntelliJ IDEA.
   User: Vlad
@@ -9,7 +11,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>Basket</title>
+    <title><fmx:message bundle="basketB" key="title"/></title>
     <link href="view/style/main.css" rel="stylesheet">
 </head>
 <body>
@@ -18,16 +20,16 @@
         <c:import url="/view/page/general/top_panel.jsp"/>
         <c:import url="/view/page/client/left_panel_client.jsp"/>
         <div class="inner-content">
-            <h1>Basket</h1>
+            <h1><fmx:message bundle="${basketB}" key="head"/></h1>
             <div class="table-actions">
                 <table>
                     <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Cost</th>
-                        <th>Servings number</th>
-                        <th>Total cost</th>
-                        <th>Remove from order</th>
+                        <th><fmx:message bundle="${basketB}" key="table.head.name"/></th>
+                        <th><fmx:message bundle="${basketB}" key="table.head.cost"/></th>
+                        <th><fmx:message bundle="${basketB}" key="table.head.servings.number"/></th>
+                        <th><fmx:message bundle="${basketB}" key="table.head.total.cost"/></th>
+                        <th><fmx:message bundle="${basketB}" key="table.head.remove.from.order"/></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -51,7 +53,9 @@
                                 <form action="command" method="post">
                                     <input type="hidden" name="command" value="remove_dish_order">
                                     <input type="hidden" name="selectedDishID" value="${dishID}">
-                                    <button type="submit">Remove</button>
+                                    <button type="submit">
+                                        <fmx:message bundle="${basketB}" key="form.remove.button.remove"/>
+                                    </button>
                                 </form>
                             </td>
                         </tr>
@@ -61,12 +65,14 @@
                     <tr>
                         <td colspan="4">
                             <%--@elvariable id="resultCost" type="java.math.BigDecimal"--%>
-                            Result - ${resultCost}$
+                            <fmx:message bundle="${basketB}" key="table.foot.result"/> - ${resultCost}$
                         </td>
                         <td>
                             <form action="command" method="post">
                                 <input type="hidden" name="command" value="remove_all_dish_order">
-                                <button type="submit">All</button>
+                                <button type="submit">
+                                    <fmx:message bundle="${basketB}" key="form.remove.all.button.all"/>
+                                </button>
                             </form>
                         </td>
                     </tr>
@@ -74,17 +80,31 @@
                 </table>
 
                 <form action="command" method="post">
-                    <label for="date">Choose date</label><br>
+                    <label for="date">
+                        <fmx:message bundle="${basketB}" key="form.order.label.choose.date"/>
+                    </label><br>
                     <input id="date" type="date" name="date"><br>
-                    <label for="time">Choose time</label><br>
+                    <label for="time">
+                        <fmx:message bundle="${basketB}" key="form.order.label.choose.time"/>
+                    </label><br>
                     <input id="time" type="time" name="time"><br>
-                    <label for="payment-method">Choose payment method</label><br>
+                    <label for="payment-method">
+                        <fmx:message bundle="${basketB}" key="form.order.label.choose.payment.method"/>
+                    </label><br>
                     <select id="payment-method" name="paymentMethod">
-                        <option value="cash">Cash</option>
-                        <option value="credit_card">Credit card</option>
+                        <option value="cash">
+                            <fmx:message bundle="${basketB}"
+                                         key="form.order.select.choose.payment.method.option.cash"/>
+                        </option>
+                        <option value="credit_card">
+                            <fmx:message bundle="${basketB}"
+                                         key="form.order.select.choose.payment.method.option.credit.card"/>
+                        </option>
                     </select><br>
                     <input type="hidden" name="command" value="order">
-                    <button type="submit">Order</button>
+                    <button type="submit">
+                        <fmx:message bundle="${basketB}" key="form.order.button.order"/>
+                    </button>
                 </form>
             </div>
         </div>

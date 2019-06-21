@@ -7,6 +7,7 @@ import com.epam.cafe.entitie.builder.OrderBuilder;
 import com.epam.cafe.entitie.order.Order;
 import com.epam.cafe.entitie.order.OrderDish;
 import com.epam.cafe.repository.exception.RepositoryException;
+import com.epam.cafe.repository.specification.choosen.dishes.ChosenDishesByOrderIDSpecification;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -14,12 +15,12 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public class OrderRepository_WIP extends AbstractRepository<Order> {
+public class OrderRepository extends AbstractRepository<Order> {
     private static final String TABLE_NAME = "`order`";
 
     private Repository<OrderDish> chosenDishesRepository;
 
-    public OrderRepository_WIP(Connection connection, Repository<OrderDish> chosenDishesRepository) {
+    public OrderRepository(Connection connection, Repository<OrderDish> chosenDishesRepository) {
         super(connection);
         this.chosenDishesRepository = chosenDishesRepository;
     }
@@ -60,6 +61,20 @@ public class OrderRepository_WIP extends AbstractRepository<Order> {
         } catch (SQLException e) {
             throw new RepositoryException("Saving to order repository error.", e);
         }
+    }
+
+    @Override
+    public void remove(Order order) throws RepositoryException {
+        int orderID = order.getID();
+        List<OrderDish> orderDishes = chosenDishesRepository.query(
+                new ChosenDishesByOrderIDSpecification(orderID)
+        );
+
+        for (OrderDish orderDish : orderDishes) {
+            chosenDishesRepository.remove(orderDish);
+        }
+
+        super.remove(order);
     }
 
     @Override

@@ -11,6 +11,8 @@ import com.epam.cafe.entitie.Bonus;
 import com.epam.cafe.entitie.Dish;
 import com.epam.cafe.entitie.order.Order;
 import com.epam.cafe.entitie.user.User;
+import com.epam.cafe.entitie.user.UserRole;
+import com.epam.cafe.service.DishServiceImpl;
 import com.epam.cafe.service.exception.ServiceException;
 import com.epam.cafe.util.BonusHelperImpl;
 import com.epam.cafe.util.DishHelperImpl;
@@ -26,10 +28,34 @@ import java.util.List;
 import java.util.Map;
 
 public abstract class AbstractCommand implements Command {
+    private static final String ADMIN_PAGE = "/view/page/administrator/admin.jsp";
+    private static final String CLIENT_PAGE = "/view/page/client/client.jsp";
+    private static final String ANONYMOUS_PAGE = "/view/page/general/authorization.jsp";
+
     private UserHelper userHelper = new UserHelperImpl();
     private DishHelper dishHelper = new DishHelperImpl();
     private BonusHelper bonusHelper = new BonusHelperImpl();
     private OrderHelper orderHelper = new OrderHelperImpl();
+
+    protected String findPageByRole(UserRole userRole) {
+        String page;
+
+        switch (userRole) {
+            case CLIENT:
+                page = CLIENT_PAGE;
+                break;
+            case ADMINISTRATOR:
+                page = ADMIN_PAGE;
+                break;
+            case ANONYMOUS:
+                page = ANONYMOUS_PAGE;
+                break;
+            default:
+                throw new EnumConstantNotPresentException(UserRole.class, userRole.name());
+        }
+
+        return page;
+    }
 
     protected User findClient(HttpServletRequest request) {
         HttpSession session = request.getSession();
@@ -78,6 +104,13 @@ public abstract class AbstractCommand implements Command {
         dishes.add(dish);
     }
 
+    protected void addBonusToRequest(HttpServletRequest request, Bonus bonus) {
+        HttpSession session = request.getSession();
+        @SuppressWarnings("unchecked")
+        List<Bonus> bonuses = (ArrayList<Bonus>) session.getAttribute("clientBonuses");
+        bonuses.add(bonus);
+    }
+
     protected void removeBonusFromRequest(HttpServletRequest request, Bonus bonus) {
         HttpSession session = request.getSession();
         @SuppressWarnings("unchecked")
@@ -90,6 +123,13 @@ public abstract class AbstractCommand implements Command {
         @SuppressWarnings("unchecked")
         List<Dish> dishes = (ArrayList<Dish>) session.getAttribute("allDishes");
         dishes.remove(dish);
+    }
+
+    protected void removeOrderFromRequest(HttpServletRequest request, Order order) {
+        HttpSession session = request.getSession();
+        @SuppressWarnings("unchecked")
+        List<Order> orders = (ArrayList<Order>) session.getAttribute("orders");
+        orders.remove(order);
     }
 
     protected void calculateCostsOfDishesInBasket(HttpSession session) {
@@ -119,5 +159,13 @@ public abstract class AbstractCommand implements Command {
         List<User> users = service.getUsersByIds(userIDs);
 
         return userHelper.convertUsersToIdUserMap(users);
+    }
+
+    protected void setParamsForCurrentUserOrders(HttpSession session, List<Order> orders)
+            throws ServiceException {
+        session.setAttribute("orders", orders);
+
+        Map<Integer, Dish> idDishMap = getDishesFromOrders(orders, new DishServiceImpl());
+        session.setAttribute("idDishMap", idDishMap);
     }
 }

@@ -13,6 +13,12 @@ public class Bonus implements Serializable {
     private String description;
     private int userID;
 
+    public Bonus(String name, String description, int userID) {
+        this.name = name;
+        this.description = description;
+        this.userID = userID;
+    }
+
     public Bonus(int ID, String name, String description, int userID) {
         this.ID = ID;
         this.name = name;
