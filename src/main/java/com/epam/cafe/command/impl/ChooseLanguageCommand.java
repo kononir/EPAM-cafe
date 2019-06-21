@@ -1,7 +1,7 @@
 package com.epam.cafe.command.impl;
 
 import com.epam.cafe.api.Command;
-import com.epam.cafe.entitie.Language;
+import com.epam.cafe.page.Language;
 import com.epam.cafe.entitie.user.User;
 import com.epam.cafe.entitie.user.UserRole;
 import com.epam.cafe.service.exception.ServiceException;

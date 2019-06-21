@@ -1,7 +1,5 @@
 package com.epam.cafe.entitie.order;
 
-import com.epam.cafe.entitie.PaymentMethod;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Map;

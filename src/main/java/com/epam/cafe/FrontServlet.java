@@ -4,6 +4,7 @@ import com.epam.cafe.api.Command;
 import com.epam.cafe.command.factory.CommandFactory;
 import com.epam.cafe.connection.ConnectionPool;
 import com.epam.cafe.entitie.user.User;
+import com.epam.cafe.page.NavigationWay;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

@@ -2,7 +2,7 @@ package com.epam.cafe.repository.impl;
 
 import com.epam.cafe.api.repository.Repository;
 import com.epam.cafe.api.repository.specification.SqlSpecification;
-import com.epam.cafe.entitie.PaymentMethod;
+import com.epam.cafe.entitie.order.PaymentMethod;
 import com.epam.cafe.entitie.builder.OrderBuilder;
 import com.epam.cafe.entitie.order.Order;
 import com.epam.cafe.entitie.order.OrderDish;

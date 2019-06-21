@@ -2,7 +2,7 @@ package com.epam.cafe.command.impl;
 
 import com.epam.cafe.api.Command;
 import com.epam.cafe.api.service.OrderService;
-import com.epam.cafe.entitie.PaymentMethod;
+import com.epam.cafe.entitie.order.PaymentMethod;
 import com.epam.cafe.entitie.user.User;
 import com.epam.cafe.service.OrderServiceImpl;
 import com.epam.cafe.service.exception.ServiceException;

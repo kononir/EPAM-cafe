@@ -3,7 +3,7 @@ package com.epam.cafe.service;
 import com.epam.cafe.api.repository.Repository;
 import com.epam.cafe.api.service.OrderService;
 import com.epam.cafe.entitie.Account;
-import com.epam.cafe.entitie.PaymentMethod;
+import com.epam.cafe.entitie.order.PaymentMethod;
 import com.epam.cafe.entitie.order.Order;
 import com.epam.cafe.entitie.user.User;
 import com.epam.cafe.repository.exception.RepositoryException;

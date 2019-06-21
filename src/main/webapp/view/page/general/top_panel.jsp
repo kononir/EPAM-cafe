@@ -35,7 +35,6 @@
                     <input type="hidden" name="command" value="choose_language">
                     <input type="hidden" name="navigationWay" value="forward">
                     <input type="hidden" name="language" value="english">
-                    <input type="hidden" name="currentPage" value="${requestScope.get('javax.servlet.forward.request_uri')}">
                     <button type="submit">English</button>
                 </form>
             </li>
@@ -44,7 +43,6 @@
                     <input type="hidden" name="command" value="choose_language">
                     <input type="hidden" name="navigationWay" value="forward">
                     <input type="hidden" name="language" value="russian">
-                    <input type="hidden" name="currentPage" value="${requestScope.get('javax.servlet.forward.request_uri')}">
                     <button type="submit">Русский</button>
                 </form>
             </li>
@@ -53,7 +51,6 @@
                     <input type="hidden" name="command" value="choose_language">
                     <input type="hidden" name="navigationWay" value="forward">
                     <input type="hidden" name="language" value="belorussian">
-                    <input type="hidden" name="currentPage" value="${requestScope.get('javax.servlet.forward.request_uri')}">
                     <button type="submit">Беларуская</button>
                 </form>
             </li>
@@ -63,7 +60,15 @@
 <div class="inner-content">
     <div id="current-user">
         <fmx:message bundle="${topPanelB}" key="current.user.login"/> - ${user.login},
-        <fmx:message bundle="${topPanelB}" key="current.user.role"/> - ${user.role}
+        <fmx:message bundle="${topPanelB}" key="current.user.role"/> -
+        <c:choose>
+            <c:when test="${user.role == 'ADMINISTRATOR'}">
+                <fmx:message bundle="${topPanelB}" key="user.role.administrator"/>
+            </c:when>
+            <c:when test="${user.role == 'CLIENT'}">
+                <fmx:message bundle="${topPanelB}" key="user.role.client"/>
+            </c:when>
+        </c:choose>
     </div>
 </div>
 </body>

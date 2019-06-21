@@ -1,4 +1,4 @@
-package com.epam.cafe.entitie;
+package com.epam.cafe.entitie.order;
 
 public enum PaymentMethod {
     CASH,

@@ -1,4 +1,4 @@
-package com.epam.cafe.entitie;
+package com.epam.cafe.page;
 
 public enum Language {
     ENGLISH("en_US"),
