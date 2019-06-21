@@ -12,7 +12,7 @@
 <html>
 <head>
     <title><fmx:message bundle="${successClientB}" key="title"/></title>
-    <link href="view/style/main.css" rel="stylesheet">
+    <link href="<c:url value="/view/style/main.css"/>" rel="stylesheet">
 </head>
 <body>
 <div class="page-wrapper">

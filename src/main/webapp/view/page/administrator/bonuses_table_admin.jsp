@@ -13,7 +13,7 @@
 <html>
 <head>
     <title><fmx:message bundle="${bonusesTableB}" key="title"/></title>
-    <link href="view/style/main.css" rel="stylesheet">
+    <link href="<c:url value="/view/style/main.css"/>" rel="stylesheet">
 </head>
 <body>
 <div class="page-wrapper">
@@ -24,16 +24,18 @@
             <h1><fmx:message bundle="${bonusesTableB}" key="head"/> ${client.login}</h1>
 
             <div class="content-actions">
-                <form action="command" method="post">
+                <form action="<c:url value="/command"/>" method="post">
                     <input type="hidden" name="command" value="specify_new_bonus">
+                    <input type="hidden" name="navigationWay" value="forward">
                     <button type="submit">
                         <fmx:message bundle="${bonusesTableB}"
                                      key="form.specify.new.bonus.button.add.new.bonus"/>
                     </button>
                 </form>
 
-                <form action="command" method="post">
+                <form action="<c:url value="/command"/>" method="post">
                     <input type="hidden" name="command" value="get_clients">
+                    <input type="hidden" name="navigationWay" value="forward">
                     <button type="submit">
                         <fmx:message bundle="${bonusesTableB}"
                                      key="form.get.clients.button.back.to.clients.table"/>
@@ -57,8 +59,9 @@
                             <td>${bonus.name}</td>
                             <td>${bonus.description}</td>
                             <td>
-                                <form action="command" method="post">
+                                <form action="<c:url value="/command"/>" method="post">
                                     <input type="hidden" name="command" value="delete_bonus">
+                                    <input type="hidden" name="navigationWay" value="redirect">
                                     <input type="hidden" name="bonusID" value="${bonus.ID}">
                                     <button type="submit">
                                         <fmx:message bundle="${bonusesTableB}"

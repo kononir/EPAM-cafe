@@ -12,7 +12,7 @@
 <html>
 <head>
     <title><fmx:message bundle="${allDishesB}" key="title"/></title>
-    <link href="view/style/main.css" rel="stylesheet">
+    <link href="<c:url value="/view/style/main.css"/>" rel="stylesheet">
 </head>
 <body>
 <div class="page-wrapper">
@@ -23,8 +23,9 @@
             <h1><fmx:message bundle="${allDishesB}" key="head"/></h1>
 
             <div class="content-actions">
-                <form action="command" method="post">
+                <form action="<c:url value="/command"/>" method="post">
                     <input type="hidden" name="command" value="specify_new_dish">
+                    <input type="hidden" name="navigationWay" value="forward">
                     <button type="submit">
                         <fmx:message bundle="${allDishesB}" key="form.specify.new.dish.button.add.new.dish"/>
                     </button>
@@ -51,16 +52,18 @@
                     </p>
                     <img src="${dish.imageHref}" alt="${dish.name}">
 
-                    <form action="command" method="post">
+                    <form action="<c:url value="/command"/>" method="post">
                         <input type="hidden" name="command" value="manage_dish_information">
+                        <input type="hidden" name="navigationWay" value="forward">
                         <input type="hidden" name="dishID" value=${dish.ID}>
                         <button type="submit">
                             <fmx:message bundle="${allDishesB}"
                                          key="form.manage.dish.information.button.manage"/>
                         </button>
                     </form>
-                    <form action="command" method="post">
+                    <form action="<c:url value="/command"/>" method="post">
                         <input type="hidden" name="command" value="delete_dish">
+                        <input type="hidden" name="navigationWay" value="redirect">
                         <input type="hidden" name="dishID" value=${dish.ID}>
                         <button id="delete-button" type="submit">x</button>
                     </form>

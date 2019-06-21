@@ -1,4 +1,5 @@
 <%@ taglib prefix="fmx" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <fmx:setBundle basename="locale.client.left_panel_client" var="leftPanelClientB"/>
 <%--
   Created by IntelliJ IDEA.
@@ -15,8 +16,9 @@
 <body>
 <ul class="vertical-menu">
     <li>
-        <form action="command" method="post">
+        <form action="<c:url value="/command"/>" method="post">
             <input type="hidden" name="command" value="get_client_menu">
+            <input type="hidden" name="navigationWay" value="forward">
             <button type="submit">
                 <fmx:message bundle="${leftPanelClientB}" key="form.get.client.menu.button.menu"/>
             </button>
@@ -27,8 +29,9 @@
         <button type="submit"><fmx:message bundle="${leftPanelClientB}" key="button.orders"/></button>
         <ul class="sub-menu">
             <li>
-                <form action="command" method="post">
+                <form action="<c:url value="/command"/>" method="post">
                     <input type="hidden" name="command" value="get_current_orders">
+                    <input type="hidden" name="navigationWay" value="forward">
                     <button type="submit">
                         <fmx:message bundle="${leftPanelClientB}"
                                      key="form.get.current.orders.button.current"/>
@@ -36,8 +39,9 @@
                 </form>
             </li>
             <li>
-                <form action="command" method="post">
+                <form action="<c:url value="/command"/>" method="post">
                     <input type="hidden" name="command" value="get_previous_orders">
+                    <input type="hidden" name="navigationWay" value="forward">
                     <button type="submit">
                         <fmx:message bundle="${leftPanelClientB}"
                                      key="form.get.current.orders.button.previous"/>
@@ -45,8 +49,9 @@
                 </form>
             </li>
             <li>
-                <form action="command" method="post">
+                <form action="<c:url value="/command"/>" method="post">
                     <input type="hidden" name="command" value="get_global_orders">
+                    <input type="hidden" name="navigationWay" value="forward">
                     <button type="submit">
                         <fmx:message bundle="${leftPanelClientB}"
                                      key="form.get.current.orders.button.global"/>
@@ -56,16 +61,18 @@
         </ul>
     </li>
     <li>
-        <form action="command" method="post">
+        <form action="<c:url value="/command"/>" method="post">
             <input type="hidden" name="command" value="get_bonuses_client">
+            <input type="hidden" name="navigationWay" value="forward">
             <button type="submit">
                 <fmx:message bundle="${leftPanelClientB}" key="form.get.bonuses.client.button.bonuses"/>
             </button>
         </form>
     </li>
     <li>
-        <form action="command" method="post">
+        <form action="<c:url value="/command"/>" method="post">
             <input type="hidden" name="command" value="show_basket">
+            <input type="hidden" name="navigationWay" value="forward">
             <button type="submit">
                 <fmx:message bundle="${leftPanelClientB}" key="form.show.basket.button.basket"/>
             </button>

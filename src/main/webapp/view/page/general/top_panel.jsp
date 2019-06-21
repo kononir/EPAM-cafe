@@ -1,4 +1,5 @@
 <%@ taglib prefix="fmx" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <fmx:setBundle basename="locale.general.top_panel" var="topPanelB"/>
 <%--@elvariable id="user" type="com.epam.cafe.entitie.user.User"--%>
 <%--
@@ -16,8 +17,9 @@
 <body>
 <ul class="horizontal-menu">
     <li>
-        <form method="post">
+        <form action="<c:url value="/command"/>" method="post">
             <input type="hidden" name="command" value="logout">
+            <input type="hidden" name="navigationWay" value="forward">
             <button type="submit">
                 <fmx:message bundle="${topPanelB}" key="form.sign.out.button.sign.out"/>
             </button>
@@ -29,24 +31,27 @@
         </button>
         <ul class="sub-menu">
             <li>
-                <form action="command" method="post">
+                <form action="<c:url value="/command"/>" method="post">
                     <input type="hidden" name="command" value="choose_language">
+                    <input type="hidden" name="navigationWay" value="forward">
                     <input type="hidden" name="language" value="english">
                     <input type="hidden" name="currentPage" value="${requestScope.get('javax.servlet.forward.request_uri')}">
                     <button type="submit">English</button>
                 </form>
             </li>
             <li>
-                <form action="command" method="post">
+                <form action="<c:url value="/command"/>" method="post">
                     <input type="hidden" name="command" value="choose_language">
+                    <input type="hidden" name="navigationWay" value="forward">
                     <input type="hidden" name="language" value="russian">
                     <input type="hidden" name="currentPage" value="${requestScope.get('javax.servlet.forward.request_uri')}">
                     <button type="submit">Русский</button>
                 </form>
             </li>
             <li>
-                <form action="command" method="post">
+                <form action="<c:url value="/command"/>" method="post">
                     <input type="hidden" name="command" value="choose_language">
+                    <input type="hidden" name="navigationWay" value="forward">
                     <input type="hidden" name="language" value="belorussian">
                     <input type="hidden" name="currentPage" value="${requestScope.get('javax.servlet.forward.request_uri')}">
                     <button type="submit">Беларуская</button>

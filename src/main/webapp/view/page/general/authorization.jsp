@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Vlad
@@ -9,13 +10,14 @@
 <html>
 <head>
     <title>Authorization</title>
-    <link href="view/style/main.css" rel="stylesheet">
+    <link href="<c:url value="/view/style/main.css"/>" rel="stylesheet">
 </head>
 <body>
     <div class="centered">
         <h1>Sign in to EPAM-cafe</h1>
-        <form method="post" action="command" class="sign-in">
+        <form method="post" action="<c:url value="/command"/>" class="sign-in">
             <input type="hidden" name="command" value="authorize">
+            <input type="hidden" name="navigationWay" value="forward">
             <label for="login">Login</label><br>
             <input type="text" required placeholder="Login" name="login" id="login"><br>
             <label for="password">Password</label><br>

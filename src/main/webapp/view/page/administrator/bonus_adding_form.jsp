@@ -12,7 +12,7 @@
 <html>
 <head>
     <title><fmx:message bundle="${bonusAddingFormB}" key="title"/></title>
-    <link href="view/style/main.css" rel="stylesheet">
+    <link href="<c:url value="/view/style/main.css"/>" rel="stylesheet">
 </head>
 <body>
 <div class="page-wrapper">
@@ -42,8 +42,9 @@
                     <fmx:message bundle="${bonusAddingFormB}" key="button.cancel"/>
                 </button>
 
-                <form action="command" method="post" id="bonus-form">
+                <form action="<c:url value="/command"/>" method="post" id="bonus-form">
                     <input type="hidden" name="command" value="add_bonus">
+                    <input type="hidden" name="navigationWay" value="redirect">
                     <button type="submit">
                         <fmx:message bundle="${bonusAddingFormB}" key="form.add.bonus.button.add"/>
                     </button>

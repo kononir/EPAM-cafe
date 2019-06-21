@@ -3,8 +3,8 @@ package com.epam.cafe.service;
 import com.epam.cafe.api.repository.Repository;
 import com.epam.cafe.api.service.OrderService;
 import com.epam.cafe.entitie.Account;
-import com.epam.cafe.entitie.order.Order;
 import com.epam.cafe.entitie.PaymentMethod;
+import com.epam.cafe.entitie.order.Order;
 import com.epam.cafe.entitie.user.User;
 import com.epam.cafe.repository.exception.RepositoryException;
 import com.epam.cafe.repository.factory.RepositoryFactory;
@@ -12,6 +12,7 @@ import com.epam.cafe.repository.specification.account.AccountByIDSpecification;
 import com.epam.cafe.repository.specification.order.CurrentOrderByUserIDSpecification;
 import com.epam.cafe.repository.specification.order.GlobalOrderByUserIDSpecification;
 import com.epam.cafe.repository.specification.order.PreviousOrderByUserIDSpecification;
+import com.epam.cafe.repository.specification.user.UserByIDSpecification;
 import com.epam.cafe.service.exception.ServiceException;
 
 import java.math.BigDecimal;
@@ -29,7 +30,10 @@ public class OrderServiceImpl implements OrderService {
         try (RepositoryFactory factory = new RepositoryFactory()) {
             factory.startTransaction();
 
-            withdrawMoney(factory, paymentMethod, currentUser, resultCost);
+            if (CREDIT_CARD.equals(paymentMethod)) {
+                withdrawMoney(factory, currentUser, resultCost);
+            }
+
             saveOrder(factory, new Order(
                     chosenDishes, dateTime, resultCost, paymentMethod, currentUser.getID()
             ));
@@ -97,8 +101,12 @@ public class OrderServiceImpl implements OrderService {
         try (RepositoryFactory factory = new RepositoryFactory()) {
             factory.startTransaction();
 
-            Repository<Order> repository = factory.orderRepository();
-            repository.remove(order);
+            Repository<Order> orderRepository = factory.orderRepository();
+            orderRepository.remove(order);
+
+            if (CREDIT_CARD.equals(order.getPaymentMethod())) {
+                returnOrderCostToAccount(factory, order);
+            }
 
             factory.finishTransaction();
         } catch (RepositoryException e) {
@@ -106,25 +114,44 @@ public class OrderServiceImpl implements OrderService {
         }
     }
 
-    private void withdrawMoney(RepositoryFactory factory, PaymentMethod paymentMethod, User currentUser,
-                               BigDecimal resultCost) throws RepositoryException, ServiceException {
-        if (CREDIT_CARD.equals(paymentMethod)) {
-            Repository<Account> accountRepository = factory.accountRepository();
-            List<Account> accounts = accountRepository.query(
-                    new AccountByIDSpecification(currentUser.getAccountID())
-            );
+    private void returnOrderCostToAccount(RepositoryFactory factory, Order order)
+            throws RepositoryException {
+        Repository<User> userRepository = factory.userRepository();
+        List<User> users = userRepository.query(new UserByIDSpecification(order.getUserID()));
+        User user = users.get(FIRST);
 
-            Account account = accounts.get(FIRST);
-            BigDecimal accountMoney = account.getMoney();
+        Repository<Account> accountRepository = factory.accountRepository();
+        List<Account> accounts = accountRepository.query(
+                new AccountByIDSpecification(user.getAccountID())
+        );
+        Account account = accounts.get(FIRST);
 
-            boolean isEnoughMoney = accountMoney.compareTo(resultCost) >= 0;
-            if (!isEnoughMoney) {
-                throw new ServiceException("Ordering selected dishes error. There is no enough money at account.");
-            }
+        BigDecimal oldMoney = account.getMoney();
+        BigDecimal returnMoney = order.getResultCost();
+        BigDecimal newMoney = oldMoney.add(returnMoney);
 
-            account.setMoney(accountMoney.subtract(resultCost));
-            accountRepository.update(account);
+        account.setMoney(newMoney);
+
+        accountRepository.update(account);
+    }
+
+    private void withdrawMoney(RepositoryFactory factory, User currentUser, BigDecimal resultCost)
+            throws RepositoryException, ServiceException {
+        Repository<Account> accountRepository = factory.accountRepository();
+        List<Account> accounts = accountRepository.query(
+                new AccountByIDSpecification(currentUser.getAccountID())
+        );
+
+        Account account = accounts.get(FIRST);
+        BigDecimal accountMoney = account.getMoney();
+
+        boolean isEnoughMoney = accountMoney.compareTo(resultCost) >= 0;
+        if (!isEnoughMoney) {
+            throw new ServiceException("Ordering selected dishes error. There is no enough money at account.");
         }
+
+        account.setMoney(accountMoney.subtract(resultCost));
+        accountRepository.update(account);
     }
 
     private void saveOrder(RepositoryFactory factory, Order order) throws RepositoryException {

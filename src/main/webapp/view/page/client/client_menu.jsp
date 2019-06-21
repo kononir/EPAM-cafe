@@ -12,7 +12,7 @@
 <html>
 <head>
     <title><fmx:message bundle="${clientMenuB}" key="title"/></title>
-    <link href="view/style/main.css" rel="stylesheet">
+    <link href="<c:url value="/view/style/main.css"/>" rel="stylesheet">
 </head>
 <body>
 <div class="page-wrapper">
@@ -30,8 +30,9 @@
                     <p><fmx:message bundle="${clientMenuB}" key="dish.description"/>:<br>${dish.description}</p>
                     <img src="${dish.imageHref}" alt="${dish.name}">
 
-                    <form action="command" method="post">
+                    <form action="<c:url value="/command"/>" method="post">
                         <input type="hidden" name="command" value="save_dish_order">
+                        <input type="hidden" name="navigationWay" value="redirect">
                         <input type="hidden" name="selectedDishID" value="${dish.ID}">
                         <label for="servings-number">
                             <fmx:message bundle="${clientMenuB}"

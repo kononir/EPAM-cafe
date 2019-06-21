@@ -11,8 +11,8 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title><fmx:message bundle="basketB" key="title"/></title>
-    <link href="view/style/main.css" rel="stylesheet">
+    <title><fmx:message bundle="${basketB}" key="title"/></title>
+    <link href="<c:url value="/view/style/main.css"/>" rel="stylesheet">
 </head>
 <body>
 <div class="page-wrapper">
@@ -50,8 +50,9 @@
                             <td>${generalCosts.get(dishID)}$</td>
 
                             <td>
-                                <form action="command" method="post">
+                                <form action="<c:url value="/command"/>" method="post">
                                     <input type="hidden" name="command" value="remove_dish_order">
+                                    <input type="hidden" name="navigationWay" value="redirect">
                                     <input type="hidden" name="selectedDishID" value="${dishID}">
                                     <button type="submit">
                                         <fmx:message bundle="${basketB}" key="form.remove.button.remove"/>
@@ -68,8 +69,9 @@
                             <fmx:message bundle="${basketB}" key="table.foot.result"/> - ${resultCost}$
                         </td>
                         <td>
-                            <form action="command" method="post">
+                            <form action="<c:url value="/command"/>" method="post">
                                 <input type="hidden" name="command" value="remove_all_dish_order">
+                                <input type="hidden" name="navigationWay" value="redirect">
                                 <button type="submit">
                                     <fmx:message bundle="${basketB}" key="form.remove.all.button.all"/>
                                 </button>
@@ -79,7 +81,7 @@
                     </tfoot>
                 </table>
 
-                <form action="command" method="post">
+                <form action="<c:url value="/command"/>" method="post">
                     <label for="date">
                         <fmx:message bundle="${basketB}" key="form.order.label.choose.date"/>
                     </label><br>
@@ -102,6 +104,7 @@
                         </option>
                     </select><br>
                     <input type="hidden" name="command" value="order">
+                    <input type="hidden" name="navigationWay" value="redirect">
                     <button type="submit">
                         <fmx:message bundle="${basketB}" key="form.order.button.order"/>
                     </button>

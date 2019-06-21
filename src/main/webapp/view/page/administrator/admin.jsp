@@ -14,7 +14,7 @@
 <html>
 <head>
     <title><fmx:message bundle="${adminB}" key="title"/></title>
-    <link rel="stylesheet" href="view/style/main.css">
+    <link rel="stylesheet" href="<c:url value="/view/style/main.css"/>">
 </head>
 <body>
 <div class="page-wrapper">

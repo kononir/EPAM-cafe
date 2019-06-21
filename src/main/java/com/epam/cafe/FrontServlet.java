@@ -4,7 +4,6 @@ import com.epam.cafe.api.Command;
 import com.epam.cafe.command.factory.CommandFactory;
 import com.epam.cafe.connection.ConnectionPool;
 import com.epam.cafe.entitie.user.User;
-import com.epam.cafe.entitie.user.UserRole;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -19,11 +18,6 @@ import java.sql.SQLException;
 
 public class FrontServlet extends HttpServlet {
     private static final Logger LOGGER = LogManager.getRootLogger();
-
-    @Override
-    public void init() {
-        ConnectionPool.getInstance();
-    }
 
     @Override
     public void destroy() {
@@ -43,6 +37,8 @@ public class FrontServlet extends HttpServlet {
     private void processRequest(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         String page;
+        String navigationWayParam = req.getParameter("navigationWay");
+        NavigationWay navigationWay = NavigationWay.valueOf(navigationWayParam.toUpperCase());
         try {
             String commandName = req.getParameter("command");
             CommandFactory commandFactory = new CommandFactory(req);
@@ -55,8 +51,7 @@ public class FrontServlet extends HttpServlet {
 
             HttpSession session = req.getSession();
             User user = (User) session.getAttribute("user");
-            UserRole role = user.getRole();
-            switch (role) {
+            switch (user.getRole()) {
                 case CLIENT:
                     page = "/view/page/client/client_error.jsp";
                     break;
@@ -66,19 +61,24 @@ public class FrontServlet extends HttpServlet {
                 default:
                     page = "/view/page/general/authorization.jsp";
             }
+
+            navigationWay = NavigationWay.FORWARD;
         }
 
-        dispatch(req, resp, page);
+        dispatch(req, resp, page, navigationWay);
     }
 
-    private void dispatch(HttpServletRequest req, HttpServletResponse resp, String page)
-            throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher(page);
-        requestDispatcher.forward(req, resp);
-
-        // Добавить новое скрытое поле в формы для выбора между forward и redirect
-        /*
-        resp.sendRedirect(req.getContextPath() + page);
-        */
+    private void dispatch(HttpServletRequest req, HttpServletResponse resp, String page,
+                          NavigationWay navigationWay) throws ServletException, IOException {
+        switch (navigationWay) {
+            case FORWARD:
+                RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher(page);
+                requestDispatcher.forward(req, resp);
+                break;
+            case REDIRECT:
+                String url = req.getContextPath() + page;
+                resp.sendRedirect(url);
+                break;
+        }
     }
 }

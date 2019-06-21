@@ -12,7 +12,7 @@
 <html>
 <head>
     <title><fmx:message bundle="${currentOrdersB}" key="title"/></title>
-    <link href="view/style/main.css" rel="stylesheet">
+    <link href="<c:url value="/view/style/main.css"/>" rel="stylesheet">
 </head>
 <body>
 <div class="page-wrapper">
@@ -57,8 +57,9 @@
                     </p>
 
                     <form action="command" method="post">
-                        <input type="hidden" name="orderID" value="${order.ID}">
                         <input type="hidden" name="command" value="delete_order">
+                        <input type="hidden" name="navigationWay" value="redirect">
+                        <input type="hidden" name="orderID" value="${order.ID}">
                         <button type="submit">
                             <fmx:message bundle="${currentOrdersB}" key="form.remove.order.button.remove"/>
                         </button>

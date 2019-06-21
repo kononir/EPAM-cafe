@@ -13,7 +13,7 @@
 <html>
 <head>
     <title><fmx:message bundle="${clientManagingFormB}" key="title"/></title>
-    <link href="view/style/main.css" rel="stylesheet">
+    <link href="<c:url value="/view/style/main.css"/>" rel="stylesheet">
 </head>
 <body>
 <div class="page-wrapper">
@@ -68,8 +68,9 @@
                     <fmx:message bundle="${clientManagingFormB}" key="button.cancel"/>
                 </button>
 
-                <form action="command" method="post" id="save-changes-form">
+                <form action="<c:url value="/command"/>" method="post" id="save-changes-form">
                     <input type="hidden" name="command" value="save_client_changes">
+                    <input type="hidden" name="navigationWay" value="redirect">
                     <input type="hidden" name="clientID" value="${client.ID}">
                     <button type="submit">
                         <fmx:message bundle="${clientManagingFormB}"

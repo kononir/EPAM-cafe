@@ -13,7 +13,7 @@
 <html>
 <head>
     <title><fmx:message bundle="${dishManagingFormB}" key="title"/></title>
-    <link href="view/style/main.css" rel="stylesheet">
+    <link href="<c:url value="/view/style/main.css"/>" rel="stylesheet">
 </head>
 <body>
 <div class="page-wrapper">
@@ -30,8 +30,9 @@
                     <fmx:message bundle="${dishManagingFormB}" key="button.cancel"/>
                 </button>
 
-                <form action="command" method="post" id="dish-form">
+                <form action="<c:url value="/command"/>" method="post" id="dish-form">
                     <input type="hidden" name="command" value="save_dish_changes">
+                    <input type="hidden" name="navigationWay" value="redirect">
                     <input type="hidden" name="dishID" value="${dish.ID}">
                     <button type="submit">
                         <fmx:message bundle="${dishManagingFormB}" key="form.save.dish.changes.button.save"/>

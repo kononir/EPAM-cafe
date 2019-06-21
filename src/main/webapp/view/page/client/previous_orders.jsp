@@ -13,7 +13,7 @@
 <html>
 <head>
     <title><fmx:message bundle="${previousOrdersB}" key="title"/></title>
-    <link href="view/style/main.css" rel="stylesheet">
+    <link href="<c:url value="/view/style/main.css"/>" rel="stylesheet">
 </head>
 <body>
 <div class="page-wrapper">
@@ -53,8 +53,9 @@
                         </c:choose>
                     </p>
 
-                    <form id="rating-form" method="post">
+                    <form id="rating-form" action="<c:url value="/command"/>" method="post">
                         <input type="hidden" name="command" value="rate_order">
+                        <input type="hidden" name="navigationWay" value="redirect">
                         <input type="hidden" name="orderID" value="${order.ID}">
 
                         <label><fmx:message bundle="${previousOrdersB}" key="order.rating"/></label>
@@ -122,7 +123,7 @@
                         </div>
                     </form>
 
-                    <form action="command" method="post">
+                    <form action="<c:url value="/command"/>" method="post">
                         <label for="order-comment">
                             <fmx:message bundle="${previousOrdersB}" key="order.comment"/>
                         </label>
@@ -137,8 +138,9 @@
                         <textarea id="order-comment" name="comment" maxlength="1000"
                                   required>${orderComment}</textarea>
 
-                        <input type="hidden" name="orderID" value="${order.ID}">
                         <input type="hidden" name="command" value="leave_comment">
+                        <input type="hidden" name="navigationWay" value="redirect">
+                        <input type="hidden" name="orderID" value="${order.ID}">
                         <button type="submit">
                             <fmx:message bundle="${previousOrdersB}"
                                          key="form.leave.comment.button.leave.comment"/>

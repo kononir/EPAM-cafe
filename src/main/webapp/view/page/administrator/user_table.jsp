@@ -12,7 +12,7 @@
 <html>
 <head>
     <title><fmx:message bundle="${userTableB}" key="title"/></title>
-    <link href="view/style/main.css" rel="stylesheet">
+    <link href="<c:url value="/view/style/main.css"/>" rel="stylesheet">
 </head>
 <body>
 <div class="page-wrapper">
@@ -53,8 +53,9 @@
                                 </c:choose>
                             </td>
                             <td>
-                                <form action="command" method="post">
+                                <form action="<c:url value="/command"/>" method="post">
                                     <input type="hidden" name="command" value="get_bonuses_admin">
+                                    <input type="hidden" name="navigationWay" value="forward">
                                     <input type="hidden" name="clientID" value="${client.ID}">
                                     <input type="hidden" name="clientLogin" value="${client.login}">
                                     <button type="submit">
@@ -64,8 +65,9 @@
                                 </form>
                             </td>
                             <td>
-                                <form action="command" method="post">
+                                <form action="<c:url value="/command"/>" method="post">
                                     <input type="hidden" name="command" value="manage_client_information">
+                                    <input type="hidden" name="navigationWay" value="forward">
                                     <input type="hidden" name="clientID" value="${client.ID}">
                                     <button type="submit">
                                         <fmx:message bundle="${userTableB}"
