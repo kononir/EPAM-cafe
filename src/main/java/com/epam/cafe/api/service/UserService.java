@@ -14,4 +14,6 @@ public interface UserService {
     void updateUser(User user) throws ServiceException;
 
     List<User> getUsersByIds(List<Integer> userIDs) throws ServiceException;
+
+    List<User> getClients(int skippingPagesNumber, int recordsCount) throws ServiceException;
 }

@@ -168,4 +168,32 @@ public abstract class AbstractCommand implements Command {
         Map<Integer, Dish> idDishMap = getDishesFromOrders(orders, new DishServiceImpl());
         session.setAttribute("idDishMap", idDishMap);
     }
+
+    protected int findRecordsCount(HttpServletRequest request) {
+        int recordsCount = Integer.parseInt(request.getParameter("recordsCount"));
+
+        HttpSession session = request.getSession();
+        session.setAttribute("recordsCount", recordsCount);
+
+        return recordsCount;
+    }
+
+    protected int findPageNumber(HttpServletRequest request) {
+        int pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
+
+        HttpSession session = request.getSession();
+        session.setAttribute("currentPageNumber", pageNumber);
+
+        return pageNumber;
+    }
+
+    protected void findPageCount(HttpSession session, int entityCount, int recordsCount) {
+        int pageCount = (int)(Math.ceil((double) entityCount / (double) recordsCount));
+        session.setAttribute("pageCount", pageCount);
+    }
+
+    protected int findUserID(HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        return  user.getID();
+    }
 }

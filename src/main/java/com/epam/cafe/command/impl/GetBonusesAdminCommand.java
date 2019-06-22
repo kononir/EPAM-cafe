@@ -11,12 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-public class GetBonusesAdminCommand extends AbstractCommand implements Command {
+public class GetBonusesAdminCommand extends GetBonusesAbstractCommand implements Command {
     private static final String PAGE = "/view/page/administrator/bonuses_table_admin.jsp";
 
     private HttpServletRequest request;
 
     public GetBonusesAdminCommand(HttpServletRequest request) {
+        super(request);
         this.request = request;
     }
 
@@ -29,9 +30,7 @@ public class GetBonusesAdminCommand extends AbstractCommand implements Command {
 
         int clientID = Integer.parseInt(request.getParameter("clientID"));
 
-        BonusService service = new BonusServiceImpl();
-        List<Bonus> bonuses = service.getClientBonuses(clientID);
-
+        List<Bonus> bonuses = getBonuses(clientID);
         session.setAttribute("clientBonuses", bonuses);
 
         return PAGE;

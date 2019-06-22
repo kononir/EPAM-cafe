@@ -1,6 +1,7 @@
 <%--@elvariable id="client" type="com.epam.cafe.entitie.user.User"--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmx" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="ctg" uri="custom-tags" %>
 <fmx:setBundle basename="locale.administrator.bonuses_table_admin" var="bonusesTableB"/>
 <%--
   Created by IntelliJ IDEA.
@@ -36,6 +37,8 @@
                 <form action="<c:url value="/command"/>" method="post">
                     <input type="hidden" name="command" value="get_clients">
                     <input type="hidden" name="navigationWay" value="forward">
+                    <input type="hidden" name="pageNumber" value="1">
+                    <input type="hidden" name="recordsCount" value="20">
                     <button type="submit">
                         <fmx:message bundle="${bonusesTableB}"
                                      key="form.get.clients.button.back.to.clients.table"/>
@@ -73,6 +76,14 @@
                     </c:forEach>
                     </tbody>
                 </table>
+            </div>
+
+            <div class="horizontal-centered">
+                <%--@elvariable id="recordsCount" type="java.lang.Integer"--%>
+                <%--@elvariable id="pageCount" type="java.lang.Integer"--%>
+                <%--@elvariable id="currentPageNumber" type="java.lang.Integer"--%>
+                <ctg:paginator recordsCount="${recordsCount}" pageCount="${pageCount}"
+                               currentPageNumber="${currentPageNumber}" command="get_bonuses_admin"/>
             </div>
         </div>
     </div>

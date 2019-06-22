@@ -380,3 +380,37 @@ form .rating_block {
     background-position: 50% -25px;
 }
 /*-----------------*/
+
+/*----Paginator----*/
+
+.horizontal-centered {
+    text-align: center;
+}
+
+.paginator {
+    display: inline-block;
+}
+
+.paginator form {
+    float: left;
+}
+
+.paginator button {
+    color: black;
+    margin: 0 4px;
+    padding: 2px 6px;
+    border: 1px solid black;
+}
+
+.paginator button.active {
+    background-color: lightsteelblue;
+    color: white;
+}
+
+.paginator button:hover:not(.active) {
+    background-color: #ddd;
+}
+
+.paginator button:disabled:hover:not(.active) {
+    background-color: white;
+}

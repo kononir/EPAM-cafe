@@ -19,4 +19,8 @@ public interface DishService {
     void addDish(Dish dish) throws ServiceException;
 
     Dish getLastDish() throws ServiceException;
+
+    List<Dish> getDishesInMenu(int pageNumber, int recordsCount) throws ServiceException;
+
+    List<Dish> getAllDishes(int skippingPagesNumber, int recordsCount) throws ServiceException;
 }

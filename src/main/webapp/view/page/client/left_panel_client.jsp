@@ -19,6 +19,8 @@
         <form action="<c:url value="/command"/>" method="post">
             <input type="hidden" name="command" value="get_client_menu">
             <input type="hidden" name="navigationWay" value="forward">
+            <input type="hidden" name="pageNumber" value="1">
+            <input type="hidden" name="recordsCount" value="5">
             <button type="submit">
                 <fmx:message bundle="${leftPanelClientB}" key="form.get.client.menu.button.menu"/>
             </button>
@@ -32,6 +34,8 @@
                 <form action="<c:url value="/command"/>" method="post">
                     <input type="hidden" name="command" value="get_current_orders">
                     <input type="hidden" name="navigationWay" value="forward">
+                    <input type="hidden" name="pageNumber" value="1">
+                    <input type="hidden" name="recordsCount" value="5">
                     <button type="submit">
                         <fmx:message bundle="${leftPanelClientB}"
                                      key="form.get.current.orders.button.current"/>
@@ -42,6 +46,8 @@
                 <form action="<c:url value="/command"/>" method="post">
                     <input type="hidden" name="command" value="get_previous_orders">
                     <input type="hidden" name="navigationWay" value="forward">
+                    <input type="hidden" name="pageNumber" value="1">
+                    <input type="hidden" name="recordsCount" value="5">
                     <button type="submit">
                         <fmx:message bundle="${leftPanelClientB}"
                                      key="form.get.current.orders.button.previous"/>
@@ -52,6 +58,8 @@
                 <form action="<c:url value="/command"/>" method="post">
                     <input type="hidden" name="command" value="get_global_orders">
                     <input type="hidden" name="navigationWay" value="forward">
+                    <input type="hidden" name="pageNumber" value="1">
+                    <input type="hidden" name="recordsCount" value="5">
                     <button type="submit">
                         <fmx:message bundle="${leftPanelClientB}"
                                      key="form.get.current.orders.button.global"/>
@@ -64,6 +72,8 @@
         <form action="<c:url value="/command"/>" method="post">
             <input type="hidden" name="command" value="get_bonuses_client">
             <input type="hidden" name="navigationWay" value="forward">
+            <input type="hidden" name="pageNumber" value="1">
+            <input type="hidden" name="recordsCount" value="20">
             <button type="submit">
                 <fmx:message bundle="${leftPanelClientB}" key="form.get.bonuses.client.button.bonuses"/>
             </button>

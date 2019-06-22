@@ -9,6 +9,7 @@ import com.epam.cafe.repository.factory.RepositoryFactory;
 import com.epam.cafe.repository.specification.user.UserByIDsSpecification;
 import com.epam.cafe.repository.specification.user.UserByLoginAndPasswordSpecification;
 import com.epam.cafe.repository.specification.user.UserByRoleSpecification;
+import com.epam.cafe.repository.specification.user.UserByRoleWithLimitSpecification;
 import com.epam.cafe.service.exception.ServiceException;
 
 import java.util.List;
@@ -73,5 +74,23 @@ public class UserServiceImpl implements UserService {
         }
 
         return users;
+    }
+
+    @Override
+    public List<User> getClients(int skippingPagesNumber, int recordsCount) throws ServiceException {
+        List<User> clients;
+
+        try (RepositoryFactory factory = new RepositoryFactory()) {
+            Repository<User> userRepository = factory.userRepository();
+            clients = userRepository.query(new UserByRoleWithLimitSpecification(
+                    UserRole.CLIENT,
+                    skippingPagesNumber,
+                    recordsCount
+            ));
+        } catch (RepositoryException e) {
+            throw new ServiceException("Getting clients error.", e);
+        }
+
+        return clients;
     }
 }

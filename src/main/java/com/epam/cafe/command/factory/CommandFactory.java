@@ -28,7 +28,7 @@ public class CommandFactory {
                 command = new LogoutCommand(request.getSession());
                 break;
             case GET_CLIENTS:
-                command = new GetClientsCommand(request.getSession());
+                command = new GetClientsCommand(request);
                 break;
             case GET_BONUSES_ADMIN:
                 command = new GetBonusesAdminCommand(request);
@@ -40,7 +40,7 @@ public class CommandFactory {
                 command = new SaveClientChangesCommand(request);
                 break;
             case GET_CLIENT_MENU:
-                command = new GetClientMenuCommand(request.getSession());
+                command = new GetClientMenuCommand(request);
                 break;
             case SAVE_DISH_ORDER:
                 command = new SaveDishOrderCommand(request);
@@ -70,7 +70,7 @@ public class CommandFactory {
                 command = new AddBonusCommand(request);
                 break;
             case GET_ALL_DISHES:
-                command = new GetAllDishesCommand(request.getSession());
+                command = new GetAllDishesCommand(request);
                 break;
             case MANAGE_DISH_INFORMATION:
                 command = new ManageDishInformationCommand(request);
@@ -88,7 +88,7 @@ public class CommandFactory {
                 command = new AddDishCommand(request);
                 break;
             case GET_PREVIOUS_ORDERS:
-                command = new GetPreviousOrdersCommand(request.getSession());
+                command = new GetPreviousOrdersCommand(request);
                 break;
             case RATE_ORDER:
                 command = new RateOrderCommand(request);
@@ -97,10 +97,10 @@ public class CommandFactory {
                 command = new LeaveCommentCommand(request);
                 break;
             case GET_GLOBAL_ORDERS:
-                command = new GetGlobalOrdersCommand(request.getSession());
+                command = new GetGlobalOrdersCommand(request);
                 break;
             case GET_CURRENT_ORDERS:
-                command = new GetCurrentOrdersCommand(request.getSession());
+                command = new GetCurrentOrdersCommand(request);
                 break;
             case DELETE_ORDER:
                 command = new DeleteOrderCommand(request);

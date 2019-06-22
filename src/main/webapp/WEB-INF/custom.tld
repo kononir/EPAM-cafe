@@ -6,26 +6,37 @@
     <short-name>ctg</short-name>
     <uri>custom-tags</uri>
     <tag>
-        <name>dish</name>
-        <tag-class>com.epam.cafe.tag.MenuDishTag</tag-class>
-        <body-content>scriptless</body-content>
+        <name>paginator</name>
+        <tag-class>com.epam.cafe.tag.PaginatorTag</tag-class>
+        <body-content>empty</body-content>
         <attribute>
-            <name>name</name>
+            <name>pageCount</name>
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>
-            <type>java.lang.String</type>
+            <type>java.lang.Integer</type>
         </attribute>
         <attribute>
-            <name>imageHref</name>
+            <name>recordsCount</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.Integer</type>
+        </attribute>
+        <attribute>
+            <name>previewPageCount</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
-            <type>java.lang.String</type>
+            <type>java.lang.Integer</type>
         </attribute>
         <attribute>
-            <name>cost</name>
+            <name>currentPageNumber</name>
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>
-            <type>java.math.BigDecimal</type>
+            <type>java.lang.Integer</type>
+        </attribute>
+        <attribute>
+            <name>command</name>
+            <required>true</required>
+            <rtexprvalue>false</rtexprvalue>
         </attribute>
     </tag>
 </taglib>

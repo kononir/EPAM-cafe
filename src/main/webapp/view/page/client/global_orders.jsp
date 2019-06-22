@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmx" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="ctg" uri="custom-tags" %>
 <fmx:setBundle basename="locale.client.global_orders" var="globalOrdersB"/>
 <%--@elvariable id="idUserMap" type="java.util.Map<java.lang.Integer, com.epam.cafe.entitie.user.User>"--%>
 <%--@elvariable id="idDishMap" type="java.util.Map<java.lang.Integer, com.epam.cafe.entitie.Dish>"--%>
@@ -124,6 +125,14 @@
                     <textarea id="order-comment" name="comment" readonly>${orderComment}</textarea>
                 </div>
             </c:forEach>
+
+            <div class="horizontal-centered">
+                <%--@elvariable id="recordsCount" type="java.lang.Integer"--%>
+                <%--@elvariable id="pageCount" type="java.lang.Integer"--%>
+                <%--@elvariable id="currentPageNumber" type="java.lang.Integer"--%>
+                <ctg:paginator recordsCount="${recordsCount}" pageCount="${pageCount}"
+                               currentPageNumber="${currentPageNumber}" command="get_global_orders"/>
+            </div>
         </div>
     </div>
     <c:import url="/view/page/general/footer.jsp"/>

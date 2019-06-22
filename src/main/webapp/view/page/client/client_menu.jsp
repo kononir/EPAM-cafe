@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="ctg" uri="custom-tags"%>
 <%@ taglib prefix="fmx" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmx:setBundle basename="locale.client.client_menu" var="clientMenuB"/>
 <%--
@@ -46,6 +47,14 @@
                     </form>
                 </div>
             </c:forEach>
+
+            <div class="horizontal-centered">
+                <%--@elvariable id="recordsCount" type="java.lang.Integer"--%>
+                <%--@elvariable id="pageCount" type="java.lang.Integer"--%>
+                <%--@elvariable id="currentPageNumber" type="java.lang.Integer"--%>
+                <ctg:paginator recordsCount="${recordsCount}" pageCount="${pageCount}"
+                               currentPageNumber="${currentPageNumber}" command="get_client_menu"/>
+            </div>
         </div>
     </div>
     <c:import url="/view/page/general/footer.jsp"/>

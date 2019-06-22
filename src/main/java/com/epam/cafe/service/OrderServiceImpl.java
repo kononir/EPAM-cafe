@@ -9,9 +9,7 @@ import com.epam.cafe.entitie.user.User;
 import com.epam.cafe.repository.exception.RepositoryException;
 import com.epam.cafe.repository.factory.RepositoryFactory;
 import com.epam.cafe.repository.specification.account.AccountByIDSpecification;
-import com.epam.cafe.repository.specification.order.CurrentOrderByUserIDSpecification;
-import com.epam.cafe.repository.specification.order.GlobalOrderByUserIDSpecification;
-import com.epam.cafe.repository.specification.order.PreviousOrderByUserIDSpecification;
+import com.epam.cafe.repository.specification.order.*;
 import com.epam.cafe.repository.specification.user.UserByIDSpecification;
 import com.epam.cafe.service.exception.ServiceException;
 
@@ -112,6 +110,63 @@ public class OrderServiceImpl implements OrderService {
         } catch (RepositoryException e) {
             throw new ServiceException("Deleting order error.", e);
         }
+    }
+
+    @Override
+    public List<Order> getCurrentOrders(int userID, int skippingPagesNumber, int recordsCount)
+            throws ServiceException {
+        List<Order> currentOrders;
+
+        try (RepositoryFactory factory = new RepositoryFactory()) {
+            Repository<Order> repository = factory.orderRepository();
+            currentOrders = repository.query(new CurrentOrderByUserIDWithLimitSpecification(
+                    userID,
+                    skippingPagesNumber,
+                    recordsCount
+            ));
+        } catch (RepositoryException e) {
+            throw new ServiceException("Getting current orders error.", e);
+        }
+
+        return currentOrders;
+    }
+
+    @Override
+    public List<Order> getGlobalOrders(int userID, int skippingPagesNumber, int recordsCount)
+            throws ServiceException {
+        List<Order> globalOrders;
+
+        try (RepositoryFactory factory = new RepositoryFactory()) {
+            Repository<Order> repository = factory.orderRepository();
+            globalOrders = repository.query(new GlobalOrderByUserIDWithLimitSpecification(
+                    userID,
+                    skippingPagesNumber,
+                    recordsCount
+            ));
+        } catch (RepositoryException e) {
+            throw new ServiceException("Getting global orders error.", e);
+        }
+
+        return globalOrders;
+    }
+
+    @Override
+    public List<Order> getPreviousOrders(int userID, int skippingPagesNumber, int recordsCount)
+            throws ServiceException {
+        List<Order> previousOrders;
+
+        try (RepositoryFactory factory = new RepositoryFactory()) {
+            Repository<Order> repository = factory.orderRepository();
+            previousOrders = repository.query(new PreviousOrderByUserIDWithLimitSpecification(
+                    userID,
+                    skippingPagesNumber,
+                    recordsCount
+            ));
+        } catch (RepositoryException e) {
+            throw new ServiceException("Getting previous orders error.", e);
+        }
+
+        return previousOrders;
     }
 
     private void returnOrderCostToAccount(RepositoryFactory factory, Order order)

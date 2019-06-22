@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmx" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="ctg" uri="custom-tags" %>
 <fmx:setBundle basename="locale.client.bonuses_table_client" var="bonusesTableB"/>
 <%--
   Created by IntelliJ IDEA.
@@ -39,6 +40,14 @@
                     </c:forEach>
                     </tbody>
                 </table>
+            </div>
+
+            <div class="horizontal-centered">
+                <%--@elvariable id="recordsCount" type="java.lang.Integer"--%>
+                <%--@elvariable id="pageCount" type="java.lang.Integer"--%>
+                <%--@elvariable id="currentPageNumber" type="java.lang.Integer"--%>
+                <ctg:paginator recordsCount="${recordsCount}" pageCount="${pageCount}"
+                               currentPageNumber="${currentPageNumber}" command="get_bonuses_client"/>
             </div>
         </div>
     </div>

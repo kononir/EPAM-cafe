@@ -19,6 +19,8 @@
         <form action="<c:url value="/command"/>" method="post">
             <input type="hidden" name="command" value="get_all_dishes">
             <input type="hidden" name="navigationWay" value="forward">
+            <input type="hidden" name="pageNumber" value="1">
+            <input type="hidden" name="recordsCount" value="5">
             <button type="submit">
                 <fmx:message bundle="${leftPanelB}" key="form.get.all.dishes.button.manage.dishes"/>
             </button>
@@ -28,6 +30,8 @@
         <form action="<c:url value="/command"/>" method="post">
             <input type="hidden" name="command" value="get_clients">
             <input type="hidden" name="navigationWay" value="forward">
+            <input type="hidden" name="pageNumber" value="1">
+            <input type="hidden" name="recordsCount" value="20">
             <button type="submit">
                 <fmx:message bundle="${leftPanelB}" key="form.get.clients.button.manage.clients"/>
             </button>

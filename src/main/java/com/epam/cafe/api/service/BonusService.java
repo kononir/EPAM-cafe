@@ -13,4 +13,6 @@ public interface BonusService {
     void addBonus(Bonus bonus) throws ServiceException;
 
     Bonus getLastBonus() throws ServiceException;
+
+    List<Bonus> getClientBonuses(int userID, int skippingPagesNumber, int recordsCount) throws ServiceException;
 }

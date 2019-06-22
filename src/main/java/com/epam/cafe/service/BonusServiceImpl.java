@@ -6,6 +6,7 @@ import com.epam.cafe.entitie.Bonus;
 import com.epam.cafe.repository.exception.RepositoryException;
 import com.epam.cafe.repository.factory.RepositoryFactory;
 import com.epam.cafe.repository.specification.bonus.BonusByUserIDSpecification;
+import com.epam.cafe.repository.specification.bonus.BonusByUserIDWithLimitSpecification;
 import com.epam.cafe.repository.specification.bonus.LastBonusSpecification;
 import com.epam.cafe.service.exception.ServiceException;
 
@@ -61,5 +62,24 @@ public class BonusServiceImpl implements BonusService {
         }
 
         return lastBonus;
+    }
+
+    @Override
+    public List<Bonus> getClientBonuses(int userID, int skippingPagesNumber, int recordsCount)
+            throws ServiceException {
+        List<Bonus> bonuses;
+
+        try (RepositoryFactory factory = new RepositoryFactory()) {
+            Repository<Bonus> bonusRepository = factory.bonusRepository();
+            bonuses = bonusRepository.query(new BonusByUserIDWithLimitSpecification(
+                    userID,
+                    skippingPagesNumber,
+                    recordsCount
+            ));
+        } catch (RepositoryException e) {
+            throw new ServiceException("Getting clients bonuses error.", e);
+        }
+
+        return bonuses;
     }
 }

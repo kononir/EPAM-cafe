@@ -24,4 +24,10 @@ public interface OrderService {
     List<Order> getCurrentOrders(int userID) throws ServiceException;
 
     void deleteOrder(Order order) throws ServiceException;
+
+    List<Order> getCurrentOrders(int userID, int skippingPagesNumber, int recordsCount) throws ServiceException;
+
+    List<Order> getGlobalOrders(int userID, int skippingPagesNumber, int recordsCount) throws ServiceException;
+
+    List<Order> getPreviousOrders(int userID, int skippingPagesNumber, int recordsCount) throws ServiceException;
 }

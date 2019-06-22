@@ -5,10 +5,7 @@ import com.epam.cafe.api.service.DishService;
 import com.epam.cafe.entitie.Dish;
 import com.epam.cafe.repository.exception.RepositoryException;
 import com.epam.cafe.repository.factory.RepositoryFactory;
-import com.epam.cafe.repository.specification.dish.AllDishesSpecification;
-import com.epam.cafe.repository.specification.dish.DishByIDsSpecification;
-import com.epam.cafe.repository.specification.dish.DishByInMenuSpecification;
-import com.epam.cafe.repository.specification.dish.LastDishSpecification;
+import com.epam.cafe.repository.specification.dish.*;
 import com.epam.cafe.service.exception.ServiceException;
 
 import java.util.List;
@@ -101,5 +98,39 @@ public class DishServiceImpl implements DishService {
         }
 
         return lastDish;
+    }
+
+    @Override
+    public List<Dish> getDishesInMenu(int skippingPagesNumber, int recordsCount) throws ServiceException {
+        List<Dish> dishesInMenu;
+
+        int skipRecordsCount = skippingPagesNumber * recordsCount;
+        try (RepositoryFactory factory = new RepositoryFactory()) {
+            Repository<Dish> dishRepository = factory.dishRepository();
+            dishesInMenu = dishRepository.query(
+                    new DishByInMenuWithLimitSpecification(true, skipRecordsCount, recordsCount)
+            );
+        } catch (RepositoryException e) {
+            throw new ServiceException("Getting dishes in menu error.", e);
+        }
+
+        return dishesInMenu;
+    }
+
+    @Override
+    public List<Dish> getAllDishes(int skippingPagesNumber, int recordsCount) throws ServiceException {
+        List<Dish> allDishes;
+
+        try (RepositoryFactory factory = new RepositoryFactory()) {
+            Repository<Dish> dishRepository = factory.dishRepository();
+            allDishes = dishRepository.query(new AllDishesWithLimitSpecification(
+                    skippingPagesNumber,
+                    recordsCount
+            ));
+        } catch (RepositoryException e) {
+            throw new ServiceException("Getting all dishes error.", e);
+        }
+
+        return allDishes;
     }
 }
