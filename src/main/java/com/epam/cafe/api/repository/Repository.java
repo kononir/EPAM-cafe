@@ -1,7 +1,7 @@
 package com.epam.cafe.api.repository;
 
 import com.epam.cafe.api.repository.specification.SqlSpecification;
-import com.epam.cafe.repository.exception.RepositoryException;
+import com.epam.cafe.repository.RepositoryException;
 
 import java.util.List;
 

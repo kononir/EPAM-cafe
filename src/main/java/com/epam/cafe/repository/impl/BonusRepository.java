@@ -4,7 +4,7 @@ import com.epam.cafe.api.repository.Repository;
 import com.epam.cafe.api.repository.specification.SqlSpecification;
 import com.epam.cafe.entitie.builder.BonusBuilder;
 import com.epam.cafe.entitie.Bonus;
-import com.epam.cafe.repository.exception.RepositoryException;
+import com.epam.cafe.repository.RepositoryException;
 
 import java.sql.Connection;
 import java.util.LinkedHashMap;

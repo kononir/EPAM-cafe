@@ -4,7 +4,9 @@ import com.epam.cafe.api.Command;
 import com.epam.cafe.command.factory.CommandFactory;
 import com.epam.cafe.connection.ConnectionPool;
 import com.epam.cafe.entitie.user.User;
+import com.epam.cafe.entitie.user.UserRole;
 import com.epam.cafe.page.NavigationWay;
+import com.epam.cafe.service.ServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -18,6 +20,10 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class FrontServlet extends HttpServlet {
+    private static final String CLIENT_ERROR_PAGE = "/view/page/client/client_error.jsp";
+    private static final String ADMIN_ERROR_PAGE = "/view/page/administrator/admin_error.jsp";
+    private static final String DEFAULT_PAGE = "/view/page/general/authorization.jsp";
+
     private static final Logger LOGGER = LogManager.getRootLogger();
 
     @Override
@@ -46,23 +52,15 @@ public class FrontServlet extends HttpServlet {
             Command command = commandFactory.create(commandName);
 
             page = command.execute();
+        } catch (ServiceException e) {
+            LOGGER.error("", e);
+
+            page = handleErrorMessage(e.getMessage(), req);
+            navigationWay = NavigationWay.FORWARD;
         } catch (Exception e) {
             LOGGER.error("", e);
-            req.setAttribute("exception", e);
 
-            HttpSession session = req.getSession();
-            User user = (User) session.getAttribute("user");
-            switch (user.getRole()) {
-                case CLIENT:
-                    page = "/view/page/client/client_error.jsp";
-                    break;
-                case ADMINISTRATOR:
-                    page = "/view/page/administrator/admin_error.jsp";
-                    break;
-                default:
-                    page = "/view/page/general/authorization.jsp";
-            }
-
+            page = handleErrorMessage("Internal server error.", req);
             navigationWay = NavigationWay.FORWARD;
         }
 
@@ -81,5 +79,27 @@ public class FrontServlet extends HttpServlet {
                 resp.sendRedirect(url);
                 break;
         }
+    }
+
+    private String handleErrorMessage(String errorMessage, HttpServletRequest req) {
+        HttpSession session = req.getSession();
+        session.setAttribute("errorMessage", errorMessage);
+
+        User user = (User) session.getAttribute("user");
+        UserRole role = user.getRole();
+
+        String page;
+        switch (role) {
+            case CLIENT:
+                page = CLIENT_ERROR_PAGE;
+                break;
+            case ADMINISTRATOR:
+                page = ADMIN_ERROR_PAGE;
+                break;
+            default:
+                page = DEFAULT_PAGE;
+        }
+
+        return page;
     }
 }

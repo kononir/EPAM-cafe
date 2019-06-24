@@ -6,7 +6,7 @@ import com.epam.cafe.entitie.order.PaymentMethod;
 import com.epam.cafe.entitie.builder.OrderBuilder;
 import com.epam.cafe.entitie.order.Order;
 import com.epam.cafe.entitie.order.OrderDish;
-import com.epam.cafe.repository.exception.RepositoryException;
+import com.epam.cafe.repository.RepositoryException;
 import com.epam.cafe.repository.specification.choosen.dishes.ChosenDishesByOrderIDSpecification;
 
 import java.sql.Connection;

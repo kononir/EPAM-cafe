@@ -1,8 +1,24 @@
 package com.epam.cafe.command.factory;
 
 import com.epam.cafe.api.Command;
-import com.epam.cafe.command.exception.CommandFactoryException;
-import com.epam.cafe.command.impl.*;
+import com.epam.cafe.command.CommandFactoryException;
+import com.epam.cafe.command.impl.add.AddBonusCommand;
+import com.epam.cafe.command.impl.add.AddDishCommand;
+import com.epam.cafe.command.impl.add.OrderCommand;
+import com.epam.cafe.command.impl.update.LeaveCommentCommand;
+import com.epam.cafe.command.impl.add.SaveDishOrderCommand;
+import com.epam.cafe.command.impl.delete.*;
+import com.epam.cafe.command.impl.general.AuthorizeCommand;
+import com.epam.cafe.command.impl.general.ChooseLanguageCommand;
+import com.epam.cafe.command.impl.general.LogoutCommand;
+import com.epam.cafe.command.impl.get.*;
+import com.epam.cafe.command.impl.manage.ManageClientsInformationCommand;
+import com.epam.cafe.command.impl.manage.ManageDishInformationCommand;
+import com.epam.cafe.command.impl.specify.SpecifyNewBonusCommand;
+import com.epam.cafe.command.impl.specify.SpecifyNewDishCommand;
+import com.epam.cafe.command.impl.update.RateOrderCommand;
+import com.epam.cafe.command.impl.update.SaveClientChangesCommand;
+import com.epam.cafe.command.impl.update.SaveDishChangesCommand;
 
 import javax.servlet.http.HttpServletRequest;
 

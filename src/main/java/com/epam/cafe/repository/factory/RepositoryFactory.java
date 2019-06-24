@@ -7,7 +7,7 @@ import com.epam.cafe.entitie.Bonus;
 import com.epam.cafe.entitie.Dish;
 import com.epam.cafe.entitie.order.Order;
 import com.epam.cafe.entitie.user.User;
-import com.epam.cafe.repository.exception.RepositoryException;
+import com.epam.cafe.repository.RepositoryException;
 import com.epam.cafe.repository.impl.*;
 
 import java.sql.Connection;

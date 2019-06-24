@@ -1240,7 +1240,7 @@
     </column>
     <column id="308" parent="286" name="Score">
       <Position>3</Position>
-      <DataType>int(11)|0s</DataType>
+      <DataType>int(1)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="309" parent="286" name="Comment">

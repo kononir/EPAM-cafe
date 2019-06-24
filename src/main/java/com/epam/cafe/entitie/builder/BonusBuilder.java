@@ -1,6 +1,6 @@
 package com.epam.cafe.entitie.builder;
 
-import com.epam.cafe.api.entity.EntityBuilder;
+import com.epam.cafe.api.EntityBuilder;
 import com.epam.cafe.entitie.Bonus;
 
 import java.sql.ResultSet;

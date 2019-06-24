@@ -47,7 +47,7 @@
                         <fmx:message bundle="${previousOrdersB}" key="order.payment.method"/> -
                         <c:choose>
                             <c:when test="${order.paymentMethod == 'CREDIT_CARD'}">
-                                <fmx:message bundle="${previousOrdersB}" key="payment.method.credit.card"/>
+                                <fmx:message bundle="${previousOrdersB}" key="payment.method.client.account"/>
                             </c:when>
                             <c:when test="${order.paymentMethod == 'CASH'}">
                                 <fmx:message bundle="${previousOrdersB}" key="payment.method.cash"/>

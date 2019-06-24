@@ -5,7 +5,7 @@ import com.epam.cafe.api.repository.specification.SqlSpecification;
 import com.epam.cafe.entitie.builder.UserBuilder;
 import com.epam.cafe.entitie.user.User;
 import com.epam.cafe.entitie.user.UserRole;
-import com.epam.cafe.repository.exception.RepositoryException;
+import com.epam.cafe.repository.RepositoryException;
 
 import java.sql.Connection;
 import java.util.LinkedHashMap;

@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmx" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmx:setBundle basename="locale.administrator.admin_error" var="adminErrorB"/>
-<%--@elvariable id="exception" type="java.lang.Exception"--%>
+<%--@elvariable id="errorMessage" type="java.lang.String"--%>
 <%--
   Created by IntelliJ IDEA.
   User: Vlad
@@ -22,7 +22,7 @@
         <c:import url="/view/page/administrator/left_panel_admin.jsp"/>
         <div class="inner-content">
             <div class="centered">
-                <h1>${exception.message}</h1>
+                <h1>${errorMessage}</h1>
                 <button onclick="history.back()">
                     <fmx:message bundle="${adminErrorB}" key="button.back.to.previous.page"/>
                 </button>

@@ -1,4 +1,4 @@
-<%--@elvariable id="exception" type="java.lang.Exception"--%>
+<%--@elvariable id="errorMessage" type="java.lang.String"--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmx" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmx:setBundle basename="locale.client.client_error" var="clientErrorB"/>
@@ -22,7 +22,7 @@
         <c:import url="/view/page/client/left_panel_client.jsp"/>
         <div class="inner-content">
             <div class="centered">
-                <h1>${exception.message}</h1>
+                <h1>${errorMessage}</h1>
                 <button onclick="history.back()">
                     <fmx:message bundle="${clientErrorB}" key="button.back.to.previous.page"/>
                 </button>

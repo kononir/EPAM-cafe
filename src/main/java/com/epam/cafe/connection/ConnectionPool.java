@@ -1,6 +1,5 @@
 package com.epam.cafe.connection;
 
-import com.epam.cafe.connection.exception.ConnectionPoolException;
 import com.epam.cafe.property.PropertyReader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

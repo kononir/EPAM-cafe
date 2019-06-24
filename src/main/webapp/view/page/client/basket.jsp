@@ -14,7 +14,7 @@
     <title><fmx:message bundle="${basketB}" key="title"/></title>
     <link href="<c:url value="/view/style/main.css"/>" rel="stylesheet">
 </head>
-<body>
+<body onload="setLimits()">
 <div class="page-wrapper">
     <div class="menu-and-content-wrapper">
         <c:import url="/view/page/general/top_panel.jsp"/>
@@ -85,22 +85,22 @@
                     <label for="date">
                         <fmx:message bundle="${basketB}" key="form.order.label.choose.date"/>
                     </label><br>
-                    <input id="date" type="date" name="date"><br>
+                    <input id="date" type="date" name="date" onchange="setNewTimeLimits()" required><br>
                     <label for="time">
                         <fmx:message bundle="${basketB}" key="form.order.label.choose.time"/>
                     </label><br>
-                    <input id="time" type="time" name="time"><br>
+                    <input id="time" type="time" name="time" required><br>
                     <label for="payment-method">
                         <fmx:message bundle="${basketB}" key="form.order.label.choose.payment.method"/>
                     </label><br>
-                    <select id="payment-method" name="paymentMethod">
+                    <select id="payment-method" name="paymentMethod" required>
                         <option value="cash">
                             <fmx:message bundle="${basketB}"
                                          key="form.order.select.choose.payment.method.option.cash"/>
                         </option>
                         <option value="credit_card">
                             <fmx:message bundle="${basketB}"
-                                         key="form.order.select.choose.payment.method.option.credit.card"/>
+                                         key="form.order.select.choose.payment.method.option.client.account"/>
                         </option>
                     </select><br>
                     <input type="hidden" name="command" value="order">
@@ -114,5 +114,6 @@
     </div>
     <c:import url="/view/page/general/footer.jsp"/>
 </div>
+<script src="js/main.js"></script>
 </body>
 </html>

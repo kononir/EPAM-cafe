@@ -8,8 +8,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class GlobalOrderByUserIDWithLimitSpecification implements SqlSpecification, EntitySpecification<Order> {
-    private static final String QUERY
-            = "SELECT * FROM `order` WHERE UserID != ? AND ReceiptTime <= NOW() LIMIT ?,?";
+    private static final String QUERY = "SELECT * FROM `order` " +
+            "WHERE UserID != ? AND ReceiptTime <= NOW() AND (Score IS NOT NULL OR Comment IS NOT NULL) " +
+            "LIMIT ?,?";
 
     private int userID;
 

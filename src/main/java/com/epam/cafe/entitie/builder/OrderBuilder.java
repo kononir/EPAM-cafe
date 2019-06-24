@@ -1,11 +1,11 @@
 package com.epam.cafe.entitie.builder;
 
-import com.epam.cafe.api.entity.EntityBuilder;
+import com.epam.cafe.api.EntityBuilder;
 import com.epam.cafe.api.repository.Repository;
 import com.epam.cafe.entitie.order.PaymentMethod;
 import com.epam.cafe.entitie.order.Order;
 import com.epam.cafe.entitie.order.OrderDish;
-import com.epam.cafe.repository.exception.RepositoryException;
+import com.epam.cafe.repository.RepositoryException;
 import com.epam.cafe.repository.specification.choosen.dishes.ChosenDishesByOrderIDSpecification;
 
 import java.math.BigDecimal;

@@ -22,7 +22,7 @@
             <input type="hidden" name="pageNumber" value="1">
             <input type="hidden" name="recordsCount" value="5">
             <button type="submit">
-                <fmx:message bundle="${leftPanelB}" key="form.get.all.dishes.button.manage.dishes"/>
+                <fmx:message bundle="${leftPanelB}" key="form.get.all.dishes.button.dishes.managing"/>
             </button>
         </form><br>
     </li>
@@ -33,7 +33,7 @@
             <input type="hidden" name="pageNumber" value="1">
             <input type="hidden" name="recordsCount" value="20">
             <button type="submit">
-                <fmx:message bundle="${leftPanelB}" key="form.get.clients.button.manage.clients"/>
+                <fmx:message bundle="${leftPanelB}" key="form.get.clients.button.clients.managing"/>
             </button>
         </form>
     </li>

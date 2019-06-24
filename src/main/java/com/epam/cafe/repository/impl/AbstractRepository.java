@@ -1,6 +1,6 @@
 package com.epam.cafe.repository.impl;
 
-import com.epam.cafe.api.entity.EntityBuilder;
+import com.epam.cafe.api.EntityBuilder;
 import com.epam.cafe.api.query.QueryBuilder;
 import com.epam.cafe.api.query.QueryBuilderWithParams;
 import com.epam.cafe.api.repository.Repository;
@@ -8,7 +8,7 @@ import com.epam.cafe.api.repository.specification.SqlSpecification;
 import com.epam.cafe.query.DeleteQueryBuilder;
 import com.epam.cafe.query.InsertQueryBuilder;
 import com.epam.cafe.query.UpdateQueryBuilder;
-import com.epam.cafe.repository.exception.RepositoryException;
+import com.epam.cafe.repository.RepositoryException;
 
 import java.sql.*;
 import java.util.ArrayList;

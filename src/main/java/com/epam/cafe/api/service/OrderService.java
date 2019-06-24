@@ -3,7 +3,7 @@ package com.epam.cafe.api.service;
 import com.epam.cafe.entitie.order.PaymentMethod;
 import com.epam.cafe.entitie.order.Order;
 import com.epam.cafe.entitie.user.User;
-import com.epam.cafe.service.exception.ServiceException;
+import com.epam.cafe.service.ServiceException;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
