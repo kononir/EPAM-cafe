@@ -4,7 +4,7 @@ import com.epam.cafe.api.repository.Repository;
 import com.epam.cafe.api.service.BonusService;
 import com.epam.cafe.entitie.Bonus;
 import com.epam.cafe.repository.RepositoryException;
-import com.epam.cafe.repository.factory.RepositoryFactory;
+import com.epam.cafe.repository.RepositoryFactory;
 import com.epam.cafe.repository.specification.bonus.BonusByUserIDSpecification;
 import com.epam.cafe.repository.specification.bonus.BonusByUserIDWithLimitSpecification;
 import com.epam.cafe.repository.specification.bonus.LastBonusSpecification;

@@ -1,13 +1,12 @@
-package com.epam.cafe.repository.factory;
+package com.epam.cafe.repository;
 
 import com.epam.cafe.api.repository.Repository;
-import com.epam.cafe.connection.ConnectionPool;
+import com.epam.cafe.connection.pool.ConnectionPool;
 import com.epam.cafe.entitie.Account;
 import com.epam.cafe.entitie.Bonus;
 import com.epam.cafe.entitie.Dish;
 import com.epam.cafe.entitie.order.Order;
 import com.epam.cafe.entitie.user.User;
-import com.epam.cafe.repository.RepositoryException;
 import com.epam.cafe.repository.impl.*;
 
 import java.sql.Connection;

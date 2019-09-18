@@ -1,2 +1,2 @@
 INSERT INTO account (Money)
-VALUES (10.12);
+VALUES (100000.12);

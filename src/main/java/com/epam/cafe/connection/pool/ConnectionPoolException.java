@@ -1,4 +1,4 @@
-package com.epam.cafe.connection;
+package com.epam.cafe.connection.pool;
 
 public class ConnectionPoolException extends RuntimeException {
 

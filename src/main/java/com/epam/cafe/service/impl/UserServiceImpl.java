@@ -5,7 +5,7 @@ import com.epam.cafe.api.service.UserService;
 import com.epam.cafe.entitie.user.User;
 import com.epam.cafe.entitie.user.UserRole;
 import com.epam.cafe.repository.RepositoryException;
-import com.epam.cafe.repository.factory.RepositoryFactory;
+import com.epam.cafe.repository.RepositoryFactory;
 import com.epam.cafe.repository.specification.user.UserByIDsSpecification;
 import com.epam.cafe.repository.specification.user.UserByLoginAndPasswordSpecification;
 import com.epam.cafe.repository.specification.user.UserByRoleSpecification;

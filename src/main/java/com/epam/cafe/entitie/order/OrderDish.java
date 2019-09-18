@@ -1,6 +1,8 @@
 package com.epam.cafe.entitie.order;
 
 public class OrderDish {
+    private static final long serialVersionUID = 1L;
+
     public static final String ID_COLUMN = "ID";
     public static final String ORDER_ID_COLUMN = "OrderID";
     public static final String DISH_ID_COLUMN = "DishID";

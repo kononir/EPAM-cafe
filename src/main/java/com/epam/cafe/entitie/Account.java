@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 public class Account implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     public static final String ID_COLUMN = "ID";
     public static final String MONEY_COLUMN = "Money";
 

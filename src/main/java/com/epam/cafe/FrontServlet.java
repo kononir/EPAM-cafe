@@ -2,7 +2,7 @@ package com.epam.cafe;
 
 import com.epam.cafe.api.Command;
 import com.epam.cafe.command.factory.CommandFactory;
-import com.epam.cafe.connection.ConnectionPool;
+import com.epam.cafe.connection.pool.ConnectionPool;
 import com.epam.cafe.entitie.user.User;
 import com.epam.cafe.entitie.user.UserRole;
 import com.epam.cafe.page.NavigationWay;

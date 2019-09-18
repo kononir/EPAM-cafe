@@ -7,7 +7,7 @@ import com.epam.cafe.entitie.order.PaymentMethod;
 import com.epam.cafe.entitie.order.Order;
 import com.epam.cafe.entitie.user.User;
 import com.epam.cafe.repository.RepositoryException;
-import com.epam.cafe.repository.factory.RepositoryFactory;
+import com.epam.cafe.repository.RepositoryFactory;
 import com.epam.cafe.repository.specification.account.AccountByIDSpecification;
 import com.epam.cafe.repository.specification.order.*;
 import com.epam.cafe.repository.specification.user.UserByIDSpecification;

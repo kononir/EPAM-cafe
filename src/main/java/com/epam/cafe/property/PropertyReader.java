@@ -14,9 +14,7 @@ public class PropertyReader {
     public String read(String propertyName) {
         String propertyValue;
 
-        try {
-            InputStream stream = getClass().getClassLoader().getResourceAsStream(filePath);
-
+        try (InputStream stream = getClass().getClassLoader().getResourceAsStream(filePath)) {
             Properties properties = new Properties();
             properties.load(stream);
             propertyValue = properties.getProperty(propertyName);

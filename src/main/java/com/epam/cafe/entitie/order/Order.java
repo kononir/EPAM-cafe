@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.util.Map;
 
 public class Order {
+    private static final long serialVersionUID = 1L;
+
     public static final String ID_COLUMN = "ID";
     public static final String RECEIPT_TIME_COLUMN = "ReceiptTime";
     public static final String RESULT_COST_COLUMN = "ResultCost";

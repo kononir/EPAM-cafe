@@ -1,5 +1,6 @@
-package com.epam.cafe.connection;
+package com.epam.cafe.connection.pool;
 
+import com.epam.cafe.connection.ConnectionFactory;
 import com.epam.cafe.property.PropertyReader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -26,7 +27,7 @@ public class ConnectionPool {
 
     private static final Logger LOGGER = LogManager.getRootLogger();
 
-    public ConnectionPool() {
+    private ConnectionPool() {
         try {
             ConnectionFactory factory = new ConnectionFactory();
             for (int i = 0; i < CONNECTIONS_NUMBER; i++) {

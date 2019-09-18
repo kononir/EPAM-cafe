@@ -3,6 +3,8 @@ package com.epam.cafe.entitie;
 import java.io.Serializable;
 
 public class Bonus implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     public static final String ID_COLUMN = "ID";
     public static final String NAME_COLUMN = "Name";
     public static final String DESCRIPTION_COLUMN = "Description";

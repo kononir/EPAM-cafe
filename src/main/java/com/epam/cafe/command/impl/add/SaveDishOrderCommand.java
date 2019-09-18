@@ -32,6 +32,8 @@ public class SaveDishOrderCommand extends AbstractCommand implements Command {
 
         order.put(selectedDishID, servingsNumber);
 
+        session.setAttribute("order", order);
+
         return PAGE;
     }
 

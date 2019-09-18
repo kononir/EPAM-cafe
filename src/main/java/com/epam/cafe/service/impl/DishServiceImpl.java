@@ -4,7 +4,7 @@ import com.epam.cafe.api.repository.Repository;
 import com.epam.cafe.api.service.DishService;
 import com.epam.cafe.entitie.Dish;
 import com.epam.cafe.repository.RepositoryException;
-import com.epam.cafe.repository.factory.RepositoryFactory;
+import com.epam.cafe.repository.RepositoryFactory;
 import com.epam.cafe.repository.specification.dish.*;
 import com.epam.cafe.service.ServiceException;
 
