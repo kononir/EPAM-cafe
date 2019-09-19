@@ -54,7 +54,7 @@
                                 </c:choose>
                             </td>
                             <td>
-                                <form action="<c:url value="/command"/>" method="post">
+                                <form action="<c:url value="/command"/>">
                                     <input type="hidden" name="command" value="get_bonuses_admin">
                                     <input type="hidden" name="navigationWay" value="forward">
                                     <input type="hidden" name="pageNumber" value="1">
@@ -68,7 +68,7 @@
                                 </form>
                             </td>
                             <td>
-                                <form action="<c:url value="/command"/>" method="post">
+                                <form action="<c:url value="/command"/>">
                                     <input type="hidden" name="command" value="manage_client_information">
                                     <input type="hidden" name="navigationWay" value="forward">
                                     <input type="hidden" name="clientID" value="${client.ID}">

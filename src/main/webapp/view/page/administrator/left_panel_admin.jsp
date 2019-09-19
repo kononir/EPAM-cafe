@@ -16,7 +16,7 @@
 <body>
 <ul class="vertical-menu">
     <li>
-        <form action="<c:url value="/command"/>" method="post">
+        <form action="<c:url value="/command"/>">
             <input type="hidden" name="command" value="get_all_dishes">
             <input type="hidden" name="navigationWay" value="forward">
             <input type="hidden" name="pageNumber" value="1">
@@ -27,7 +27,7 @@
         </form><br>
     </li>
     <li>
-        <form action="<c:url value="/command"/>" method="post">
+        <form action="<c:url value="/command"/>">
             <input type="hidden" name="command" value="get_clients">
             <input type="hidden" name="navigationWay" value="forward">
             <input type="hidden" name="pageNumber" value="1">

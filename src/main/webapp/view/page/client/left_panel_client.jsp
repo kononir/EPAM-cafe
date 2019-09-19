@@ -16,7 +16,7 @@
 <body>
 <ul class="vertical-menu">
     <li>
-        <form action="<c:url value="/command"/>" method="post">
+        <form action="<c:url value="/command"/>">
             <input type="hidden" name="command" value="get_client_menu">
             <input type="hidden" name="navigationWay" value="forward">
             <input type="hidden" name="pageNumber" value="1">
@@ -31,7 +31,7 @@
         <button type="submit"><fmx:message bundle="${leftPanelClientB}" key="button.orders"/></button>
         <ul class="sub-menu">
             <li>
-                <form action="<c:url value="/command"/>" method="post">
+                <form action="<c:url value="/command"/>">
                     <input type="hidden" name="command" value="get_current_orders">
                     <input type="hidden" name="navigationWay" value="forward">
                     <input type="hidden" name="pageNumber" value="1">
@@ -43,7 +43,7 @@
                 </form>
             </li>
             <li>
-                <form action="<c:url value="/command"/>" method="post">
+                <form action="<c:url value="/command"/>">
                     <input type="hidden" name="command" value="get_previous_orders">
                     <input type="hidden" name="navigationWay" value="forward">
                     <input type="hidden" name="pageNumber" value="1">
@@ -55,7 +55,7 @@
                 </form>
             </li>
             <li>
-                <form action="<c:url value="/command"/>" method="post">
+                <form action="<c:url value="/command"/>">
                     <input type="hidden" name="command" value="get_global_orders">
                     <input type="hidden" name="navigationWay" value="forward">
                     <input type="hidden" name="pageNumber" value="1">
@@ -69,7 +69,7 @@
         </ul>
     </li>
     <li>
-        <form action="<c:url value="/command"/>" method="post">
+        <form action="<c:url value="/command"/>">
             <input type="hidden" name="command" value="get_bonuses_client">
             <input type="hidden" name="navigationWay" value="forward">
             <input type="hidden" name="pageNumber" value="1">
@@ -80,7 +80,7 @@
         </form>
     </li>
     <li>
-        <form action="<c:url value="/command"/>" method="post">
+        <form action="<c:url value="/command"/>">
             <input type="hidden" name="command" value="show_basket">
             <input type="hidden" name="navigationWay" value="forward">
             <button type="submit">

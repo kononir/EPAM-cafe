@@ -25,7 +25,7 @@
             <h1><fmx:message bundle="${bonusesTableB}" key="head"/> ${client.login}</h1>
 
             <div class="content-actions">
-                <form action="<c:url value="/command"/>" method="post">
+                <form action="<c:url value="/command"/>">
                     <input type="hidden" name="command" value="specify_new_bonus">
                     <input type="hidden" name="navigationWay" value="forward">
                     <button type="submit">
@@ -34,7 +34,7 @@
                     </button>
                 </form>
 
-                <form action="<c:url value="/command"/>" method="post">
+                <form action="<c:url value="/command"/>">
                     <input type="hidden" name="command" value="get_clients">
                     <input type="hidden" name="navigationWay" value="forward">
                     <input type="hidden" name="pageNumber" value="1">

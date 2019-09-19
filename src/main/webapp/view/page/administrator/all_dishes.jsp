@@ -24,7 +24,7 @@
             <h1><fmx:message bundle="${allDishesB}" key="head"/></h1>
 
             <div class="content-actions">
-                <form action="<c:url value="/command"/>" method="post">
+                <form action="<c:url value="/command"/>">
                     <input type="hidden" name="command" value="specify_new_dish">
                     <input type="hidden" name="navigationWay" value="forward">
                     <button type="submit">
@@ -53,7 +53,7 @@
                     </p>
                     <img src="${dish.imageHref}" alt="${dish.name}">
 
-                    <form action="<c:url value="/command"/>" method="post">
+                    <form action="<c:url value="/command"/>">
                         <input type="hidden" name="command" value="manage_dish_information">
                         <input type="hidden" name="navigationWay" value="forward">
                         <input type="hidden" name="dishID" value=${dish.ID}>
