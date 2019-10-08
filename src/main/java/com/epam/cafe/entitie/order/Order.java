@@ -89,4 +89,12 @@ public class Order {
     public int getUserID() {
         return userID;
     }
+
+    @Override
+    public String toString() {
+        return getClass().getName() + "@" + ID_COLUMN + "=" + ID + " " + RECEIPT_TIME_COLUMN + "=" + receiptTime
+                + " " + RESULT_COST_COLUMN + "=" + resultCost + " " + PAYMENT_METHOD_COLUMN + paymentMethod
+                + " " + SCORE_COLUMN + "=" + score + " " + COMMENT_COLUMN + "=" + comment + " "
+                + USER_ID_COLUMN + "=" + userID;
+    }
 }

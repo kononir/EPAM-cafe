@@ -5,5 +5,10 @@ import java.io.Serializable;
 public enum UserRole implements Serializable {
     ADMINISTRATOR,
     CLIENT,
-    ANONYMOUS
+    ANONYMOUS;
+
+    @Override
+    public String toString() {
+        return getClass().getName() + "@" + super.toString();
+    }
 }

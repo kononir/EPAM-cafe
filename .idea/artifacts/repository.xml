@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="repository">
+    <output-path>$PROJECT_DIR$/out/repository</output-path>
+    <root id="archive" name="repository.jar">
+      <element id="module-output" name="EPAM-cafe" />
+    </root>
+  </artifact>
+</component>

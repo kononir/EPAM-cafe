@@ -43,4 +43,10 @@ public class Bonus implements Serializable {
     public int getUserID() {
         return userID;
     }
+
+    @Override
+    public String toString() {
+        return getClass().getName() + "@" + ID_COLUMN + "=" + ID + " " + NAME_COLUMN + "=" + name
+                + " " + USER_ID_COLUMN + "=" + userID;
+    }
 }

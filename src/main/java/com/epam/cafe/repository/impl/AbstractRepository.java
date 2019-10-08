@@ -25,22 +25,16 @@ public abstract class AbstractRepository<T> implements Repository<T> {
         this.connection = connection;
     }
 
-    public Connection getConnection() {
-        return connection;
-    }
-
     @Override
     public void save(T element) throws RepositoryException {
-        try {
-            Map<String, Object> paramsMap = getParams(element);
-            paramsMap.remove(ID_COLUMN);
+        Map<String, Object> paramsMap = getParams(element);
+        paramsMap.remove(ID_COLUMN);
 
-            List<String> params = new ArrayList<>(paramsMap.keySet());
-            List<Object> values = new ArrayList<>(paramsMap.values());
+        List<String> params = new ArrayList<>(paramsMap.keySet());
+        List<Object> values = new ArrayList<>(paramsMap.values());
 
-            QueryBuilderWithParams queryBuilder = new InsertQueryBuilder();
-            PreparedStatement statement = makeStatementWithParams(queryBuilder, params, values);
-
+        QueryBuilderWithParams queryBuilder = new InsertQueryBuilder();
+        try (PreparedStatement statement = makeStatementWithParams(queryBuilder, params, values)) {
             statement.execute();
         } catch (SQLException e) {
             throw new RepositoryException("Saving to repository error.", e);
@@ -49,14 +43,12 @@ public abstract class AbstractRepository<T> implements Repository<T> {
 
     @Override
     public void update(T element) throws RepositoryException {
-        try {
-            Map<String, Object> paramsMap = getParams(element);
-            List<String> params = new ArrayList<>(paramsMap.keySet());
-            List<Object> values = new ArrayList<>(paramsMap.values());
+        Map<String, Object> paramsMap = getParams(element);
+        List<String> params = new ArrayList<>(paramsMap.keySet());
+        List<Object> values = new ArrayList<>(paramsMap.values());
 
-            QueryBuilderWithParams queryBuilder = new UpdateQueryBuilder();
-            PreparedStatement statement = makeStatementWithParams(queryBuilder, params, values);
-
+        QueryBuilderWithParams queryBuilder = new UpdateQueryBuilder();
+        try (PreparedStatement statement = makeStatementWithParams(queryBuilder, params, values)) {
             int whereParamIndex = params.size() + 1;
             Object whereValue = paramsMap.get(ID_COLUMN);
             statement.setObject(whereParamIndex, whereValue);
@@ -82,12 +74,10 @@ public abstract class AbstractRepository<T> implements Repository<T> {
 
     @Override
     public void remove(T element) throws RepositoryException {
-        try {
-            QueryBuilder queryBuilder = new DeleteQueryBuilder();
-            String query = queryBuilder.build(getTableName());
+        QueryBuilder queryBuilder = new DeleteQueryBuilder();
+        String query = queryBuilder.build(getTableName());
 
-            PreparedStatement statement = connection.prepareStatement(query);
-
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
             Map<String, Object> paramsMap = getParams(element);
             Object idValue = paramsMap.get(ID_COLUMN);
             statement.setObject(ID_COLUMN_INDEX, idValue);
@@ -101,19 +91,19 @@ public abstract class AbstractRepository<T> implements Repository<T> {
     protected List<T> executeQuery(SqlSpecification specification, EntityBuilder<T> builder)
             throws RepositoryException {
         List<T> builtEntities = new ArrayList<>();
+        String query = specification.toSqlClause();
 
-        try {
-            String query = specification.toSqlClause();
-            PreparedStatement statement = connection.prepareStatement(query);
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
             List<Object> params = specification.getParams();
             for (int i = 0; i < params.size(); i++) {
                 statement.setObject(i + 1, params.get(i));
             }
 
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                T entity = builder.build(resultSet);
-                builtEntities.add(entity);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    T entity = builder.build(resultSet);
+                    builtEntities.add(entity);
+                }
             }
         } catch (SQLException e) {
             throw new RepositoryException("Error when execute searching query.", e);

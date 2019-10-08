@@ -112,4 +112,11 @@ public class Dish implements Serializable {
                 + (imageHref == null ? 0 : imageHref.hashCode())
                 + (isInMenu ? 0 : 1);
     }
+
+    @Override
+    public String toString() {
+        return getClass().getName() + "@" + ID_COLUMN + "=" + ID + " " + NAME_COLUMN + "=" + name
+                + " " + COST_COLUMN + "=" + cost + " " + IMAGE_HREF_COLUMN + "=" + imageHref
+                + " " + IS_IN_MENU_COLUMN + "=" + isInMenu;
+    }
 }

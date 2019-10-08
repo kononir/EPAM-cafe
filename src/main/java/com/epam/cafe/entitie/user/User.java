@@ -115,4 +115,12 @@ public class User implements Serializable {
                 + (role == null ? 0 : role.hashCode())
                 + (accountID == null ? 0 : accountID.hashCode());
     }
+
+    @Override
+    public String toString() {
+        return getClass().getName() + "@" + LOGIN_COLUMN + "=" + login + " " + PASSWORD_COLUMN + "="
+                + password + " " + NAME_COLUMN + "=" + name + " " + SURNAME_COLUMN + "=" + surname + " "
+                + IS_BANNED_COLUMN + "=" + isBanned + " " + ROLE_COLUMN + "=" + role + " " + ACCOUNT_ID_COLUMN
+                + "=" + accountID;
+    }
 }

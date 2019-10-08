@@ -28,4 +28,9 @@ public class Account implements Serializable {
     public void setMoney(BigDecimal money) {
         this.money = money;
     }
+
+    @Override
+    public String toString() {
+        return getClass().getName() + "@" + ID_COLUMN + "=" + ID + " " + MONEY_COLUMN + "=" + money;
+    }
 }
